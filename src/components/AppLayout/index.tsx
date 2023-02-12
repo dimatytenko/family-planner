@@ -2,13 +2,14 @@ import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {useLocation} from 'react-router-dom';
 
-import {MainWrapper} from './styles';
 import {WithChildren} from '../../types/helpers';
+import {Main, Container} from './styles';
 
 export const StyledLayout = styled.div`
+  min-height: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  overflow: hidden;
 `;
 
 type AppLayoutProps = WithChildren & {
@@ -28,9 +29,9 @@ export const AppLayout: React.FC<AppLayoutProps> = ({children, header, footer, h
   return (
     <StyledLayout {...props}>
       {!hideHeader && header}
-      {/* <Background> */}
-      <MainWrapper>{children}</MainWrapper>
-      {/* </Background> */}
+      <Main>
+        <Container>{children}</Container>
+      </Main>
       {!hideFooter && footer}
     </StyledLayout>
   );

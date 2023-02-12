@@ -1,16 +1,20 @@
 import React from 'react';
+import {ThemeProvider} from 'styled-components';
+
+import {defaultTheme} from './ui-kit/theme/theme';
 import {Layout} from './containers/Layout';
 import RoutesSwitch from './Routes';
-import {Normalize} from 'styled-normalize';
+import 'modern-normalize';
+import {GlobalStyles} from './styles/index';
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={defaultTheme}>
+      <GlobalStyles />
       <Layout>
         <RoutesSwitch />
       </Layout>
-      <Normalize />
-    </>
+    </ThemeProvider>
   );
 }
 

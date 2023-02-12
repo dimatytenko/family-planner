@@ -6,10 +6,14 @@ import {Route} from '../helpers/Route';
 
 export const route = {
   main: Route.of({path: '/'}),
+  login: Route.of({path: '/'}),
+  register: Route.of({path: '/register'}),
 };
 
 export const paths = {
-  manageOrder: 'manage-order',
+  main: '',
+  login: 'login',
+  register: 'register',
 };
 
 export const excludePathsHeader = [];
