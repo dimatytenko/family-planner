@@ -6,15 +6,18 @@ import {Route} from '../helpers/Route';
 
 export const route = {
   main: Route.of({path: '/'}),
-  login: Route.of({path: '/'}),
-  register: Route.of({path: '/register'}),
+  login: Route.of({path: '/login'}),
+  signup: Route.of({path: '/signup'}),
 };
 
 export const paths = {
   main: '',
   login: 'login',
-  register: 'register',
+  signup: 'signup',
 };
 
 export const excludePathsHeader = [];
 export const excludePathsFooter = [];
+
+export const excludePathsLogin = [paths.login];
+export const excludePathsSignup = [paths.signup];

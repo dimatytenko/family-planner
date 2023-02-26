@@ -3,8 +3,9 @@ import React from 'react';
 import {HeaderComponentWrapper, Container, Logo, HeaderContainer} from './styles';
 import {Navigation} from '../Navigation';
 import {HomeLink} from '../../ui-kit/Button';
+import {HeaderComponentPropsT} from './types';
 
-export const HeaderComponent = () => {
+export const HeaderComponent: React.FC<HeaderComponentPropsT> = ({user, onLogOut, visibleLogin, visibleSignup}) => {
   return (
     <HeaderComponentWrapper>
       <Container>
@@ -13,7 +14,7 @@ export const HeaderComponent = () => {
             <Logo>Logo</Logo>
           </HomeLink>
 
-          <Navigation />
+          <Navigation user={user} onLogOut={onLogOut} visibleLogin={visibleLogin} visibleSignup={visibleSignup} />
         </HeaderContainer>
       </Container>
     </HeaderComponentWrapper>
