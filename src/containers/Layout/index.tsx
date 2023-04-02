@@ -7,24 +7,31 @@ import {Header} from './Header';
 import {AppLayout} from '../../components/AppLayout';
 import {excludePathsHeader, excludePathsFooter, excludePathsLogin, excludePathsSignup} from '../../constants/routes';
 import {useViewer, useLogOut} from '../../hooks/auth';
+import {useDrawer} from '../../hooks/layout';
 
 export const Layout: React.FC<WithChildren> = ({children}) => {
   const {pathname} = useLocation();
   const user = useViewer();
+  const drawerActions = useDrawer();
   const onLogOut = useLogOut();
   const visibleLogin = !excludePathsLogin.some((path) => pathname.includes(path));
   const visibleSignup = !excludePathsSignup.some((path) => pathname.includes(path));
-  console.log('visibleLogin', visibleLogin);
-  console.log('visibleSignup', visibleSignup);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
   return (
     <AppLayout
       hideFooter={excludePathsFooter.some((path) => pathname.includes(path))}
       hideHeader={excludePathsHeader.some((path) => pathname.includes(path))}
+      drawerActions={drawerActions}
+      user={user}
+      onLogOut={onLogOut}
       footer={<Footer />}
-      header={<Header user={user} onLogOut={onLogOut} visibleLogin={visibleLogin} visibleSignup={visibleSignup} />}>
+      header={
+        <Header user={user} visibleLogin={visibleLogin} visibleSignup={visibleSignup} drawerActions={drawerActions} />
+      }>
       {children}
     </AppLayout>
   );

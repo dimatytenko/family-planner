@@ -1,7 +1,16 @@
 import styled from 'styled-components';
+
 import {defaultTheme} from '../../ui-kit/theme/theme';
 import {Media} from '../../ui-kit/theme/breakpoints';
+import back from './assets/back-min.jpg';
 
+export const StyledLayout = styled.div`
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: url(${back}) repeat;
+`;
 export const Container = styled.div`
   margin: 0 auto;
   padding: 0 ${defaultTheme.spacer._3};
@@ -21,11 +30,9 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   padding: ${defaultTheme.spacer._6} 0;
-  width: 100%;
   flex: 1 1 auto;
   width: 100%;
   height: 100%;
-  background-color: gray;
 `;
 
 export const HeaderComponentWrapper = styled.div`
@@ -40,4 +47,12 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+// drawer
+
+export const Drawerlist = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${defaultTheme.spacer._3};
 `;

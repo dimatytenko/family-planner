@@ -4,3 +4,11 @@ export enum AuthQueryList {
   user = '/api/auth/user',
   logout = '/api/auth/logout',
 }
+
+export enum PickerQueryList {
+  pick = '/api/picker/pick',
+}
+
+export enum TryQueryList {
+  tryEmail = '/api/try/email',
+}

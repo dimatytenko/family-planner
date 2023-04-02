@@ -8,7 +8,7 @@ import {route} from '../../constants/routes';
 export const LogIn = () => {
   const navigate = useNavigate();
   const toMainRedirect = () => navigate(route.main.path);
-  const {onLogin} = useLogin(toMainRedirect);
+  const authData = useLogin(toMainRedirect);
 
-  return <LogInComponent onSubmit={onLogin} />;
+  return <LogInComponent authData={authData} />;
 };

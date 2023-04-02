@@ -8,6 +8,8 @@ export const route = {
   main: Route.of({path: '/'}),
   login: Route.of({path: '/login'}),
   signup: Route.of({path: '/signup'}),
+  picker: Route.of({path: '/picker'}),
+  calendar: Route.of({path: '/calendar'}),
 };
 
 export const paths = {

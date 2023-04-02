@@ -1,10 +1,12 @@
 import Cookies from 'js-cookie';
 import {useState, useEffect} from 'react';
 import {useRecoilState, useSetRecoilState} from 'recoil';
+
 import {session, session as sessionState, userState} from '../states/session';
 import {signupQuery, loginQuery, userQuery, logoutQuery} from '../queries/auth';
 import {signupReqBody, loginReqBody} from '../queries/types/auth';
 import {User} from '../types/auth';
+import {loading, errorMessage} from '../helpers/common';
 
 type TokenType = string | null | undefined;
 
@@ -21,14 +23,14 @@ export const setToken = (token: TokenType, expires?: number): TokenType | void =
 
 export const useSignup = (redirect?: () => void) => {
   const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(loading);
   const [error, setError] = useState<string | undefined>('');
 
   const onSignup = async (values: signupReqBody) => {
     try {
       setError('');
       setSuccess(false);
-      setLoading(true);
+      setIsLoading((prev) => ({...prev, send: true}));
 
       const body = {
         email: values?.email.trim() || '',
@@ -38,54 +40,67 @@ export const useSignup = (redirect?: () => void) => {
       const res = await signupQuery(body);
       if (res.status) {
         setSuccess(true);
-        setLoading(false);
+        setIsLoading((prev) => ({...prev, send: false}));
         redirect?.();
       }
     } catch (e) {
       console.log(e);
-      setLoading(false);
-      setError('register error');
+      const message = errorMessage(e);
+      setError(message);
+      setIsLoading((prev) => ({...prev, send: false}));
     }
   };
-  return {onSignup, loading, success, error};
+  return {onSubmit: onSignup, isLoading, success, error};
 };
 
 export const useLogin = (redirect?: () => void) => {
-  const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | undefined>('');
   const setSession = useSetRecoilState(session);
+  const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(loading);
+  const [error, setError] = useState<string | undefined>('');
+
+  const resetError = () => setError('');
 
   const onLogin = async (values: loginReqBody) => {
     try {
       setError('');
-      setLoading(true);
+      setIsLoading((prev) => ({...prev, send: true}));
       setSuccess(false);
 
       const body = {password: values?.password.trim() || '', username: values?.username.trim() || ''};
       const res = await loginQuery(body);
+      console.log('res?.body?.user', res?.body?.user);
       if (res?.status) {
         const token = res?.body?.token;
-        console.log('res.body', res.body);
         setToken(token);
         setSession({sessionToken: token, user: res?.body?.user});
         setSuccess(true);
 
-        setLoading(false);
+        setIsLoading((prev) => ({...prev, send: false}));
         redirect?.();
       }
     } catch (e) {
       console.log(e);
-      setLoading(false);
-      setError('Login error');
+      const message = errorMessage(e);
+      setError(message);
+      setIsLoading((prev) => ({...prev, send: false}));
     }
   };
-  return {onLogin, loading, success, error};
+
+  return {onSubmit: onLogin, isLoading, success, error, resetError};
 };
 
 export const useViewer = () => {
   const user = useRecoilState(userState);
+  console.log('user', user);
   return user[0];
+};
+
+export const useUpdateViewer = () => {
+  const setUser = useSetRecoilState(userState);
+  return (user: User) => {
+    setUser(user);
+  };
 };
 
 export function useFetchSession() {
@@ -105,8 +120,6 @@ export function useFetchSession() {
 
       const res = await checkAuth();
       if (res) {
-        console.log(res);
-        console.log('res', res);
         setSession({sessionToken: token, user: res});
         SetSuccess(true);
         setLoading(false);
@@ -133,7 +146,7 @@ export function useFetchSession() {
 export const useCheckAuthorize = () => async () => {
   try {
     const res = await userQuery(); //check auth query
-    if (res.body) return res.body as User;
+    if (res.body.user) return res.body.user as User;
     return false;
   } catch (e) {
     return false;

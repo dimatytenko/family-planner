@@ -1,8 +1,15 @@
 import React from 'react';
 
 import {HeaderComponent} from '../../../components/AppLayout/Header';
-import {HeaderPropsT} from '../../../components/AppLayout/types';
+import {HeaderPropsT} from '../../../types/layout';
 
-export const Header: React.FC<HeaderPropsT> = ({user, onLogOut, visibleLogin, visibleSignup}) => {
-  return <HeaderComponent user={user} onLogOut={onLogOut} visibleLogin={visibleLogin} visibleSignup={visibleSignup} />;
+export const Header: React.FC<HeaderPropsT> = ({user, visibleLogin, visibleSignup, drawerActions}) => {
+  return (
+    <HeaderComponent
+      user={user}
+      visibleLogin={visibleLogin}
+      visibleSignup={visibleSignup}
+      drawerActions={drawerActions}
+    />
+  );
 };

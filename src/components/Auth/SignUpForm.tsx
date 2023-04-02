@@ -1,18 +1,25 @@
 import React from 'react';
 import {Button, Form, Input} from 'antd';
 
-import {SignUpFormPropsT} from './types';
+import {SignUpFormPropsT} from '../../types/auth';
+import {signupReqBody} from '../../queries/types/auth';
 
-export const SignUpForm: React.FC<SignUpFormPropsT> = ({onSubmit}) => {
+export const SignUpForm: React.FC<SignUpFormPropsT> = ({authData: {onSubmit, resetError, error, isLoading}}) => {
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
+  const onFinish = (values: signupReqBody) => {
     onSubmit(values);
   };
 
   return (
-    <Form form={form} name="register" onFinish={onFinish} scrollToFirstError>
+    <Form
+      form={form}
+      name="register"
+      onFinish={onFinish}
+      onChange={resetError}
+      scrollToFirstError
+      layout="vertical"
+      style={{maxWidth: 600}}>
       <Form.Item
         name="email"
         label="E-mail"
@@ -74,10 +81,11 @@ export const SignUpForm: React.FC<SignUpFormPropsT> = ({onSubmit}) => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={isLoading?.send}>
           Sign up
         </Button>
       </Form.Item>
+      {error && <div style={{color: 'red'}}>{error}</div>}
     </Form>
   );
 };

@@ -4,9 +4,10 @@ import {Button} from 'antd';
 import {LinkButton} from '../../ui-kit/Button';
 import {route} from '../../constants/routes';
 import {NavigationWrapper} from './styles';
-import {NavigationPropsT} from './types';
+import {NavigationPropsT} from '../../types/layout';
+import {MenuFoldOutlined} from '@ant-design/icons';
 
-export const Navigation: React.FC<NavigationPropsT> = ({user, onLogOut, visibleLogin, visibleSignup}) => {
+export const Navigation: React.FC<NavigationPropsT> = ({user, visibleLogin, visibleSignup, drawerActions}) => {
   return (
     <NavigationWrapper>
       {!user ? (
@@ -16,8 +17,9 @@ export const Navigation: React.FC<NavigationPropsT> = ({user, onLogOut, visibleL
         </>
       ) : (
         <>
-          <Button>{user.username}</Button>
-          <Button onClick={onLogOut}>Log out</Button>
+          <Button type="primary" onClick={drawerActions.showDrawer}>
+            <MenuFoldOutlined />
+          </Button>
         </>
       )}
     </NavigationWrapper>

@@ -1,25 +1,21 @@
 import React, {useEffect} from 'react';
-import styled from 'styled-components';
 import {useLocation} from 'react-router-dom';
 
-import {WithChildren} from '../../types/helpers';
-import {Main, Container} from './styles';
+import {StyledLayout, Main, Container} from './styles';
+import {DrawerComponent} from './Drawer';
+import {AppLayoutProps} from '../../types/layout';
 
-export const StyledLayout = styled.div`
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-`;
-
-type AppLayoutProps = WithChildren & {
-  hideHeader?: boolean;
-  hideFooter?: boolean;
-  header?: React.ReactNode;
-  footer?: React.ReactNode;
-};
-
-export const AppLayout: React.FC<AppLayoutProps> = ({children, header, footer, hideHeader, hideFooter, ...props}) => {
+export const AppLayout: React.FC<AppLayoutProps> = ({
+  children,
+  header,
+  footer,
+  hideHeader,
+  hideFooter,
+  drawerActions,
+  user,
+  onLogOut,
+  ...props
+}) => {
   const {pathname} = useLocation();
 
   useEffect(() => {
@@ -31,6 +27,15 @@ export const AppLayout: React.FC<AppLayoutProps> = ({children, header, footer, h
       {!hideHeader && header}
       <Main>
         <Container>{children}</Container>
+        <DrawerComponent
+          open={drawerActions.open}
+          onClose={drawerActions.onClose}
+          showChildrenDrawer={drawerActions.showChildrenDrawer}
+          onChildrenDrawerClose={drawerActions.onChildrenDrawerClose}
+          childrenDrawer={drawerActions.childrenDrawer}
+          onLogOut={onLogOut}
+          user={user}
+        />
       </Main>
       {!hideFooter && footer}
     </StyledLayout>
