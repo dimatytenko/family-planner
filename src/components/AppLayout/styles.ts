@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Upload} from 'antd';
 
 import {defaultTheme} from '../../ui-kit/theme/theme';
 import {Media} from '../../ui-kit/theme/breakpoints';
@@ -11,6 +12,7 @@ export const StyledLayout = styled.div`
   overflow: hidden;
   background: url(${back}) repeat;
 `;
+
 export const Container = styled.div`
   margin: 0 auto;
   padding: 0 ${defaultTheme.spacer._3};
@@ -55,4 +57,57 @@ export const Drawerlist = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${defaultTheme.spacer._3};
+`;
+
+export const AvatarWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: ${defaultTheme.spacer._3};
+`;
+
+export const StyledUpload = styled(Upload)`
+  width: auto !important;
+
+  .ant-upload-list-item-container {
+    margin-block: 0 !important;
+    margin-inline: 0 !important;
+  }
+`;
+
+export const DrawerElWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: ${defaultTheme.spacer._2};
+`;
+
+export const AvatarButton = styled.div`
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid ${defaultTheme.palette.colors.primary};
+  transition: border-color ${defaultTheme.transition.primary};
+  &:hover {
+    border-color: ${defaultTheme.palette.hoverColors.success};
+  }
+`;
+
+export const StyledLogout = styled.div`
+  cursor: pointer;
+  margin: 0;
+  & > span {
+    display: block;
+  }
+
+  & svg {
+    font-size: 0;
+    width: 34px;
+    height: 34px;
+    color: ${defaultTheme.palette.colors.primary};
+    transition: color ${defaultTheme.transition.primary};
+  }
+
+  &:hover svg {
+    color: ${defaultTheme.palette.hoverColors.alarm};
+  }
 `;

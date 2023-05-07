@@ -1,39 +1,30 @@
 import {signupReqBody, loginReqBody} from '../queries/types/auth';
-import {LoadingT} from './common';
-
-export interface User {
-  id?: string;
-  username?: string;
-  email?: string;
-  settings?: {
-    sizePickerForm?: string;
-    pickerItems?: string[];
-  };
-}
+import {ILoading} from './common';
+import {IUser} from '../types/user';
 
 export interface Session {
   sessionToken: string;
-  user: User;
+  user: IUser;
 }
 
-export type SignUpFormPropsT = {
+export interface ISignUpFormProps {
   authData: {
     onSubmit: (values: signupReqBody) => void;
-    isLoading?: LoadingT;
+    isLoading?: ILoading;
     error?: string;
     resetError?: () => void;
   };
-};
+}
 
-export type SignUpComponentPropsT = SignUpFormPropsT;
+export type SignUpComponentPropsT = ISignUpFormProps;
 
-export type LoginFormPropsT = {
+export interface ILoginFormProps {
   authData: {
     onSubmit: (values: loginReqBody) => void;
-    isLoading?: LoadingT;
+    isLoading?: ILoading;
     error?: string;
     resetError?: () => void;
   };
-};
+}
 
-export type LoginComponentPropsT = LoginFormPropsT;
+export type LoginComponentPropsT = ILoginFormProps;

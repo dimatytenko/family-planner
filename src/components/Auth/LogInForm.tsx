@@ -2,10 +2,10 @@ import React from 'react';
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Form, Input} from 'antd';
 
-import {LoginFormPropsT} from '../../types/auth';
+import {ILoginFormProps} from '../../types/auth';
 import {loginReqBody} from '../../queries/types/auth';
 
-export const LogInForm: React.FC<LoginFormPropsT> = ({authData: {onSubmit, isLoading, error, resetError}}) => {
+export const LogInForm: React.FC<ILoginFormProps> = ({authData: {onSubmit, isLoading, error, resetError}}) => {
   const [form] = Form.useForm();
 
   const onFinish = (values: loginReqBody) => {

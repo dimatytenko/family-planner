@@ -4,7 +4,7 @@ import {CalendarComponent} from '../../components/Calendar';
 import {useCalendarData} from '../../hooks/calendar';
 
 export const Calendar: React.FC = () => {
-  const {value, onSelect, onPanelChange, selectedValue, getListData, getMonthData} = useCalendarData();
+  const {value, onSelect, onPanelChange, selectedValue, getListData, getMonthData, isLoading} = useCalendarData();
   return (
     <CalendarComponent
       value={value}
@@ -13,6 +13,7 @@ export const Calendar: React.FC = () => {
       selectedValue={selectedValue}
       getListData={getListData}
       getMonthData={getMonthData}
+      isLoading={isLoading}
     />
   );
 };

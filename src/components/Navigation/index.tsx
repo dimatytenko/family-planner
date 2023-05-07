@@ -4,10 +4,10 @@ import {Button} from 'antd';
 import {LinkButton} from '../../ui-kit/Button';
 import {route} from '../../constants/routes';
 import {NavigationWrapper} from './styles';
-import {NavigationPropsT} from '../../types/layout';
+import {INavigationProps} from '../../types/layout';
 import {MenuFoldOutlined} from '@ant-design/icons';
 
-export const Navigation: React.FC<NavigationPropsT> = ({user, visibleLogin, visibleSignup, drawerActions}) => {
+export const Navigation: React.FC<INavigationProps> = ({user, visibleLogin, visibleSignup, drawerActions}) => {
   return (
     <NavigationWrapper>
       {!user ? (

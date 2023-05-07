@@ -1,9 +1,12 @@
 import {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 
 import {PickerValuesT, SizeCustomType, SizeType} from '../types/picker';
-import {useViewer, useUpdateViewer} from '../hooks/auth';
+import {useViewer, useUpdateViewer} from '../hooks/user';
 import {setPickerQuery} from '../queries/picker';
-import {info, loading} from '../helpers/common';
+import {getEventQuery, updateEventQuery, deleteEventQuery} from '../queries/event';
+import {info, loading, errorMessage} from '../helpers/common';
+import {IEvent} from '../types/event';
 
 export const usePick = (redirect?: () => void) => {
   const user = useViewer();
@@ -14,6 +17,8 @@ export const usePick = (redirect?: () => void) => {
   const [sizeForm, setSizeForm] = useState<SizeCustomType>();
   const [error, setError] = useState('');
   const [name, setName] = useState('');
+  const {id} = useParams();
+  const [initialValues, setInitialValues] = useState<IEvent | null>();
 
   const resetError = () => setError('');
 
@@ -47,17 +52,61 @@ export const usePick = (redirect?: () => void) => {
   const onSubmit = async (values: PickerValuesT) => {
     try {
       setIsLoading((prev) => ({...prev, send: true}));
-      const res = await setPickerQuery({...values, pickerItems});
-      console.log('body.success', res);
+      if (!id) {
+        const res = await setPickerQuery({...values, pickerItems});
+        if (res) {
+          info('Success');
+          redirect?.();
+          setIsLoading((prev) => ({...prev, send: false}));
+        }
+      } else {
+        const res = await updateEventQuery(id, {...values, pickerItems});
+        if (res) {
+          console.log('res.body.data.event', res.body.data.event);
+          setInitialValues(res.body.data.event);
+          info('Success');
+          redirect?.();
+          setIsLoading((prev) => ({...prev, send: false}));
+        }
+      }
+    } catch (e) {
+      console.log(e);
+      const message = errorMessage(e);
+      message ? setError(message) : setError('Something went wrong. Please try again.');
+      setIsLoading((prev) => ({...prev, send: false}));
+    }
+  };
+
+  const getCurrentEvent = async () => {
+    try {
+      if (!id) return;
+      setIsLoading((prev) => ({...prev, page: true}));
+      const res = await getEventQuery(id);
+      if (res) {
+        setInitialValues(res.body.data);
+        setIsLoading((prev) => ({...prev, page: false}));
+      }
+    } catch (e) {
+      console.log(e);
+      setIsLoading((prev) => ({...prev, page: false}));
+    }
+  };
+
+  const deleteEvent = async () => {
+    try {
+      if (!id) return;
+      setIsLoading((prev) => ({...prev, delete: true}));
+      const res = await deleteEventQuery(id);
       if (res) {
         info('Success');
         redirect?.();
+        setIsLoading((prev) => ({...prev, delete: false}));
       }
-      setIsLoading((prev) => ({...prev, send: false}));
-    } catch (error) {
-      console.log('error', error);
-      setError('Something went wrong. Please try again.');
-      setIsLoading((prev) => ({...prev, send: false}));
+    } catch (e) {
+      console.log(e);
+      const message = errorMessage(e);
+      message ? setError(message) : setError('Something went wrong. Please try again.');
+      setIsLoading((prev) => ({...prev, delete: false}));
     }
   };
 
@@ -66,7 +115,13 @@ export const usePick = (redirect?: () => void) => {
     setSizeForm(user?.settings?.sizePickerForm as SizeCustomType);
     setPickerItems(user?.settings?.pickerItems as string[]);
     setIsLoading((prev) => ({...prev, page: false}));
+
+    getCurrentEvent();
   }, []);
+
+  useEffect(() => {
+    getCurrentEvent();
+  }, [id]);
 
   useEffect(() => {
     updateUser({...user, settings: {...user?.settings, sizePickerForm: sizeForm, pickerItems: pickerItems}});
@@ -74,6 +129,7 @@ export const usePick = (redirect?: () => void) => {
 
   return {
     isLoading,
+    initialValues,
     formActions: {
       onFormLayoutChange,
       name,
@@ -88,6 +144,7 @@ export const usePick = (redirect?: () => void) => {
       pickerItem,
       setPickerItem,
       removePickerItem,
+      deleteEvent,
     },
   };
 };

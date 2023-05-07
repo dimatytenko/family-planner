@@ -1,7 +1,8 @@
-import {User} from './auth';
+import {IUser} from '../types/user';
 import {WithChildren} from '../types/helpers';
+import {TUserInfo} from '../types/user';
 
-export type DrawerActionsT = {
+export interface IDrawerActions {
   showDrawer?: () => void;
   onClose?: () => void;
   open?: boolean;
@@ -9,31 +10,32 @@ export type DrawerActionsT = {
   showChildrenDrawer?: () => void;
   onChildrenDrawerClose?: () => void;
   childrenDrawer?: boolean;
-  user?: User | null;
-};
+  user?: IUser | null;
+  userInfo?: TUserInfo;
+}
 
-export type HeaderComponentPropsT = {
-  user?: User | null;
+export interface IHeaderComponentProps {
+  user?: IUser | null;
   visibleLogin?: boolean;
   visibleSignup?: boolean;
-  drawerActions: DrawerActionsT;
-};
+  drawerActions: IDrawerActions;
+}
 
-export type HeaderPropsT = HeaderComponentPropsT;
+export type HeaderPropsT = IHeaderComponentProps;
 
-export type NavigationPropsT = {
-  user?: User | null;
+export interface INavigationProps {
+  user?: IUser | null;
   visibleLogin?: boolean;
   visibleSignup?: boolean;
-  drawerActions: DrawerActionsT;
-};
+  drawerActions: IDrawerActions;
+}
 
-export type AppLayoutProps = WithChildren & {
+export interface IAppLayoutProps extends WithChildren {
   hideHeader?: boolean;
   hideFooter?: boolean;
   header?: React.ReactNode;
   footer?: React.ReactNode;
-  drawerActions: DrawerActionsT;
+  drawerActions: IDrawerActions;
   onLogOut: () => void;
-  user?: User | null;
-};
+  user?: IUser | null;
+}

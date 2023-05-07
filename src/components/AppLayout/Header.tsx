@@ -3,10 +3,10 @@ import React from 'react';
 import {HeaderComponentWrapper, Container, HeaderContainer} from './styles';
 import {Navigation} from '../Navigation';
 import {HomeLink} from '../../ui-kit/Button';
-import {HeaderComponentPropsT} from '../../types/layout';
+import {IHeaderComponentProps} from '../../types/layout';
 import {Logo} from '../../ui-kit/Logo';
 
-export const HeaderComponent: React.FC<HeaderComponentPropsT> = ({
+export const HeaderComponent: React.FC<IHeaderComponentProps> = ({
   user,
   visibleLogin,
   visibleSignup,
@@ -16,7 +16,7 @@ export const HeaderComponent: React.FC<HeaderComponentPropsT> = ({
     <HeaderComponentWrapper>
       <Container>
         <HeaderContainer>
-          <HomeLink>
+          <HomeLink aria-label="Go home">
             <Logo />
           </HomeLink>
 

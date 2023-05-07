@@ -4,7 +4,7 @@ export const info = (mess: string) => {
   message.info(mess);
 };
 
-export const loading = {page: false, send: false};
+export const loading = {page: false, send: false, delete: false};
 
 export const errorMessage = (e: any) => {
   const error = JSON.parse(JSON.stringify(e));

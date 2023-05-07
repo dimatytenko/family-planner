@@ -2,7 +2,7 @@ import React from 'react';
 import {Navigate} from 'react-router-dom';
 import {route} from '../constants/routes';
 import {WithChildren} from '../types/helpers';
-import {useViewer} from '../hooks/auth';
+import {useViewer} from '../hooks/user';
 
 export const PrivateRoute: React.FC<WithChildren & {path?: string}> = ({children}) => {
   const isAuth = useViewer();

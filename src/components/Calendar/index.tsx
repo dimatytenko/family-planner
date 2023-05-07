@@ -1,9 +1,14 @@
 import React from 'react';
-import type {BadgeProps} from 'antd';
+import {BadgeProps, Skeleton} from 'antd';
 import {Badge, Calendar, Alert} from 'antd';
 import type {Dayjs} from 'dayjs';
 
+import {Link} from 'react-router-dom';
+
 import {CalendarPropsT} from '../../types/calendar';
+import {ButtonWrapper} from './styles';
+import {route} from '../../constants/routes';
+import {disabledDate} from '../../helpers/callendar';
 
 export const CalendarComponent: React.FC<CalendarPropsT> = ({
   value,
@@ -12,6 +17,7 @@ export const CalendarComponent: React.FC<CalendarPropsT> = ({
   selectedValue,
   getListData,
   getMonthData,
+  isLoading,
 }) => {
   const monthCellRender = (value: Dayjs) => {
     const num = getMonthData(value);
@@ -24,18 +30,19 @@ export const CalendarComponent: React.FC<CalendarPropsT> = ({
   };
 
   const dateCellRender = (value: Dayjs) => {
-    console.log('value', value.date());
     const listData = getListData(value);
     return (
-      <ul className="events">
+      <ButtonWrapper className="events">
         {listData.map((item) => (
-          <li key={item.content}>
+          <Link key={item.id} to={route.pickerEdit.get({id: item.id})}>
             <Badge status={item.type as BadgeProps['status']} text={item.content} />
-          </li>
+          </Link>
         ))}
-      </ul>
+      </ButtonWrapper>
     );
   };
+
+  if (isLoading?.page) return <Skeleton active />;
 
   return (
     <>
@@ -46,6 +53,7 @@ export const CalendarComponent: React.FC<CalendarPropsT> = ({
         onPanelChange={onPanelChange}
         dateCellRender={dateCellRender}
         monthCellRender={monthCellRender}
+        disabledDate={disabledDate}
       />
     </>
   );

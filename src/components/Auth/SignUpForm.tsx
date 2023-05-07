@@ -1,10 +1,10 @@
 import React from 'react';
 import {Button, Form, Input} from 'antd';
 
-import {SignUpFormPropsT} from '../../types/auth';
+import {ISignUpFormProps} from '../../types/auth';
 import {signupReqBody} from '../../queries/types/auth';
 
-export const SignUpForm: React.FC<SignUpFormPropsT> = ({authData: {onSubmit, resetError, error, isLoading}}) => {
+export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, resetError, error, isLoading}}) => {
   const [form] = Form.useForm();
 
   const onFinish = (values: signupReqBody) => {

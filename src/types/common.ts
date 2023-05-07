@@ -1,4 +1,5 @@
-export type LoadingT = {
-  page: boolean;
-  send: boolean;
-};
+export interface ILoading {
+  page?: boolean;
+  send?: boolean;
+  delete?: boolean;
+}

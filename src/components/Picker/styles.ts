@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ButtonWrapper = styled.div`
-  display: inline-flex;
-  margin-left: 10px;
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  gap: ${({theme}) => theme.spacer._2};
 `;

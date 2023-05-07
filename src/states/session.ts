@@ -1,5 +1,6 @@
 import {atom, selector} from 'recoil';
-import {Session as SessionType, User as UserType} from '../types/auth';
+import {Session as SessionType} from '../types/auth';
+import {IUser} from '../types/user';
 
 export type SessionStateType = SessionType | null | undefined;
 
@@ -8,7 +9,7 @@ export const session = atom<SessionStateType>({
   default: undefined,
 });
 
-export const userState = selector<UserType | null>({
+export const userState = selector<IUser | null>({
   key: 'user',
   get: ({get}) => {
     const s = get(session);

@@ -1,18 +1,11 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import dayjs from 'dayjs';
 import type {Dayjs} from 'dayjs';
 
-const getListData = (value: Dayjs) => {
-  let listData;
-  if (value.date() === 8 && value.month() === 1) {
-    listData = [
-      {type: 'warning', content: 'This is warning event.'},
-      {type: 'success', content: 'This is usual event.'},
-      {type: 'error', content: 'This is error event.'},
-    ];
-  }
-  return listData || [];
-};
+import {getAllEventsQuery} from '../queries/event';
+import {IEvent} from '../types/event';
+import {ICalendarData} from '../types/calendar';
+import {loading} from '../helpers/common';
 
 const getMonthData = (value: Dayjs) => {
   if (value.month() === 8) {
@@ -21,8 +14,10 @@ const getMonthData = (value: Dayjs) => {
 };
 
 export const useCalendarData = () => {
+  const [events, setEvents] = useState<IEvent[]>([]);
   const [value, setValue] = useState(() => dayjs());
   const [selectedValue, setSelectedValue] = useState(() => dayjs());
+  const [isLoading, setIsLoading] = useState(loading);
 
   const onSelect = (newValue: Dayjs) => {
     setValue(newValue);
@@ -33,5 +28,60 @@ export const useCalendarData = () => {
     setValue(newValue);
   };
 
-  return {value, selectedValue, onSelect, getListData, getMonthData, onPanelChange};
+  const getEvents = async () => {
+    try {
+      setIsLoading((prev) => ({...prev, page: true}));
+      const res = await getAllEventsQuery();
+      if (res) {
+        setEvents(res.body.data);
+        setIsLoading((prev) => ({...prev, page: false}));
+      }
+    } catch (error) {
+      setIsLoading((prev) => ({...prev, page: false}));
+    }
+  };
+
+  useEffect(() => {
+    getEvents();
+  }, []);
+
+  const getListData = (value: Dayjs) => {
+    const listData: ICalendarData[] = [];
+    if (value && value < dayjs().subtract(1, 'day')) return [];
+
+    events.forEach((event) => {
+      if (
+        !event.repeat &&
+        value.date() === dayjs(event.date).date() &&
+        value.month() === dayjs(event.date).month() &&
+        value.year() === dayjs(event.date).year()
+      ) {
+        listData.push({id: event._id || '', type: 'success', content: event.event});
+      }
+
+      if (event.repeat === 'daily') {
+        listData.push({id: event._id || '', type: 'default', content: event.event});
+      }
+
+      if (event.repeat === 'weekly' && value.day() === dayjs(event.date).day()) {
+        listData.push({id: event._id || '', type: 'processing', content: event.event});
+      }
+
+      if (event.repeat === 'monthly' && value.date() === dayjs(event.date).date()) {
+        listData.push({id: event._id || '', type: 'warning', content: event.event});
+      }
+
+      if (
+        event.repeat === 'yearly' &&
+        value.date() === dayjs(event.date).date() &&
+        value.month() === dayjs(event.date).month()
+      ) {
+        listData.push({id: event._id || '', type: 'error', content: event.event});
+      }
+    });
+
+    return listData || [];
+  };
+
+  return {value, selectedValue, onSelect, getListData, getMonthData, onPanelChange, isLoading};
 };

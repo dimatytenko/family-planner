@@ -9,6 +9,7 @@ export const route = {
   login: Route.of({path: '/login'}),
   signup: Route.of({path: '/signup'}),
   picker: Route.of({path: '/picker'}),
+  pickerEdit: Route.of<{id: string}>({path: '/picker/:id'}),
   calendar: Route.of({path: '/calendar'}),
 };
 

@@ -1,11 +1,12 @@
 import Cookies from 'js-cookie';
 import {useState, useEffect} from 'react';
-import {useRecoilState, useSetRecoilState} from 'recoil';
+import {useSetRecoilState} from 'recoil';
 
-import {session, session as sessionState, userState} from '../states/session';
-import {signupQuery, loginQuery, userQuery, logoutQuery} from '../queries/auth';
+import {session, session as sessionState} from '../states/session';
+import {signupQuery, loginQuery, logoutQuery} from '../queries/auth';
+import {userQuery} from '../queries/user';
 import {signupReqBody, loginReqBody} from '../queries/types/auth';
-import {User} from '../types/auth';
+import {IUser} from '../types/user';
 import {loading, errorMessage} from '../helpers/common';
 
 type TokenType = string | null | undefined;
@@ -90,19 +91,6 @@ export const useLogin = (redirect?: () => void) => {
   return {onSubmit: onLogin, isLoading, success, error, resetError};
 };
 
-export const useViewer = () => {
-  const user = useRecoilState(userState);
-  console.log('user', user);
-  return user[0];
-};
-
-export const useUpdateViewer = () => {
-  const setUser = useSetRecoilState(userState);
-  return (user: User) => {
-    setUser(user);
-  };
-};
-
 export function useFetchSession() {
   const [loading, setLoading] = useState(false);
   const [success, SetSuccess] = useState(false);
@@ -146,7 +134,7 @@ export function useFetchSession() {
 export const useCheckAuthorize = () => async () => {
   try {
     const res = await userQuery(); //check auth query
-    if (res.body.user) return res.body.user as User;
+    if (res.body.user) return res.body.user as IUser;
     return false;
   } catch (e) {
     return false;

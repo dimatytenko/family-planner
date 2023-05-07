@@ -3,9 +3,9 @@ import {useLocation} from 'react-router-dom';
 
 import {StyledLayout, Main, Container} from './styles';
 import {DrawerComponent} from './Drawer';
-import {AppLayoutProps} from '../../types/layout';
+import {IAppLayoutProps} from '../../types/layout';
 
-export const AppLayout: React.FC<AppLayoutProps> = ({
+export const AppLayout: React.FC<IAppLayoutProps> = ({
   children,
   header,
   footer,
