@@ -1,12 +1,12 @@
 import React from 'react';
-import {Button, DatePicker, Form, Radio, Select, Input, Divider, Space} from 'antd';
-import {PlusOutlined, CloseOutlined} from '@ant-design/icons';
+import {Button, Form, Radio, Select, Input, Divider, Space} from 'antd';
+import {PlusOutlined, DeleteOutlined} from '@ant-design/icons';
 import dayjs from 'dayjs';
 
 import {IPickerFormProps, SizeType} from '../../types/picker';
 import {PickerValuesT} from '../../types/picker';
 import {disabledDate, disabledDateTime} from '../../helpers/callendar';
-import {ButtonsWrapper} from './styles';
+import {ButtonsWrapper, DatePickerStyled, EventInputWrapper, EventButtonDel} from './styles';
 
 const {TextArea} = Input;
 
@@ -64,34 +64,45 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
         name="date"
         initialValue={initialValues?.date ? dayjs(initialValues?.date) : null}
         rules={[{required: true, message: 'Date is required!'}]}>
-        <DatePicker disabledDate={disabledDate} disabledTime={disabledDateTime} showTime />
-      </Form.Item>
-
-      <Form.Item
-        label="Event"
-        name="event"
-        rules={[{required: true, message: 'Event is required!'}]}
-        initialValue={initialValues?.event}>
-        <Select
-          style={{maxWidth: 300}}
-          placeholder="choose or add new event"
-          onChange={onPickerItemChange}
-          dropdownRender={(menu) => (
-            <>
-              {menu}
-              <Divider style={{margin: '8px 0'}} />
-              <Space style={{padding: '0 8px 4px'}}>
-                <Input placeholder="Please enter item" onChange={onNameChange} value={name} />
-                <Button type="text" icon={<PlusOutlined />} onClick={addItem}>
-                  Add item
-                </Button>
-              </Space>
-            </>
-          )}
-          options={pickerItems.map((item) => ({label: item, value: item}))}
+        <DatePickerStyled
+          disabledDate={disabledDate}
+          disabledTime={disabledDateTime}
+          format="YYYY-MM-DD HH:mm"
+          showTime={{format: 'HH:mm'}}
         />
       </Form.Item>
-      <Button type="primary" htmlType="button" onClick={onRemoveSelectItem} icon={<CloseOutlined />}></Button>
+
+      <EventInputWrapper>
+        <Form.Item
+          label="Event"
+          name="event"
+          rules={[{required: true, message: 'Event is required!'}]}
+          initialValue={initialValues?.event}>
+          <Select
+            placeholder="choose or add new event"
+            onChange={onPickerItemChange}
+            dropdownRender={(menu) => (
+              <>
+                {menu}
+                <Divider style={{margin: '8px 0'}} />
+                <Space style={{padding: '0 8px 4px'}}>
+                  <Input placeholder="Please enter item" onChange={onNameChange} value={name} />
+                  <Button type="text" icon={<PlusOutlined />} onClick={addItem}>
+                    Add item
+                  </Button>
+                </Space>
+              </>
+            )}
+            options={pickerItems.map((item) => ({label: item, value: item}))}
+          />
+        </Form.Item>
+        <EventButtonDel
+          type="text"
+          htmlType="button"
+          onClick={onRemoveSelectItem}
+          icon={<DeleteOutlined style={{color: 'red'}} />}
+        />
+      </EventInputWrapper>
 
       <Form.Item
         label="Description"

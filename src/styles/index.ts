@@ -70,4 +70,11 @@ h6 {
 	font-weight: inherit;
 	font-size: inherit;
 }
+
+.ant-picker-panel-layout {
+  @media screen and (max-width: 423px) {
+    width: 90vw;
+    overflow: auto;
+  }
+}
 `;

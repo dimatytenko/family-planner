@@ -114,10 +114,8 @@ export function useFetchSession() {
       } else {
         setToken(null);
         setSession(null);
-        return {loading: false, success};
+        setLoading(false);
       }
-
-      setLoading(false);
     };
     setAuthorize();
   }, []);

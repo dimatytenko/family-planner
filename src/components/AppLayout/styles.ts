@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {Upload} from 'antd';
 
 import {defaultTheme} from '../../ui-kit/theme/theme';
 import {Media} from '../../ui-kit/theme/breakpoints';
@@ -52,27 +51,10 @@ export const HeaderContainer = styled.div`
 `;
 
 // drawer
-
 export const Drawerlist = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${defaultTheme.spacer._3};
-`;
-
-export const AvatarWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: ${defaultTheme.spacer._3};
-`;
-
-export const StyledUpload = styled(Upload)`
-  width: auto !important;
-
-  .ant-upload-list-item-container {
-    margin-block: 0 !important;
-    margin-inline: 0 !important;
-  }
+  gap: ${({theme}) => theme.spacer._3};
 `;
 
 export const DrawerElWrapper = styled.div`

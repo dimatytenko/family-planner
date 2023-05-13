@@ -2,10 +2,10 @@ import {useState, useEffect} from 'react';
 import dayjs from 'dayjs';
 import type {Dayjs} from 'dayjs';
 
-import {getAllEventsQuery} from '../queries/event';
+import {getAllEventsQuery, deleteEventQuery} from '../queries/event';
 import {IEvent} from '../types/event';
 import {ICalendarData} from '../types/calendar';
-import {loading} from '../helpers/common';
+import {info, loading, errorMessage} from '../helpers/common';
 
 const getMonthData = (value: Dayjs) => {
   if (value.month() === 8) {
@@ -18,6 +18,8 @@ export const useCalendarData = () => {
   const [value, setValue] = useState(() => dayjs());
   const [selectedValue, setSelectedValue] = useState(() => dayjs());
   const [isLoading, setIsLoading] = useState(loading);
+  const [dellId, setDellId] = useState('');
+  const [error, setError] = useState('');
 
   const onSelect = (newValue: Dayjs) => {
     setValue(newValue);
@@ -83,5 +85,34 @@ export const useCalendarData = () => {
     return listData || [];
   };
 
-  return {value, selectedValue, onSelect, getListData, getMonthData, onPanelChange, isLoading};
+  const deleteEvent = async (id: string) => {
+    try {
+      if (!id) return;
+      setDellId(id);
+      const res = await deleteEventQuery(id);
+      if (res) {
+        setEvents((prev) => prev.filter((event) => event._id !== id));
+        info('Success');
+      }
+    } catch (e) {
+      console.log(e);
+      const message = errorMessage(e);
+      message ? setError(message) : setError('Something went wrong. Please try again.');
+    } finally {
+      setDellId('');
+    }
+  };
+
+  return {
+    value,
+    selectedValue,
+    onSelect,
+    getListData,
+    getMonthData,
+    onPanelChange,
+    isLoading,
+    deleteEvent,
+    error,
+    dellId,
+  };
 };

@@ -7,9 +7,12 @@ export interface CalendarPropsT {
   onSelect: (newValue: Dayjs) => void;
   onPanelChange: (newValue: Dayjs) => void;
   selectedValue: Dayjs;
-  getListData: (value: Dayjs) => any[];
+  getListData: (value: Dayjs) => ICalendarData[];
   getMonthData: (value: Dayjs) => number | undefined;
   isLoading?: ILoading;
+  deleteEvent?: (id: string) => void;
+  error?: string;
+  dellId?: string;
 }
 
 export interface ICalendarData {

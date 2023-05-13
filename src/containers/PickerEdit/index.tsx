@@ -9,5 +9,9 @@ export const PickerEdit = () => {
   const navigate = useNavigate();
   const toCalendar = () => navigate(route.calendar.path);
   const {isLoading, initialValues, formActions} = usePick(toCalendar);
-  return <PickerComponent isLoading={isLoading} initialValues={initialValues} formActions={formActions} />;
+  const goBack = () => navigate(-1);
+
+  return (
+    <PickerComponent isLoading={isLoading} initialValues={initialValues} formActions={formActions} goBack={goBack} />
+  );
 };

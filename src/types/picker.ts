@@ -15,6 +15,7 @@ export type PickerComponentPropsT = IPickerFormProps;
 export interface IPickerFormProps {
   isLoading?: ILoading;
   initialValues?: IEvent | null;
+  goBack?: () => void;
   formActions: {
     onSubmit: (values: PickerValuesT) => void;
     sizeForm?: SizeCustomType;

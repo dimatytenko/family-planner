@@ -1,9 +1,11 @@
 import React from 'react';
 
-import {UserInfo} from '../../components/UserInfo';
-import {useUser} from '../../hooks/user';
+import {Account} from '../../components/Account';
+import {useUser, useAvatar} from '../../hooks/user';
 
-export const Account = () => {
+export const AccountContainer = () => {
   const {userInfo, userData} = useUser();
-  return <UserInfo userInfo={userInfo} userData={userData} />;
+  const {avatarData} = useAvatar();
+
+  return <Account userInfo={userInfo} userData={userData} avatarData={avatarData} />;
 };

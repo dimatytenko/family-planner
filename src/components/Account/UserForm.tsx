@@ -18,8 +18,6 @@ export const UserForm: React.FC<IUserFormProps> = ({
     onSubmit(values, onChangeMode);
   };
 
-  console.log('userInfo', userInfo);
-
   return (
     <Form
       form={form}

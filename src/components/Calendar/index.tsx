@@ -1,12 +1,9 @@
 import React from 'react';
-import {BadgeProps, Skeleton} from 'antd';
-import {Badge, Calendar, Alert} from 'antd';
+import {BadgeProps, Skeleton, Button, Badge, Calendar, Alert} from 'antd';
 import type {Dayjs} from 'dayjs';
 
-import {Link} from 'react-router-dom';
-
 import {CalendarPropsT} from '../../types/calendar';
-import {ButtonWrapper} from './styles';
+import {ButtonWrapper, DisplayText, EventsList, EventEditLink, EventsItem, EditIcon, DeleteIcon} from './styles';
 import {route} from '../../constants/routes';
 import {disabledDate} from '../../helpers/callendar';
 
@@ -18,7 +15,11 @@ export const CalendarComponent: React.FC<CalendarPropsT> = ({
   getListData,
   getMonthData,
   isLoading,
+  deleteEvent,
+  error,
+  dellId,
 }) => {
+  console.log('dellId', dellId);
   const monthCellRender = (value: Dayjs) => {
     const num = getMonthData(value);
     return num ? (
@@ -34,11 +35,38 @@ export const CalendarComponent: React.FC<CalendarPropsT> = ({
     return (
       <ButtonWrapper className="events">
         {listData.map((item) => (
-          <Link key={item.id} to={route.pickerEdit.get({id: item.id})}>
-            <Badge status={item.type as BadgeProps['status']} text={item.content} />
-          </Link>
+          <Badge
+            key={item.id}
+            status={item.type as BadgeProps['status']}
+            text={<DisplayText>{item?.content}</DisplayText>}
+          />
         ))}
       </ButtonWrapper>
+    );
+  };
+
+  const currentDateRender = (value: Dayjs) => {
+    const listData = getListData(value);
+    return (
+      <>
+        <EventsList className="events">
+          {listData.map((item) => (
+            <EventsItem key={item.id}>
+              <EventEditLink to={route.pickerEdit.get({id: item.id})}>
+                <Badge status={item.type as BadgeProps['status']} text={item?.content} />
+                <EditIcon />
+              </EventEditLink>
+              <Button
+                type="text"
+                onClick={() => deleteEvent?.(item.id)}
+                icon={<DeleteIcon />}
+                loading={dellId === item.id}
+              />
+            </EventsItem>
+          ))}
+        </EventsList>
+        {error && <div style={{color: 'red'}}>{error}</div>}
+      </>
     );
   };
 
@@ -46,7 +74,8 @@ export const CalendarComponent: React.FC<CalendarPropsT> = ({
 
   return (
     <>
-      <Alert message={`You selected date: ${selectedValue?.format('YYYY-MM-DD')}`} />
+      <Alert message={currentDateRender(selectedValue)} />
+
       <Calendar
         value={value}
         onSelect={onSelect}
