@@ -1,6 +1,5 @@
 import {EventRepeatT} from './picker';
 import {IUser} from '../types/user';
-
 export interface IEvent {
   createdAt?: string;
   date?: Date;

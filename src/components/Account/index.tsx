@@ -13,13 +13,15 @@ export const Account: React.FC<TUserInfoProps> = ({userInfo, userData, avatarDat
     setEditMode(!editMode);
   };
   return (
-    <UserInfoWrapper>
+    <>
       <AccountAvatar avatarData={avatarData} />
       {!editMode ? (
         <UserInfo userInfo={userInfo} onChangeMode={onChangeMode} />
       ) : (
-        <UserForm userData={userData} onChangeMode={onChangeMode} userInfo={userInfo} />
+        <UserInfoWrapper>
+          <UserForm userData={userData} onChangeMode={onChangeMode} userInfo={userInfo} />
+        </UserInfoWrapper>
       )}
-    </UserInfoWrapper>
+    </>
   );
 };

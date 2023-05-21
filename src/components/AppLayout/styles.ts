@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import {defaultTheme} from '../../ui-kit/theme/theme';
 import {Media} from '../../ui-kit/theme/breakpoints';
 import back from './assets/back-min.jpg';
+import {StyledHeading5} from '../../ui-kit/Typography/styles';
+import {CloseCircleOutlined} from '@ant-design/icons';
 
 export const StyledLayout = styled.div`
   min-height: 100%;
@@ -70,7 +72,7 @@ export const AvatarButton = styled.div`
   border: 2px solid ${defaultTheme.palette.colors.primary};
   transition: border-color ${defaultTheme.transition.primary};
   &:hover {
-    border-color: ${defaultTheme.palette.hoverColors.success};
+    border-color: ${defaultTheme.palette.colors.tertiary};
   }
 `;
 
@@ -90,6 +92,12 @@ export const StyledLogout = styled.div`
   }
 
   &:hover svg {
-    color: ${defaultTheme.palette.hoverColors.alarm};
+    color: ${defaultTheme.palette.colors.alert};
   }
+`;
+
+export const DrawerTitle = styled(StyledHeading5)``;
+
+export const StyledClose = styled(CloseCircleOutlined)`
+  font-size: 20px;
 `;

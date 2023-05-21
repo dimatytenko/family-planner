@@ -3,7 +3,18 @@ import {Link} from 'react-router-dom';
 import {ButtonProps} from 'antd';
 
 import {WithChildren} from '../../types/helpers';
-import {StyledLink, StyledLinkButton} from './styles';
+import {
+  StyledLink,
+  StyledPlusCircleOutlined,
+  StyledGhostWrapper,
+  StyledLoadingOutlined,
+  BackButtonWrapper,
+  ArrowLeftIcon,
+  BackText,
+  StyledFloatButton,
+  StyledButton,
+} from './styles';
+import {CustomButtonProps} from './types';
 
 export const HomeLink: React.FC<WithChildren> = ({children, ...props}) => {
   return (
@@ -13,8 +24,52 @@ export const HomeLink: React.FC<WithChildren> = ({children, ...props}) => {
   );
 };
 
-export const LinkButton: React.FC<ButtonProps & {to: string}> = ({to, children, disabled, ...props}) => (
+export const GhostWrapper: React.FC<CustomButtonProps & WithChildren> = ({children, onClick, loading, ...props}) => {
+  return (
+    <StyledGhostWrapper onClick={onClick} {...props}>
+      {loading ? <StyledLoadingOutlined /> : <>{children}</>}
+    </StyledGhostWrapper>
+  );
+};
+
+export const BackButton: React.FC<{onClick?: () => void}> = ({onClick, ...props}) => {
+  return (
+    <BackButtonWrapper onClick={onClick} {...props}>
+      <ArrowLeftIcon />
+      <BackText>Go back</BackText>
+    </BackButtonWrapper>
+  );
+};
+
+export const FloatButton: React.FC<{onClick?: () => void; text?: string}> = ({onClick, text, ...props}) => {
+  return (
+    <StyledFloatButton onClick={onClick} {...props}>
+      <StyledPlusCircleOutlined />
+      {text}
+    </StyledFloatButton>
+  );
+};
+
+export const LinkButton: React.FC<CustomButtonProps & ButtonProps & {to: string}> = ({
+  to,
+  children,
+  disabled,
+  ...props
+}) => (
   <StyledLink {...props} to={disabled ? '#' : to}>
-    <StyledLinkButton {...props}>{children}</StyledLinkButton>
+    <StyledButton {...props}>{children}</StyledButton>
   </StyledLink>
 );
+
+export const Button: React.FC<CustomButtonProps & ButtonProps & WithChildren> = ({
+  children,
+  onClick,
+  htmlType,
+  ...props
+}) => {
+  return (
+    <StyledButton htmlType={htmlType} onClick={onClick} {...props}>
+      {children}
+    </StyledButton>
+  );
+};

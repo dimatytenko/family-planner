@@ -3,10 +3,9 @@ import {Drawer, Avatar as AntdAvatar} from 'antd';
 import {LogoutOutlined} from '@ant-design/icons';
 
 import {IDrawerActions} from '../../types/layout';
-import {LinkButton} from '../../ui-kit/Button';
+import {LinkButton, Button} from '../../ui-kit/Button';
 import {route} from '../../constants/routes';
-import {Drawerlist, StyledLogout, AvatarButton, DrawerElWrapper} from './styles';
-// import {tryEmailQuery} from '../../queries/try';
+import {Drawerlist, StyledLogout, AvatarButton, DrawerElWrapper, DrawerTitle, StyledClose} from './styles';
 import {AccountContainer} from '../../containers/Settings/Account';
 
 export const DrawerComponent: React.FC<IDrawerActions> = ({
@@ -26,8 +25,12 @@ export const DrawerComponent: React.FC<IDrawerActions> = ({
   return (
     <>
       <Drawer
-        title="Pages"
-        placement="right"
+        title={<DrawerTitle>Pages</DrawerTitle>}
+        closeIcon={
+          <Button>
+            <StyledClose />
+          </Button>
+        }
         onClose={onClose}
         open={open}
         width={320}
@@ -42,15 +45,21 @@ export const DrawerComponent: React.FC<IDrawerActions> = ({
           </DrawerElWrapper>
         }>
         <Drawerlist>
-          <LinkButton to={route.picker.path} onClick={onClose}>
-            Picker
-          </LinkButton>
-          <LinkButton to={route.calendar.path} onClick={onClose}>
+          <LinkButton variant="tertiary" to={route.calendar.path} onClick={onClose}>
             Calendar
           </LinkButton>
         </Drawerlist>
 
-        <Drawer title="Account info" width={320} onClose={onChildrenDrawerClose} open={childrenDrawer}>
+        <Drawer
+          title={<DrawerTitle>Account info</DrawerTitle>}
+          closeIcon={
+            <Button>
+              <StyledClose />
+            </Button>
+          }
+          width={320}
+          onClose={onChildrenDrawerClose}
+          open={childrenDrawer}>
           <AccountContainer />
         </Drawer>
       </Drawer>

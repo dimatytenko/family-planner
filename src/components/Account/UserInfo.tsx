@@ -1,8 +1,9 @@
 import React from 'react';
-import {List, Button} from 'antd';
+import {List} from 'antd';
 
-import {UserInfolist} from './styles';
+import {UserInfolist, DrawerItemField, DrawerItemLabel} from './styles';
 import {IUserInfoProps} from '../../types/user';
+import {Button} from '../../ui-kit/Button';
 
 export const UserInfo: React.FC<IUserInfoProps> = ({userInfo, onChangeMode}) => {
   return (
@@ -13,7 +14,10 @@ export const UserInfo: React.FC<IUserInfoProps> = ({userInfo, onChangeMode}) => 
         renderItem={(item) =>
           item.field && (
             <List.Item>
-              <List.Item.Meta title={item.label} description={item.field} />
+              <List.Item.Meta
+                title={<DrawerItemLabel>{item.label}</DrawerItemLabel>}
+                description={<DrawerItemField>{item.field}</DrawerItemField>}
+              />
             </List.Item>
           )
         }

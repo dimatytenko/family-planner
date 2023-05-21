@@ -10,3 +10,7 @@ export type pickerReqBody = {
 };
 
 export type TId = string;
+
+export type allDateEventsBody = {
+  date?: Date | string;
+};

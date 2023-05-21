@@ -1,9 +1,9 @@
 import React from 'react';
-import {Button, Modal} from 'antd';
+import {Modal} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import Avatar from 'react-nice-avatar';
 
-import {AvatarWrapper, StyledUpload, Drawerlist} from './styles';
+import {AvatarWrapper, StyledUpload, Drawerlist, StyledButton} from './styles';
 import {IAccountAvatarProps} from '../../types/user';
 
 export const AccountAvatar: React.FC<IAccountAvatarProps> = ({
@@ -46,10 +46,19 @@ export const AccountAvatar: React.FC<IAccountAvatarProps> = ({
         )}
       </AvatarWrapper>
       <Drawerlist>
-        <Button onClick={generateAvatar}>Generate avatar</Button>
-        {configAvatar && <Button onClick={deleteAvatar}>Delete avatar</Button>}
-
-        <Button onClick={saveGenerateAvatar}>Update avatar</Button>
+        <StyledButton onClick={generateAvatar}>Generate avatar</StyledButton>
+        <>
+          {configAvatar && (
+            <StyledButton variant="secondary" onClick={deleteAvatar}>
+              Delete avatar
+            </StyledButton>
+          )}
+          {(configAvatar || fileList[0]?.status === 'error') && (
+            <StyledButton variant="success" onClick={saveGenerateAvatar}>
+              Update avatar
+            </StyledButton>
+          )}
+        </>
       </Drawerlist>
       <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
         <img alt="avatar" style={{width: '100%'}} src={previewImage} />

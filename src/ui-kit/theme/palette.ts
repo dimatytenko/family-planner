@@ -1,13 +1,14 @@
 const colors = {
   primary: '#000000',
-};
-
-const hoverColors = {
-  alarm: 'red',
-  success: 'green',
+  secondary: '#ffffff',
+  ghost: 'transparent',
+  alert: '#ff0000',
+  success: '#00ff00',
+  denary: '#333333',
+  tertiary: '#10b369',
+  grayscale: '#eeeeee',
 };
 
 export const palette = {
   colors,
-  hoverColors,
 };

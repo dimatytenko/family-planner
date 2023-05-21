@@ -1,22 +1,42 @@
 import type {Dayjs} from 'dayjs';
 
 import {ILoading} from './common';
+import {IEvent} from '../types/event';
 
-export interface CalendarPropsT {
+export interface CalendarPropsI {
   value: Dayjs;
   onSelect: (newValue: Dayjs) => void;
   onPanelChange: (newValue: Dayjs) => void;
-  selectedValue: Dayjs;
-  getListData: (value: Dayjs) => ICalendarData[];
+  getListData: GetListDataT;
   getMonthData: (value: Dayjs) => number | undefined;
   isLoading?: ILoading;
-  deleteEvent?: (id: string) => void;
+  goToPicker: () => void;
+  selectedValue: Dayjs;
+  events: IEvent[];
   error?: string;
   dellId?: string;
+  deleteEvent?: (id: string) => void;
 }
 
 export interface ICalendarData {
   id: string;
   type?: string;
   content?: string;
+  description?: string;
+}
+
+export type GetListDataT = (value: Dayjs, events: IEvent[]) => ICalendarData[];
+
+export interface EventListPropsI {
+  currentList?: React.ReactNode;
+  getListData: GetListDataT;
+  selectedValue: Dayjs;
+  events: IEvent[];
+  deleteEvent?: (id: string) => void;
+  error?: string;
+  dellId?: string;
+}
+
+export interface MainEventListI extends EventListPropsI {
+  isLoading?: ILoading;
 }

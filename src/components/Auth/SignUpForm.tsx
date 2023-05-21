@@ -1,8 +1,12 @@
 import React from 'react';
-import {Button, Form, Input} from 'antd';
+import {Form} from 'antd';
 
 import {ISignUpFormProps} from '../../types/auth';
 import {signupReqBody} from '../../queries/types/auth';
+import {StyledButton} from './styles';
+import {Input, InputPassword} from '../../ui-kit/Form/Input';
+import {FormItem} from '../../ui-kit/Form/Form';
+import {Label} from '../../ui-kit/Label';
 
 export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, resetError, error, isLoading}}) => {
   const [form] = Form.useForm();
@@ -19,8 +23,8 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, res
       onChange={resetError}
       scrollToFirstError
       layout="vertical"
-      style={{maxWidth: 600}}>
-      <Form.Item
+      style={{maxWidth: 450}}>
+      <FormItem
         name="email"
         label="E-mail"
         rules={[
@@ -34,9 +38,9 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, res
           },
         ]}>
         <Input />
-      </Form.Item>
+      </FormItem>
 
-      <Form.Item
+      <FormItem
         name="password"
         label="Password"
         rules={[
@@ -46,10 +50,10 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, res
           },
         ]}
         hasFeedback>
-        <Input.Password />
-      </Form.Item>
+        <InputPassword />
+      </FormItem>
 
-      <Form.Item
+      <FormItem
         name="confirm"
         label="Confirm Password"
         dependencies={['password']}
@@ -69,23 +73,22 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, res
             },
           }),
         ]}>
-        <Input.Password />
-      </Form.Item>
+        <InputPassword />
+      </FormItem>
 
-      <Form.Item
+      <FormItem
         name="username"
         label="Username"
-        tooltip="What do you want others to call you?"
         rules={[{required: true, message: 'Please input your nickname!', whitespace: true}]}>
-        <Input />
-      </Form.Item>
+        <Input tooltip="What do you want others to call you?" />
+      </FormItem>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" loading={isLoading?.send}>
+      <FormItem>
+        <StyledButton variant="tertiary" htmlType="submit" loading={isLoading?.send}>
           Sign up
-        </Button>
-      </Form.Item>
-      {error && <div style={{color: 'red'}}>{error}</div>}
+        </StyledButton>
+      </FormItem>
+      {error && <Label variant="error" label={error} icon />}
     </Form>
   );
 };

@@ -50,17 +50,19 @@ export const usePick = (redirect?: () => void) => {
   };
 
   const onSubmit = async (values: PickerValuesT) => {
+    console.log('values', values);
+    const _values = {...values, repeatability: values.repeatability === 'one time' ? '' : values.repeatability};
     try {
       setIsLoading((prev) => ({...prev, send: true}));
       if (!id) {
-        const res = await setPickerQuery({...values, pickerItems});
+        const res = await setPickerQuery({..._values, pickerItems});
         if (res) {
           info('Success');
           redirect?.();
           setIsLoading((prev) => ({...prev, send: false}));
         }
       } else {
-        const res = await updateEventQuery(id, {...values, pickerItems});
+        const res = await updateEventQuery(id, {..._values, pickerItems});
         if (res) {
           console.log('res.body.data.event', res.body.data.event);
           setInitialValues(res.body.data.event);

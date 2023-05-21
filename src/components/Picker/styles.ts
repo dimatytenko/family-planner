@@ -1,6 +1,9 @@
 import styled from 'styled-components';
-import {DatePicker, Button} from 'antd';
-import {ArrowLeftOutlined} from '@ant-design/icons';
+import {DatePicker} from 'antd';
+import {DeleteOutlined} from '@ant-design/icons';
+
+import {BackButton} from '../../ui-kit/Button';
+import {InputTextStyles} from '../../ui-kit/Typography/styles';
 
 export const ButtonsWrapper = styled.div`
   display: flex;
@@ -12,26 +15,36 @@ export const DatePickerStyled = styled(DatePicker)`
     width: 280px;
     overflow: auto;
   }
+  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker-focused {
+    border-color: ${({theme}) => theme.palette.colors.primary};
+  }
+  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker .ant-picker-input > input::placeholder {
+    ${InputTextStyles};
+    color: ${({theme}) => theme.palette.colors.grayscale};
+  }
+  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker .ant-picker-input > input {
+    ${InputTextStyles};
+  }
+  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker-dropdown .ant-picker-header-view button:hover {
+    color: ${({theme}) => theme.palette.colors.primary};
+  }
+  &.ant-select-selector {
+    border-color: ${({theme}) => theme.palette.colors.primary} !important;
+  }
 `;
 
-export const BackButton = styled.div`
-  cursor: pointer;
+export const BackButtonStyled = styled(BackButton)`
+  margin-bottom: ${({theme}) => theme.spacer._3};
+`;
+
+export const DeleteIconWrapper = styled.div`
+  width: 20px;
+  height: 20px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: ${({theme}) => theme.spacer._1};
-  margin-bottom: ${({theme}) => theme.spacer._5};
 `;
 
-export const ArrowLeftIcon = styled(ArrowLeftOutlined)`
-  font-size: 14px;
-`;
-
-export const EventInputWrapper = styled.div`
-  position: relative;
-`;
-
-export const EventButtonDel = styled(Button)`
-  position: absolute;
-  top: 0;
-  right: 0;
+export const DeleteIcon = styled(DeleteOutlined).attrs({})`
+  color: ${({theme}) => theme.palette.colors.alert};
 `;

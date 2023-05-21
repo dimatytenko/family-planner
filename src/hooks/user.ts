@@ -129,6 +129,7 @@ export const useAvatar = () => {
   const saveGenerateAvatar = async () => {
     try {
       setLoading(true);
+
       const res = await updateAvatarQuery({file: {thumbUrl: fileList[0]?.thumbUrl}});
       if (!res) throw new Error("Can't update avatar");
 

@@ -8,6 +8,12 @@ export const PrivateRoute: React.FC<WithChildren & {path?: string}> = ({children
   const isAuth = useViewer();
 
   if (!isAuth) return <Navigate to={route.login.path} replace />; //redirect if not authorize
+  return <>{children}</>;
+};
 
+export const PublicRoute: React.FC<WithChildren & {path?: string}> = ({children}) => {
+  const isAuth = useViewer();
+
+  if (isAuth) return <Navigate to={route.main.path} replace />; //redirect if authorize
   return <>{children}</>;
 };

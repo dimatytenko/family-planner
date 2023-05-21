@@ -1,14 +1,16 @@
 import React from 'react';
-import {Button, Form, Radio, Select, Input, Divider, Space} from 'antd';
-import {PlusOutlined, DeleteOutlined} from '@ant-design/icons';
+import {Form, Radio, Divider, Space, Segmented} from 'antd';
+import {PlusOutlined} from '@ant-design/icons';
 import dayjs from 'dayjs';
 
 import {IPickerFormProps, SizeType} from '../../types/picker';
 import {PickerValuesT} from '../../types/picker';
 import {disabledDate, disabledDateTime} from '../../helpers/callendar';
-import {ButtonsWrapper, DatePickerStyled, EventInputWrapper, EventButtonDel} from './styles';
-
-const {TextArea} = Input;
+import {ButtonsWrapper, DatePickerStyled, DeleteIconWrapper, DeleteIcon} from './styles';
+import {GhostWrapper} from '../../ui-kit/Button';
+import {FormItem} from '../../ui-kit/Form/Form';
+import {InputTextArea, Select, Input} from '../../ui-kit/Form/Input';
+import {Button} from '../../ui-kit/Button';
 
 export const PickerForm: React.FC<IPickerFormProps> = ({
   isLoading,
@@ -50,16 +52,16 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
       initialValues={{size: sizeForm}}
       onValuesChange={onFormLayoutChange}
       size={sizeForm as SizeType}
-      style={{maxWidth: 600}}>
-      <Form.Item label="Form Size" name="size">
+      style={{maxWidth: 450}}>
+      <FormItem label="Form Size" name="size">
         <Radio.Group>
           <Radio.Button value="small">Small</Radio.Button>
           <Radio.Button value="default">Default</Radio.Button>
           <Radio.Button value="large">Large</Radio.Button>
         </Radio.Group>
-      </Form.Item>
+      </FormItem>
 
-      <Form.Item
+      <FormItem
         label="Date"
         name="date"
         initialValue={initialValues?.date ? dayjs(initialValues?.date) : null}
@@ -70,90 +72,62 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
           format="YYYY-MM-DD HH:mm"
           showTime={{format: 'HH:mm'}}
         />
-      </Form.Item>
+      </FormItem>
 
-      <EventInputWrapper>
-        <Form.Item
-          label="Event"
-          name="event"
-          rules={[{required: true, message: 'Event is required!'}]}
-          initialValue={initialValues?.event}>
-          <Select
-            placeholder="choose or add new event"
-            onChange={onPickerItemChange}
-            dropdownRender={(menu) => (
-              <>
-                {menu}
-                <Divider style={{margin: '8px 0'}} />
-                <Space style={{padding: '0 8px 4px'}}>
-                  <Input placeholder="Please enter item" onChange={onNameChange} value={name} />
-                  <Button type="text" icon={<PlusOutlined />} onClick={addItem}>
-                    Add item
-                  </Button>
-                </Space>
-              </>
-            )}
-            options={pickerItems.map((item) => ({label: item, value: item}))}
-          />
-        </Form.Item>
-        <EventButtonDel
-          type="text"
-          htmlType="button"
-          onClick={onRemoveSelectItem}
-          icon={<DeleteOutlined style={{color: 'red'}} />}
+      <FormItem
+        label="Event"
+        name="event"
+        rules={[{required: true, message: 'Event is required!'}]}
+        initialValue={initialValues?.event}>
+        <Select
+          placeholder="choose or add new event"
+          onChange={onPickerItemChange}
+          dropdownRender={(menu) => (
+            <>
+              {menu}
+              <Divider style={{margin: '8px 0'}} />
+              <Space style={{padding: '0 8px 4px'}}>
+                <Input placeholder="Please enter item" onChange={onNameChange} value={name} />
+                <Button variant="success" icon={<PlusOutlined />} onClick={addItem}>
+                  Add item
+                </Button>
+                <GhostWrapper onClick={onRemoveSelectItem} round>
+                  <DeleteIconWrapper>
+                    <DeleteIcon style={{color: 'red'}} />
+                  </DeleteIconWrapper>
+                </GhostWrapper>
+              </Space>
+            </>
+          )}
+          options={pickerItems.map((item) => ({label: item, value: item}))}
         />
-      </EventInputWrapper>
+      </FormItem>
 
-      <Form.Item
+      <FormItem
         label="Description"
         name="descr"
         initialValue={initialValues?.description}
         rules={[{required: true, message: 'Description is required!'}]}>
-        <TextArea
+        <InputTextArea
           showCount
           maxLength={200}
           style={{height: 120, marginBottom: 24}}
           placeholder="enter a description... "
         />
-      </Form.Item>
+      </FormItem>
 
-      <Form.Item label="Repeatability" name="repeatability" initialValue={initialValues?.repeat}>
-        <Select
-          style={{maxWidth: 300}}
-          placeholder="Select repeatability"
-          options={[
-            {
-              value: '',
-              label: 'one time',
-            },
-            {
-              value: 'daily',
-              label: 'daily',
-            },
-            {
-              value: 'weekly',
-              label: 'weekly',
-            },
-            {
-              value: 'monthly',
-              label: 'monthly',
-            },
-            {
-              value: 'yearly',
-              label: 'yearly',
-            },
-          ]}
-        />
-      </Form.Item>
+      <FormItem label="Repeatability" name="repeatability" initialValue={initialValues?.repeat}>
+        <Segmented size="small" options={['one time', 'daily', 'weekly', 'monthly', 'yearly']} />
+      </FormItem>
 
       <ButtonsWrapper>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={isLoading?.send}>
+        <FormItem>
+          <Button variant="success" htmlType="submit" loading={isLoading?.send}>
             Send
           </Button>
-        </Form.Item>
+        </FormItem>
         {initialValues && (
-          <Button type="primary" htmlType="button" loading={isLoading?.delete} onClick={deleteEvent}>
+          <Button variant="secondary" htmlType="button" loading={isLoading?.delete} onClick={deleteEvent}>
             Delete
           </Button>
         )}

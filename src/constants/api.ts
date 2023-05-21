@@ -20,6 +20,7 @@ export const EventQueryList = {
   event: (eventId: string) => `/api/events/${eventId}`,
   eventUpdate: (eventId: string) => `/api/events/${eventId}`,
   eventDelete: (eventId: string) => `/api/events/${eventId}`,
+  allDateEvents: () => '/api/events/event',
 };
 
 export enum TryQueryList {

@@ -1,33 +1,32 @@
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
 
 import {CalendarComponent} from '../../components/Calendar';
 import {useCalendarData} from '../../hooks/calendar';
+import {route} from '../../constants/routes';
+import {getListData} from '../../helpers/event';
 
 export const Calendar: React.FC = () => {
-  const {
-    value,
-    onSelect,
-    onPanelChange,
-    selectedValue,
-    getListData,
-    getMonthData,
-    isLoading,
-    deleteEvent,
-    error,
-    dellId,
-  } = useCalendarData();
+  const navigate = useNavigate();
+  const {value, onSelect, onPanelChange, getMonthData, isLoading, selectedValue, deleteEvent, events, error, dellId} =
+    useCalendarData();
+  const goToPicker = () => {
+    navigate(route.picker.path);
+  };
   return (
     <CalendarComponent
       value={value}
       onSelect={onSelect}
       onPanelChange={onPanelChange}
-      selectedValue={selectedValue}
       getListData={getListData}
       getMonthData={getMonthData}
       isLoading={isLoading}
-      deleteEvent={deleteEvent}
+      goToPicker={goToPicker}
+      selectedValue={selectedValue}
+      events={events}
       error={error}
       dellId={dellId}
+      deleteEvent={deleteEvent}
     />
   );
 };

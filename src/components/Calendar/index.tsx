@@ -1,25 +1,27 @@
 import React from 'react';
-import {BadgeProps, Skeleton, Button, Badge, Calendar, Alert} from 'antd';
+import {BadgeProps, Skeleton, Badge} from 'antd';
 import type {Dayjs} from 'dayjs';
 
-import {CalendarPropsT} from '../../types/calendar';
-import {ButtonWrapper, DisplayText, EventsList, EventEditLink, EventsItem, EditIcon, DeleteIcon} from './styles';
-import {route} from '../../constants/routes';
+import {CalendarPropsI} from '../../types/calendar';
+import {CallendarWrapper, ButtonWrapper, FloatButtonCallendar, EventListWrapper, StyledCalendar} from './styles';
 import {disabledDate} from '../../helpers/callendar';
+import {EventList} from '../../components/EventList';
+import {EventTitle, InfoWrapper} from '../EventList/styles';
 
-export const CalendarComponent: React.FC<CalendarPropsT> = ({
+export const CalendarComponent: React.FC<CalendarPropsI> = ({
   value,
   onSelect,
   onPanelChange,
-  selectedValue,
   getListData,
   getMonthData,
   isLoading,
+  goToPicker,
+  selectedValue,
+  events,
   deleteEvent,
   error,
   dellId,
 }) => {
-  console.log('dellId', dellId);
   const monthCellRender = (value: Dayjs) => {
     const num = getMonthData(value);
     return num ? (
@@ -31,52 +33,37 @@ export const CalendarComponent: React.FC<CalendarPropsT> = ({
   };
 
   const dateCellRender = (value: Dayjs) => {
-    const listData = getListData(value);
+    const listData = getListData(value, events);
     return (
       <ButtonWrapper className="events">
         {listData.map((item) => (
-          <Badge
-            key={item.id}
-            status={item.type as BadgeProps['status']}
-            text={<DisplayText>{item?.content}</DisplayText>}
-          />
+          <>
+            <InfoWrapper>
+              <Badge status={item.type as BadgeProps['status']} />
+              <EventTitle none>{item?.content}</EventTitle>
+            </InfoWrapper>
+          </>
         ))}
       </ButtonWrapper>
-    );
-  };
-
-  const currentDateRender = (value: Dayjs) => {
-    const listData = getListData(value);
-    return (
-      <>
-        <EventsList className="events">
-          {listData.map((item) => (
-            <EventsItem key={item.id}>
-              <EventEditLink to={route.pickerEdit.get({id: item.id})}>
-                <Badge status={item.type as BadgeProps['status']} text={item?.content} />
-                <EditIcon />
-              </EventEditLink>
-              <Button
-                type="text"
-                onClick={() => deleteEvent?.(item.id)}
-                icon={<DeleteIcon />}
-                loading={dellId === item.id}
-              />
-            </EventsItem>
-          ))}
-        </EventsList>
-        {error && <div style={{color: 'red'}}>{error}</div>}
-      </>
     );
   };
 
   if (isLoading?.page) return <Skeleton active />;
 
   return (
-    <>
-      <Alert message={currentDateRender(selectedValue)} />
+    <CallendarWrapper>
+      <EventListWrapper>
+        <EventList
+          getListData={getListData}
+          selectedValue={selectedValue}
+          events={events}
+          deleteEvent={deleteEvent}
+          error={error}
+          dellId={dellId}
+        />
+      </EventListWrapper>
 
-      <Calendar
+      <StyledCalendar
         value={value}
         onSelect={onSelect}
         onPanelChange={onPanelChange}
@@ -84,6 +71,8 @@ export const CalendarComponent: React.FC<CalendarPropsT> = ({
         monthCellRender={monthCellRender}
         disabledDate={disabledDate}
       />
-    </>
+
+      <FloatButtonCallendar onClick={goToPicker} text={'Add event'} />
+    </CallendarWrapper>
   );
 };

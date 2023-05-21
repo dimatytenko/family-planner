@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 import {Upload} from 'antd';
 
-export const UserInfoWrapper = styled.div``;
+import {Button} from '../../ui-kit/Button';
+import {Text2Bold, Text4} from '../../ui-kit/Typography';
+
+export const StyledButton = styled(Button)``;
+
+export const UserInfoWrapper = styled.div`
+  margin-top: ${({theme}) => theme.spacer._3};
+`;
 
 export const UserInfolist = styled.div`
   display: flex;
@@ -36,3 +43,7 @@ export const Drawerlist = styled.div`
   flex-direction: column;
   gap: ${({theme}) => theme.spacer._3};
 `;
+
+export const DrawerItemField = styled(Text4)``;
+
+export const DrawerItemLabel = styled(Text2Bold)``;

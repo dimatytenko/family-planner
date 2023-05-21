@@ -1,11 +1,13 @@
 import React from 'react';
-import {Button, Form, Input, Select, InputNumber} from 'antd';
+import {Form, Input, Select, InputNumber} from 'antd';
 
 const {Option} = Select;
 
 import {IUserFormProps, USER} from '../../types/user';
 import {getUserInfoField} from '../../helpers/user';
 import {FormButtonsWrapper} from './styles';
+import {Button} from '../../ui-kit/Button';
+// import {Tooltip} from '../../ui-kit/Tooltip';
 
 export const UserForm: React.FC<IUserFormProps> = ({
   userData: {onSubmit, resetError, error, isLoading},
@@ -39,6 +41,7 @@ export const UserForm: React.FC<IUserFormProps> = ({
         name="username"
         label="Username"
         tooltip="What do you want others to call you?"
+        // tooltip={<Tooltip placement="bottomLeft" text="What do you want others to call you?" />}
         rules={[{required: true, message: 'Please input your nickname!', whitespace: true}]}
         initialValue={getUserInfoField(USER.username, userInfo)}>
         <Input />
@@ -74,11 +77,13 @@ export const UserForm: React.FC<IUserFormProps> = ({
 
       <FormButtonsWrapper>
         <Form.Item>
-          <Button htmlType="submit" loading={isLoading?.send}>
+          <Button htmlType="submit" variant="success" loading={isLoading?.send}>
             Save changes
           </Button>
         </Form.Item>
-        <Button onClick={onChangeMode}>Сancel</Button>
+        <Button variant="secondary" onClick={onChangeMode}>
+          Сancel
+        </Button>
       </FormButtonsWrapper>
       {error && <div style={{color: 'red'}}>{error}</div>}
     </Form>

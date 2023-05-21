@@ -32,4 +32,4 @@ export interface IPickerFormProps {
   };
 }
 
-export type EventRepeatT = 'daily' | 'weekly' | 'monthly' | 'yearly';
+export type EventRepeatT = '' | 'one time' | 'daily' | 'weekly' | 'monthly' | 'yearly';

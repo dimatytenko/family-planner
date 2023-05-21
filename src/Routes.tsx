@@ -1,7 +1,8 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 
-import {PrivateRoute} from './containers/PrivateRoute';
+import {PrivateRoute} from './containers/Routes';
+import {PublicRoute} from './containers/Routes';
 import {route} from './constants/routes';
 import {LogIn} from './containers/Auth/Login';
 import {SignUp} from './containers/Auth/SignUp';
@@ -12,8 +13,24 @@ import {PickerEdit} from './containers/PickerEdit';
 import {Calendar} from './containers/Calendar';
 
 const PublicRoutes = [
-  <Route key="login" path={route.login.path} element={<LogIn />} />,
-  <Route key="signup" path={route.signup.path} element={<SignUp />} />,
+  <Route
+    key="login"
+    path={route.login.path}
+    element={
+      <PublicRoute>
+        <LogIn />
+      </PublicRoute>
+    }
+  />,
+  <Route
+    key="signup"
+    path={route.signup.path}
+    element={
+      <PublicRoute>
+        <SignUp />
+      </PublicRoute>
+    }
+  />,
 ];
 
 const PrivateRoutes = [
