@@ -1,13 +1,15 @@
 import Cookies from 'js-cookie';
 import {useState, useEffect} from 'react';
 import {useSetRecoilState} from 'recoil';
+import {useNavigate} from 'react-router-dom';
 
 import {session, session as sessionState} from '../states/session';
-import {signupQuery, loginQuery, logoutQuery} from '../queries/auth';
+import {signupQuery, loginQuery, logoutQuery, reverifyQuery, forgotPasswordQuery} from '../queries/auth';
 import {userQuery} from '../queries/user';
-import {signupReqBody, loginReqBody} from '../queries/types/auth';
+import {signupReqBody, loginReqBody, reverifyReqBody} from '../queries/types/auth';
 import {IUser} from '../types/user';
 import {loading, errorMessage} from '../helpers/common';
+import {route} from '../constants/routes';
 
 type TokenType = string | null | undefined;
 
@@ -54,11 +56,25 @@ export const useSignup = (redirect?: () => void) => {
   return {onSubmit: onSignup, isLoading, success, error};
 };
 
-export const useLogin = (redirect?: () => void) => {
+export const useSetLogin = () => {
   const setSession = useSetRecoilState(session);
+  const navigate = useNavigate();
+
+  const setUser = (res: {token: string; user: IUser}) => {
+    const token = res?.token;
+    setToken(token);
+    setSession({sessionToken: token, user: res?.user});
+
+    navigate(route.main.path);
+  };
+  return {setUser};
+};
+
+export const useLogin = () => {
   const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(loading);
   const [error, setError] = useState<string | undefined>('');
+  const {setUser} = useSetLogin();
 
   const resetError = () => setError('');
 
@@ -70,20 +86,15 @@ export const useLogin = (redirect?: () => void) => {
 
       const body = {password: values?.password.trim() || '', username: values?.username.trim() || ''};
       const res = await loginQuery(body);
-      console.log('res?.body?.user', res?.body?.user);
       if (res?.status) {
-        const token = res?.body?.token;
-        setToken(token);
-        setSession({sessionToken: token, user: res?.body?.user});
+        setUser(res?.body);
         setSuccess(true);
-
-        setIsLoading((prev) => ({...prev, send: false}));
-        redirect?.();
       }
     } catch (e) {
       console.log(e);
       const message = errorMessage(e);
       setError(message);
+    } finally {
       setIsLoading((prev) => ({...prev, send: false}));
     }
   };
@@ -93,7 +104,7 @@ export const useLogin = (redirect?: () => void) => {
 
 export function useFetchSession() {
   const [loading, setLoading] = useState(false);
-  const [success, SetSuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
   const checkAuth = useCheckAuthorize();
   const setSession = useSetRecoilState(sessionState);
   const [mounted, setMounted] = useState(false);
@@ -109,7 +120,7 @@ export function useFetchSession() {
       const res = await checkAuth();
       if (res) {
         setSession({sessionToken: token, user: res});
-        SetSuccess(true);
+        setSuccess(true);
         setLoading(false);
       } else {
         setToken(null);
@@ -149,4 +160,54 @@ export const useLogOut = () => {
       setSession(null);
     }
   };
+};
+
+export const useReverify = () => {
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(loading);
+  const [error, setError] = useState<string | undefined>('');
+
+  const resetError = () => setError('');
+
+  const onReverify = async (values: reverifyReqBody) => {
+    try {
+      setError('');
+      setIsLoading((prev) => ({...prev, send: true}));
+      setMessage('');
+
+      const body = {email: values?.email.trim() || ''};
+      const res = await reverifyQuery(body);
+      if (res?.status) {
+        setMessage(res.body.message);
+      }
+    } catch (e) {
+      console.log(e);
+      const message = errorMessage(e);
+      setError(message);
+    } finally {
+      setIsLoading((prev) => ({...prev, send: false}));
+    }
+  };
+
+  const onForgetPassword = async (values: reverifyReqBody) => {
+    try {
+      setError('');
+      setIsLoading((prev) => ({...prev, send: true}));
+      setMessage('');
+
+      const body = {email: values?.email.trim() || ''};
+      const res = await forgotPasswordQuery(body);
+      if (res?.status) {
+        setMessage(res.body.message);
+      }
+    } catch (e) {
+      console.log(e);
+      const message = errorMessage(e);
+      setError(message);
+    } finally {
+      setIsLoading((prev) => ({...prev, send: false}));
+    }
+  };
+
+  return {onReverify, onForgetPassword, isLoading, error, resetError, message};
 };

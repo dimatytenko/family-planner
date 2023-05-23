@@ -1,24 +1,24 @@
-import {useState} from 'react';
+import {useRecoilState} from 'recoil';
+
+import {DrawerState} from '../states/layout';
 
 export const useDrawer = () => {
-  const [open, setOpen] = useState(false);
-  const [childrenDrawer, setChildrenDrawer] = useState(false);
-
+  const [{drawer, childrenDrawer}, setDrawer] = useRecoilState(DrawerState);
   const showDrawer = () => {
-    setOpen(true);
+    setDrawer((prev) => ({...prev, drawer: true}));
   };
 
   const onClose = () => {
-    setOpen(false);
+    setDrawer((prev) => ({...prev, drawer: false}));
   };
 
   const showChildrenDrawer = () => {
-    setChildrenDrawer(true);
+    setDrawer((prev) => ({...prev, childrenDrawer: true}));
   };
 
   const onChildrenDrawerClose = () => {
-    setChildrenDrawer(false);
+    setDrawer((prev) => ({...prev, childrenDrawer: false}));
   };
 
-  return {open, showDrawer, onClose, childrenDrawer, showChildrenDrawer, onChildrenDrawerClose};
+  return {open: drawer, showDrawer, onClose, childrenDrawer, showChildrenDrawer, onChildrenDrawerClose};
 };

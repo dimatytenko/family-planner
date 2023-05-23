@@ -7,11 +7,10 @@ import domtoimage from 'dom-to-image';
 
 import {getUserInfo} from '../helpers/user';
 import {info, loading, errorMessage} from '../helpers/common';
-import {updateUserQuery} from '../queries/user';
-import {IUserValues} from '../types/user';
+import {updateUserQuery, updateAvatarQuery, resetPasswordQuery} from '../queries/user';
+import {UpdateUserReqBody, ResetPasswordReqBody} from '../queries/types/user';
 import {userState} from '../states/session';
 import {IUser} from '../types/user';
-import {updateAvatarQuery} from '../queries/user';
 import {getBase64} from '../helpers/common';
 
 export const useViewer = () => {
@@ -35,7 +34,7 @@ export const useUser = () => {
 
   const userInfo = getUserInfo(user);
 
-  const onSubmit = async (values: IUserValues, onSuccess?: () => void) => {
+  const onSubmit = async (values: UpdateUserReqBody, onSuccess?: () => void) => {
     try {
       setIsLoading((prev) => ({...prev, send: true}));
 
@@ -182,4 +181,34 @@ export const useAvatar = () => {
       deleteAvatar,
     },
   };
+};
+
+export const useChangePassword = () => {
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(loading);
+  const [error, setError] = useState<string | undefined>('');
+
+  const resetError = () => setError('');
+
+  const onChange = async (values: ResetPasswordReqBody) => {
+    try {
+      setError('');
+      setIsLoading((prev) => ({...prev, send: true}));
+      setMessage('');
+
+      const body = {oldPassword: values?.oldPassword.trim() || '', newPassword: values?.newPassword.trim() || ''};
+      const res = await resetPasswordQuery(body);
+      if (res?.status) {
+        setMessage(res.body.message);
+      }
+    } catch (e) {
+      console.log(e);
+      const message = errorMessage(e);
+      setError(message);
+    } finally {
+      setIsLoading((prev) => ({...prev, send: false}));
+    }
+  };
+
+  return {onSubmit: onChange, isLoading, error, resetError, message};
 };

@@ -6,7 +6,7 @@ const colors = {
   success: '#00ff00',
   denary: '#333333',
   tertiary: '#10b369',
-  grayscale: '#eeeeee',
+  grayscale: '#9E9E9E',
 };
 
 export const palette = {

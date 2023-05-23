@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components';
-import {Form, Input, Select} from 'antd';
+import {Form, Input, Select, DatePicker} from 'antd';
 
 import {mixins} from '../theme/mixins';
 import {InputTextStyles} from '../Typography/styles';
@@ -49,7 +49,7 @@ const inputStyle = css`
   padding: 5px 12px;
   box-sizing: border-box;
   border: 1.2px solid;
-  border-color: ${({theme}) => theme.palette.colors.ghost};
+  border-color: ${({theme}) => theme.palette.colors.grayscale};
   border-radius: ${({theme}) => theme.spacer._1};
   &:hover,
   &:focus,
@@ -109,5 +109,28 @@ export const StyledSelect = styled(Select)`
   }
   .ant-select-selection-item {
     ${InputTextStyles};
+  }
+`;
+
+export const DatePickerStyled = styled(DatePicker)`
+  & .ant-picker-panel-layout {
+    width: 280px;
+    overflow: auto;
+  }
+  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker-focused {
+    border-color: ${({theme}) => theme.palette.colors.primary};
+  }
+  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker .ant-picker-input > input::placeholder {
+    ${InputTextStyles};
+    color: ${({theme}) => theme.palette.colors.grayscale};
+  }
+  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker .ant-picker-input > input {
+    ${InputTextStyles};
+  }
+  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker-dropdown .ant-picker-header-view button:hover {
+    color: ${({theme}) => theme.palette.colors.primary};
+  }
+  &.ant-select-selector {
+    border-color: ${({theme}) => theme.palette.colors.primary} !important;
   }
 `;

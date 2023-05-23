@@ -7,8 +7,14 @@ import {route} from '../../constants/routes';
 
 export const LogIn = () => {
   const navigate = useNavigate();
-  const toMainRedirect = () => navigate(route.main.path);
-  const authData = useLogin(toMainRedirect);
+  const authData = useLogin();
 
-  return <LogInComponent authData={authData} />;
+  const goToReverify = () => {
+    navigate(route.reverify.path);
+  };
+  const goToForgotPassword = () => {
+    navigate(route.forgotPassword.path);
+  };
+
+  return <LogInComponent authData={authData} goToReverify={goToReverify} goToForgotPassword={goToForgotPassword} />;
 };

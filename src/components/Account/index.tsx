@@ -6,7 +6,7 @@ import {UserInfoWrapper} from './styles';
 import {AccountAvatar} from './Avatar';
 import {UserInfo} from './UserInfo';
 
-export const Account: React.FC<TUserInfoProps> = ({userInfo, userData, avatarData}) => {
+export const Account: React.FC<TUserInfoProps> = ({userInfo, userData, avatarData, goToChangePassword}) => {
   const [editMode, setEditMode] = useState(false);
 
   const onChangeMode = () => {
@@ -16,7 +16,7 @@ export const Account: React.FC<TUserInfoProps> = ({userInfo, userData, avatarDat
     <>
       <AccountAvatar avatarData={avatarData} />
       {!editMode ? (
-        <UserInfo userInfo={userInfo} onChangeMode={onChangeMode} />
+        <UserInfo userInfo={userInfo} onChangeMode={onChangeMode} goToChangePassword={goToChangePassword} />
       ) : (
         <UserInfoWrapper>
           <UserForm userData={userData} onChangeMode={onChangeMode} userInfo={userInfo} />

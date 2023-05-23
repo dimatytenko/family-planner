@@ -1,4 +1,5 @@
 import {ILoading} from './common';
+import {ResetPasswordReqBody} from '../queries/types/user';
 
 export interface IUser {
   id?: string;
@@ -22,7 +23,10 @@ export interface IUSerInfo {
 
 export type TUserInfo = IUSerInfo[];
 
-export type TUserInfoProps = IUserFormProps & IAccountAvatarProps;
+export type TUserInfoProps = IUserFormProps &
+  IAccountAvatarProps & {
+    goToChangePassword?: () => void;
+  };
 
 export interface IUserFormProps {
   userData: {
@@ -73,4 +77,16 @@ export interface IAccountAvatarProps {
 export interface IUserInfoProps {
   userInfo?: TUserInfo;
   onChangeMode?: () => void;
+  goToChangePassword?: () => void;
+}
+
+export interface IResetPasswordFormProps {
+  onSubmit: (values: ResetPasswordReqBody) => void;
+  isLoading?: ILoading;
+  error?: string;
+  resetError?: () => void;
+}
+
+export interface IResetPasswordProps extends IResetPasswordFormProps {
+  message?: string;
 }

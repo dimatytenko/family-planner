@@ -8,3 +8,7 @@ export type loginReqBody = {
   username: string;
   password: string;
 };
+
+export type reverifyReqBody = {
+  email: string;
+};

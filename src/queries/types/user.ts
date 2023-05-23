@@ -8,3 +8,8 @@ export type UpdateUserReqBody = {
   age?: number;
   sex?: string;
 };
+
+export type ResetPasswordReqBody = {
+  oldPassword: string;
+  newPassword: string;
+};

@@ -5,7 +5,7 @@ import {UserInfolist, DrawerItemField, DrawerItemLabel} from './styles';
 import {IUserInfoProps} from '../../types/user';
 import {Button} from '../../ui-kit/Button';
 
-export const UserInfo: React.FC<IUserInfoProps> = ({userInfo, onChangeMode}) => {
+export const UserInfo: React.FC<IUserInfoProps> = ({userInfo, onChangeMode, goToChangePassword}) => {
   return (
     <>
       <List
@@ -24,6 +24,7 @@ export const UserInfo: React.FC<IUserInfoProps> = ({userInfo, onChangeMode}) => 
       />
       <UserInfolist>
         <Button onClick={onChangeMode}>Edit profile</Button>
+        <Button onClick={goToChangePassword}>Change password</Button>
       </UserInfolist>
     </>
   );

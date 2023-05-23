@@ -11,6 +11,10 @@ export const route = {
   picker: Route.of({path: '/picker'}),
   pickerEdit: Route.of<{id: string}>({path: '/picker/:id'}),
   calendar: Route.of({path: '/calendar'}),
+  verify: Route.of({path: '/verify'}),
+  reverify: Route.of({path: '/reverify'}),
+  forgotPassword: Route.of({path: '/forgot-password'}),
+  changePassword: Route.of({path: '/change-password'}),
 };
 
 export const paths = {

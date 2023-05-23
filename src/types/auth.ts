@@ -1,4 +1,4 @@
-import {signupReqBody, loginReqBody} from '../queries/types/auth';
+import {signupReqBody, loginReqBody, reverifyReqBody} from '../queries/types/auth';
 import {ILoading} from './common';
 import {IUser} from '../types/user';
 
@@ -27,4 +27,19 @@ export interface ILoginFormProps {
   };
 }
 
-export type LoginComponentPropsT = ILoginFormProps;
+export type LoginComponentPropsT = ILoginFormProps & {
+  goToReverify?: () => void;
+  goToForgotPassword?: () => void;
+};
+
+export interface IReverifyFormProps {
+  titleButton?: string;
+  onSubmit: (values: reverifyReqBody) => void;
+  isLoading?: ILoading;
+  error?: string;
+  resetError?: () => void;
+}
+
+export interface IReverifyProps extends IReverifyFormProps {
+  message?: string;
+}

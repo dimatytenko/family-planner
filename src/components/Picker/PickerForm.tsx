@@ -6,11 +6,13 @@ import dayjs from 'dayjs';
 import {IPickerFormProps, SizeType} from '../../types/picker';
 import {PickerValuesT} from '../../types/picker';
 import {disabledDate, disabledDateTime} from '../../helpers/callendar';
-import {ButtonsWrapper, DatePickerStyled, DeleteIconWrapper, DeleteIcon} from './styles';
+import {ButtonsWrapper, DeleteIconWrapper, DeleteIcon} from './styles';
 import {GhostWrapper} from '../../ui-kit/Button';
 import {FormItem} from '../../ui-kit/Form/Form';
-import {InputTextArea, Select, Input} from '../../ui-kit/Form/Input';
+import {InputTextArea, Input} from '../../ui-kit/Form/Input';
 import {Button} from '../../ui-kit/Button';
+import {DatePicker} from '../../ui-kit/Form/DatePicker';
+import {Select} from '../../ui-kit/Form/Select';
 
 export const PickerForm: React.FC<IPickerFormProps> = ({
   isLoading,
@@ -33,7 +35,6 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
   const [form] = Form.useForm();
 
   const onFinish = (values: PickerValuesT) => {
-    console.log('values', values);
     onSubmit(values);
     form.resetFields();
   };
@@ -66,7 +67,7 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
         name="date"
         initialValue={initialValues?.date ? dayjs(initialValues?.date) : null}
         rules={[{required: true, message: 'Date is required!'}]}>
-        <DatePickerStyled
+        <DatePicker
           disabledDate={disabledDate}
           disabledTime={disabledDateTime}
           format="YYYY-MM-DD HH:mm"

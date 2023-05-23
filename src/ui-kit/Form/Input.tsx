@@ -1,8 +1,8 @@
 import React from 'react';
 import {QuestionCircleOutlined} from '@ant-design/icons';
 
-import {StyledInput, StyledInputPassword, StyledInputTextArea, StyledSelect} from './styles';
-import {InputPropsT, TextAreaPropsT, SelectPropsT} from './types';
+import {StyledInput, StyledInputPassword, StyledInputTextArea} from './styles';
+import {InputPropsT, TextAreaPropsT} from './types';
 import {Tooltip} from '../Tooltip';
 
 export const Input: React.FC<InputPropsT> = ({tooltip, ...props}) => {
@@ -26,10 +26,4 @@ export const InputPassword: React.FC<InputPropsT> = ({...props}) => {
 
 export const InputTextArea: React.FC<TextAreaPropsT> = ({...props}) => {
   return <StyledInputTextArea {...props} />;
-};
-
-export const Select: React.FC<SelectPropsT> = ({...props}) => {
-  // eslint-disable-next-line
-  // @ts-ignore
-  return <StyledSelect {...props} />;
 };

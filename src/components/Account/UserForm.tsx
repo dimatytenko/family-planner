@@ -1,13 +1,15 @@
 import React from 'react';
-import {Form, Input, Select, InputNumber} from 'antd';
-
-const {Option} = Select;
+import {Form, InputNumber} from 'antd';
 
 import {IUserFormProps, USER} from '../../types/user';
 import {getUserInfoField} from '../../helpers/user';
 import {FormButtonsWrapper} from './styles';
 import {Button} from '../../ui-kit/Button';
-// import {Tooltip} from '../../ui-kit/Tooltip';
+import {FormItem} from '../../ui-kit/Form/Form';
+import {Input} from '../../ui-kit/Form/Input';
+import {Select} from '../../ui-kit/Form/Select';
+
+const genderItems = ['male', 'female'];
 
 export const UserForm: React.FC<IUserFormProps> = ({
   userData: {onSubmit, resetError, error, isLoading},
@@ -29,15 +31,15 @@ export const UserForm: React.FC<IUserFormProps> = ({
       scrollToFirstError
       layout="vertical"
       style={{maxWidth: 600}}>
-      <Form.Item name="name" label="First Name" initialValue={getUserInfoField(USER.name, userInfo)}>
+      <FormItem name="name" label="First Name" initialValue={getUserInfoField(USER.name, userInfo)}>
         <Input />
-      </Form.Item>
+      </FormItem>
 
-      <Form.Item name="lastName" label="Last Name" initialValue={getUserInfoField(USER.lastName, userInfo)}>
+      <FormItem name="lastName" label="Last Name" initialValue={getUserInfoField(USER.lastName, userInfo)}>
         <Input />
-      </Form.Item>
+      </FormItem>
 
-      <Form.Item
+      <FormItem
         name="username"
         label="Username"
         tooltip="What do you want others to call you?"
@@ -45,9 +47,9 @@ export const UserForm: React.FC<IUserFormProps> = ({
         rules={[{required: true, message: 'Please input your nickname!', whitespace: true}]}
         initialValue={getUserInfoField(USER.username, userInfo)}>
         <Input />
-      </Form.Item>
+      </FormItem>
 
-      <Form.Item
+      <FormItem
         name="email"
         label="E-mail"
         rules={[
@@ -62,25 +64,28 @@ export const UserForm: React.FC<IUserFormProps> = ({
         ]}
         initialValue={getUserInfoField(USER.email, userInfo)}>
         <Input />
-      </Form.Item>
+      </FormItem>
 
-      <Form.Item name="age" label="Age" initialValue={getUserInfoField(USER.age, userInfo)}>
+      <FormItem name="age" label="Age" initialValue={getUserInfoField(USER.age, userInfo)}>
         <InputNumber size="large" min={1} max={99} />
-      </Form.Item>
+      </FormItem>
 
-      <Form.Item name="sex" label="Gender" initialValue={getUserInfoField(USER.sex, userInfo)}>
-        <Select placeholder="Select a option and change input text above" allowClear>
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
+      <FormItem name="sex" label="Gender" initialValue={getUserInfoField(USER.sex, userInfo)}>
+        <Select
+          placeholder="Select a option and change input text above"
+          allowClear
+          options={genderItems.map((item) => ({label: item, value: item}))}>
+          {/* <Option value="male">male</Option>
+          <Option value="female">female</Option> */}
         </Select>
-      </Form.Item>
+      </FormItem>
 
       <FormButtonsWrapper>
-        <Form.Item>
+        <FormItem>
           <Button htmlType="submit" variant="success" loading={isLoading?.send}>
             Save changes
           </Button>
-        </Form.Item>
+        </FormItem>
         <Button variant="secondary" onClick={onChangeMode}>
           Сancel
         </Button>
