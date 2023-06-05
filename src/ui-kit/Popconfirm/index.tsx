@@ -18,7 +18,7 @@ export const Popconfirm: React.FC<PopconfirmProps & WithChildren> = ({
       onConfirm={onConfirm}
       placement={placement}
       okText="Yes"
-      cancelText="No"
+      cancelText="Cancel"
       {...props}
     />
   );

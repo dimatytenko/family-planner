@@ -66,16 +66,6 @@ export const DrawerElWrapper = styled.div`
   gap: ${defaultTheme.spacer._2};
 `;
 
-export const AvatarButton = styled.div`
-  cursor: pointer;
-  border-radius: 50%;
-  border: 2px solid ${defaultTheme.palette.colors.primary};
-  transition: border-color ${defaultTheme.transition.primary};
-  &:hover {
-    border-color: ${defaultTheme.palette.colors.tertiary};
-  }
-`;
-
 export const StyledLogout = styled.div`
   cursor: pointer;
   margin: 0;

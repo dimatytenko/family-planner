@@ -50,7 +50,6 @@ export const GlobalStyles = createGlobalStyle`
   }
   img {
     vertical-align: top;
-
     display: block;
     max-width: 100%;
     height: auto;
@@ -63,34 +62,5 @@ export const GlobalStyles = createGlobalStyle`
   h6 {
     font-weight: inherit;
     font-size: inherit;
-  }
-
-  .ant-picker-panel-layout {
-    @media screen and (max-width: 423px) {
-      width: 90vw;
-      overflow: auto;
-    }
-  }
-  .ant-select-item-option-content {
-    font-family: 'Proxima Nova';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    color: #000000;
-  }
-  :where(.css-dev-only-do-not-override-j0nf2s).ant-picker-dropdown .ant-picker-header-view button:hover {
-      color: #10b369;
-    }
-  .ant-picker-now-btn:hover {
-    color: #10b369;
-  }
-  :where(.css-dev-only-do-not-override-j0nf2s).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner, :where(.css-dev-only-do-not-override-j0nf2s).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner, :where(.css-dev-only-do-not-override-j0nf2s).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner{
-    background-color: #10b369;
-  }
-  :where(.css-dev-only-do-not-override-j0nf2s).ant-btn-primary:not(:disabled):hover {
-    background-color: #10b369;
-  }
-  :where(.css-dev-only-do-not-override-j0nf2s).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
-    border-color:red;
   }
 `;

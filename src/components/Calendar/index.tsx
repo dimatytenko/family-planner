@@ -6,7 +6,7 @@ import {CalendarPropsI} from '../../types/calendar';
 import {CallendarWrapper, ButtonWrapper, FloatButtonCallendar, EventListWrapper, StyledCalendar} from './styles';
 import {disabledDate} from '../../helpers/callendar';
 import {EventList} from '../../components/EventList';
-import {EventTitle, InfoWrapper} from '../EventList/styles';
+import {ItemTitle, InfoWrapper} from '../Common/styles';
 
 export const CalendarComponent: React.FC<CalendarPropsI> = ({
   value,
@@ -40,7 +40,7 @@ export const CalendarComponent: React.FC<CalendarPropsI> = ({
           <>
             <InfoWrapper>
               <Badge status={item.type as BadgeProps['status']} />
-              <EventTitle none>{item?.content}</EventTitle>
+              <ItemTitle none>{item?.content}</ItemTitle>
             </InfoWrapper>
           </>
         ))}

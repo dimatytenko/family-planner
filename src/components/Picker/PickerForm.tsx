@@ -6,13 +6,13 @@ import dayjs from 'dayjs';
 import {IPickerFormProps, SizeType} from '../../types/picker';
 import {PickerValuesT} from '../../types/picker';
 import {disabledDate, disabledDateTime} from '../../helpers/callendar';
-import {ButtonsWrapper, DeleteIconWrapper, DeleteIcon} from './styles';
-import {GhostWrapper} from '../../ui-kit/Button';
+import {ButtonsWrapper, DeleteIconWrapper, DeleteIcon, StyledButton, LabelWrapper} from './styles';
 import {FormItem} from '../../ui-kit/Form/Form';
 import {InputTextArea, Input} from '../../ui-kit/Form/Input';
 import {Button} from '../../ui-kit/Button';
 import {DatePicker} from '../../ui-kit/Form/DatePicker';
 import {Select} from '../../ui-kit/Form/Select';
+import {Label} from '../../ui-kit/Label';
 
 export const PickerForm: React.FC<IPickerFormProps> = ({
   isLoading,
@@ -39,8 +39,8 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
     form.resetFields();
   };
 
-  const onRemoveSelectItem = () => {
-    removePickerItem();
+  const onRemoveSelectItem = (value: string) => {
+    removePickerItem(value);
     form.setFieldValue('event', '');
   };
 
@@ -92,15 +92,20 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
                 <Button variant="success" icon={<PlusOutlined />} onClick={addItem}>
                   Add item
                 </Button>
-                <GhostWrapper onClick={onRemoveSelectItem} round>
-                  <DeleteIconWrapper>
-                    <DeleteIcon style={{color: 'red'}} />
-                  </DeleteIconWrapper>
-                </GhostWrapper>
               </Space>
             </>
           )}
-          options={pickerItems.map((item) => ({label: item, value: item}))}
+          options={pickerItems.map((item) => ({
+            label: (
+              <LabelWrapper>
+                {item}
+                <DeleteIconWrapper onClick={() => onRemoveSelectItem(item)}>
+                  <DeleteIcon style={{color: 'red'}} />
+                </DeleteIconWrapper>
+              </LabelWrapper>
+            ),
+            value: item,
+          }))}
         />
       </FormItem>
 
@@ -123,17 +128,17 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
 
       <ButtonsWrapper>
         <FormItem>
-          <Button variant="success" htmlType="submit" loading={isLoading?.send}>
+          <StyledButton variant="success" htmlType="submit" loading={isLoading?.send}>
             Send
-          </Button>
+          </StyledButton>
         </FormItem>
         {initialValues && (
-          <Button variant="secondary" htmlType="button" loading={isLoading?.delete} onClick={deleteEvent}>
+          <StyledButton variant="secondary" htmlType="button" loading={isLoading?.delete} onClick={deleteEvent}>
             Delete
-          </Button>
+          </StyledButton>
         )}
       </ButtonsWrapper>
-      {error && <div style={{color: 'red'}}>{error}</div>}
+      {error && <Label variant="error" label={error} icon />}
     </Form>
   );
 };

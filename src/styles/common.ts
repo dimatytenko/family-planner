@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Heading3} from '../../ui-kit/Typography';
+import {Heading3} from '../ui-kit/Typography';
 
 export const Title = styled(Heading3)`
   margin-left: ${({theme}) => theme.spacer._2};

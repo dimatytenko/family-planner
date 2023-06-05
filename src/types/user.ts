@@ -14,6 +14,7 @@ export interface IUser {
     sizePickerForm?: string;
     pickerItems?: string[];
   };
+  _id?: string;
 }
 
 export interface IUSerInfo {
@@ -89,4 +90,13 @@ export interface IResetPasswordFormProps {
 
 export interface IResetPasswordProps extends IResetPasswordFormProps {
   message?: string;
+}
+
+export interface IUsersListProps {
+  users: IUser[] | [];
+  loading?: boolean;
+}
+
+export interface IUserProps {
+  user: IUser;
 }

@@ -1,0 +1,46 @@
+.ant-popover-content {
+}
+
+.ant-popconfirm-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+:where(.css-dev-only-do-not-override-j0nf2s).ant-popconfirm .ant-popconfirm-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1.2px solid;
+  padding: 12px 20px;
+}
+
+.ant-btn.css-dev-only-do-not-override-j0nf2s.ant-btn-primary.ant-btn-sm {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+}
+.ant-btn.css-dev-only-do-not-override-j0nf2s.ant-btn-primary.ant-btn-sm:hover {
+  color: #10b369;
+  border-color: #10b369;
+  opacity: 1;
+}
+
+.ant-btn.css-dev-only-do-not-override-j0nf2s.ant-btn-default.ant-btn-sm {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #ff0000;
+  background-color: transparent;
+  border-color: #ff0000;
+}
+
+.ant-btn.css-dev-only-do-not-override-j0nf2s.ant-btn-default.ant-btn-sm:hover {
+  color: #000;
+  border-color: #ff0000;
+  background-color: #ff0000;
+  opacity: 1;
+}

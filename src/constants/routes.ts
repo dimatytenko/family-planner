@@ -15,6 +15,10 @@ export const route = {
   reverify: Route.of({path: '/reverify'}),
   forgotPassword: Route.of({path: '/forgot-password'}),
   changePassword: Route.of({path: '/change-password'}),
+  createSpace: Route.of({path: '/space'}),
+  spaceEdit: Route.of<{id: string}>({path: '/space/:id'}),
+  createTask: Route.of<{id: string}>({path: '/task/:id'}),
+  editTask: Route.of<{id: string; taskId: string}>({path: '/task/:id/:taskId'}),
 };
 
 export const paths = {

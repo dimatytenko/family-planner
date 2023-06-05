@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import {DeleteOutlined} from '@ant-design/icons';
 
-import {BackButton} from '../../ui-kit/Button';
+import {BackButton, Button} from '../../ui-kit/Button';
 
 export const ButtonsWrapper = styled.div`
   display: flex;
   gap: ${({theme}) => theme.spacer._2};
+
+  & > * {
+    flex: 1;
+  }
 `;
 
 export const BackButtonStyled = styled(BackButton)`
@@ -22,4 +26,14 @@ export const DeleteIconWrapper = styled.div`
 
 export const DeleteIcon = styled(DeleteOutlined).attrs({})`
   color: ${({theme}) => theme.palette.colors.alert};
+`;
+
+export const StyledButton = styled(Button)`
+  max-width: 200px;
+`;
+
+export const LabelWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

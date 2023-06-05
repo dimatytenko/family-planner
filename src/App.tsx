@@ -8,6 +8,8 @@ import RoutesSwitch from './Routes';
 import 'modern-normalize';
 import {GlobalStyles} from './styles/index';
 import CurrentUser from './containers/CurrentUser';
+import './ui-kit/Popconfirm/styles.css';
+import './ui-kit/Form/styles.css';
 
 function App() {
   return (

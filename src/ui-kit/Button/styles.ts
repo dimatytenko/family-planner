@@ -20,11 +20,11 @@ const borderRadius = (props: CustomButtonProps) => {
 const styles = css`
   cursor: pointer;
   border-radius: ${borderRadius};
-  padding: ${({theme}) => theme.spacer._1};
+  padding: ${({theme}) => theme.spacer._1} ${({theme}) => theme.spacer._0};
   transition: background-color ${({theme}) => theme.transition.primary};
 
   &:hover {
-    background-color: ${({theme}) => theme.palette.colors.grayscale};
+    background-color: ${({theme}) => theme.palette.colors.lightGray};
   }
   svg {
     transition: transform ${({theme}) => theme.transition.primary};

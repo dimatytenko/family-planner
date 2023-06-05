@@ -1,4 +1,4 @@
-import {FormItemProps} from 'antd';
+import {FormItemProps, InputNumberProps} from 'antd';
 import {InputProps} from 'antd/lib/input/Input';
 import {TextAreaProps} from 'antd/lib/input';
 import {SelectProps, InternalSelectProps} from 'antd/lib/select';
@@ -14,3 +14,5 @@ export type TextAreaPropsT = TextAreaProps;
 export type SelectPropsT = SelectProps & InternalSelectProps;
 
 export type DatePickerPropsT = DatePickerProps;
+
+export type InputNumberPropsT = InputNumberProps;

@@ -7,6 +7,8 @@ const colors = {
   denary: '#333333',
   tertiary: '#10b369',
   grayscale: '#9E9E9E',
+  lightGray: '#e6e6e6',
+  doing: '#f0f000',
 };
 
 export const palette = {

@@ -29,3 +29,10 @@ export const deleteQuery = (query: string) => {
 
   return superagent.delete(`${SERVER_URL}${query}`);
 };
+
+export const patchQuery = (query: string) => {
+  const bearerToken = getToken();
+  if (bearerToken) return superagent.patch(`${SERVER_URL}${query}`).set('Authorization', 'Bearer ' + bearerToken);
+
+  return superagent.patch(`${SERVER_URL}${query}`);
+};

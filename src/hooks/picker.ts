@@ -43,9 +43,8 @@ export const usePick = (redirect?: () => void) => {
     setPickerItem(event);
   };
 
-  const removePickerItem = () => {
-    if (!pickerItem) return;
-    const newPickerItems = pickerItems.filter((item) => pickerItem !== item);
+  const removePickerItem = (value: string) => {
+    const newPickerItems = pickerItems.filter((item) => value !== item);
     setPickerItems(newPickerItems);
   };
 

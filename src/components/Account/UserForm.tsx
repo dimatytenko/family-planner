@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, InputNumber} from 'antd';
+import {Form} from 'antd';
 
 import {IUserFormProps, USER} from '../../types/user';
 import {getUserInfoField} from '../../helpers/user';
@@ -8,6 +8,7 @@ import {Button} from '../../ui-kit/Button';
 import {FormItem} from '../../ui-kit/Form/Form';
 import {Input} from '../../ui-kit/Form/Input';
 import {Select} from '../../ui-kit/Form/Select';
+import {InputNumber} from '../../ui-kit/Form/InputNumber';
 
 const genderItems = ['male', 'female'];
 
@@ -67,17 +68,14 @@ export const UserForm: React.FC<IUserFormProps> = ({
       </FormItem>
 
       <FormItem name="age" label="Age" initialValue={getUserInfoField(USER.age, userInfo)}>
-        <InputNumber size="large" min={1} max={99} />
+        <InputNumber size="small" min={1} max={99} />
       </FormItem>
 
       <FormItem name="sex" label="Gender" initialValue={getUserInfoField(USER.sex, userInfo)}>
         <Select
           placeholder="Select a option and change input text above"
           allowClear
-          options={genderItems.map((item) => ({label: item, value: item}))}>
-          {/* <Option value="male">male</Option>
-          <Option value="female">female</Option> */}
-        </Select>
+          options={genderItems.map((item) => ({label: item, value: item}))}></Select>
       </FormItem>
 
       <FormButtonsWrapper>

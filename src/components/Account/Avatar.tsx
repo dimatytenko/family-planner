@@ -1,10 +1,10 @@
 import React from 'react';
-import {Modal} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import Avatar from 'react-nice-avatar';
 
 import {AvatarWrapper, StyledUpload, Drawerlist, StyledButton} from './styles';
 import {IAccountAvatarProps} from '../../types/user';
+import {Modal} from '../../ui-kit/Modal';
 
 export const AccountAvatar: React.FC<IAccountAvatarProps> = ({
   avatarData: {

@@ -18,7 +18,7 @@ export const Navigation: React.FC<INavigationProps> = ({user, visibleLogin, visi
         </>
       ) : (
         <>
-          <Button type="primary" onClick={drawerActions.showDrawer}>
+          <Button variant="tertiary" onClick={drawerActions.showDrawer}>
             <MenuFoldOutlined />
           </Button>
         </>

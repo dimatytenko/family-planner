@@ -10,12 +10,13 @@ export type PickerValuesT = pickerReqBody & {
   size: SizeCustomType;
 };
 
-export type PickerComponentPropsT = IPickerFormProps;
+export type PickerComponentPropsT = IPickerFormProps & {
+  goBack?: () => void;
+};
 
 export interface IPickerFormProps {
   isLoading?: ILoading;
   initialValues?: IEvent | null;
-  goBack?: () => void;
   formActions: {
     onSubmit: (values: PickerValuesT) => void;
     sizeForm?: SizeCustomType;
@@ -27,7 +28,7 @@ export interface IPickerFormProps {
     addItem: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
     name: string;
     onFormLayoutChange: (values: {size: SizeType; event: string}) => void;
-    removePickerItem: () => void;
+    removePickerItem: (v: string) => void;
     deleteEvent: () => void;
   };
 }

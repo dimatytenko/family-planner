@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import {useRecoilState, useSetRecoilState} from 'recoil';
 import type {RcFile, UploadProps} from 'antd/es/upload';
 import type {UploadFile} from 'antd/es/upload/interface';
@@ -7,7 +7,7 @@ import domtoimage from 'dom-to-image';
 
 import {getUserInfo} from '../helpers/user';
 import {info, loading, errorMessage} from '../helpers/common';
-import {updateUserQuery, updateAvatarQuery, resetPasswordQuery} from '../queries/user';
+import {updateUserQuery, updateAvatarQuery, resetPasswordQuery, getUsersQuery} from '../queries/user';
 import {UpdateUserReqBody, ResetPasswordReqBody} from '../queries/types/user';
 import {userState} from '../states/session';
 import {IUser} from '../types/user';
@@ -211,4 +211,28 @@ export const useChangePassword = () => {
   };
 
   return {onSubmit: onChange, isLoading, error, resetError, message};
+};
+
+export const useUsers = () => {
+  const [loading, setLoading] = useState(true);
+  const [users, setUsers] = useState<IUser[] | []>([]);
+
+  const onFetch = async () => {
+    try {
+      const res = await getUsersQuery();
+      if (res?.status) {
+        setUsers(res.body.users);
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    onFetch();
+  }, []);
+
+  return {users, loading};
 };

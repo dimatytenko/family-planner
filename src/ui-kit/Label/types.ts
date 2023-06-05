@@ -3,7 +3,7 @@ export type LabelVariant = (typeof variantOptions)[number];
 
 export type LabelProps = {
   variant: LabelVariant;
-  label: string;
+  label: string | React.ReactNode;
   icon?: boolean;
 };
 

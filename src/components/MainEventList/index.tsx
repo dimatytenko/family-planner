@@ -2,7 +2,7 @@ import React from 'react';
 
 import {EventList} from '../EventList';
 import {MainEventListI} from '../../types/calendar';
-import {Title} from './styles';
+import {Title} from '../../styles/common';
 import {EmptyComponent} from '../../ui-kit/Empty';
 import {route} from '../../constants/routes';
 
@@ -17,10 +17,12 @@ export const MainEventList: React.FC<MainEventListI> = ({
 }) => {
   if (isLoading?.page || !events) return null;
 
+  const listData = getListData(selectedValue, events);
+
   return (
     <>
       <Title>Today`s events</Title>
-      {!!events.length ? (
+      {!!listData.length ? (
         <EventList
           selectedValue={selectedValue}
           getListData={getListData}

@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components';
-import {Form, Input, Select, DatePicker} from 'antd';
+import {Form, Input, Select, DatePicker, InputNumber} from 'antd';
 
 import {mixins} from '../theme/mixins';
 import {InputTextStyles} from '../Typography/styles';
@@ -9,10 +9,11 @@ const {TextArea, Password} = Input;
 
 export const StyledFormItem = styled(Item)`
   .ant-form-item-explain-error {
-    background-color: ${({theme}) => theme.palette.colors.grayscale};
+    background-color: ${({theme}) => theme.palette.colors.alert};
     border-radius: ${({theme}) => theme.spacer._0};
     padding: 0 ${({theme}) => theme.spacer._2};
     margin-top: ${({theme}) => theme.spacer._0};
+    color: ${({theme}) => theme.palette.colors.secondary};
     opacity: 0.8;
     ${mixins.font.tertiary.regular};
     font-size: 12px;
@@ -97,9 +98,20 @@ export const StyledInputPassword = styled(Password)`
 export const StyledInputTextArea = styled(TextArea)`
   ${inputStyle}
   padding: 0;
+  border: none;
+
+  & :where(.css-dev-only-do-not-override-j0nf2s).ant-input:hover,
+  & :where(.css-dev-only-do-not-override-j0nf2s).ant-input:focus,
+  & :where(.css-dev-only-do-not-override-j0nf2s).ant-input:active {
+    border-color: ${({theme}) => theme.palette.colors.primary};
+    box-shadow: none;
+  }
 `;
 
 export const StyledSelect = styled(Select)`
+  &:hover {
+    border-color: ${({theme}) => theme.palette.colors.primary};
+  }
   & .ant-select-arrow {
     color: ${({theme}) => theme.palette.colors.primary};
   }
@@ -109,6 +121,23 @@ export const StyledSelect = styled(Select)`
   }
   .ant-select-selection-item {
     ${InputTextStyles};
+  }
+  :where(.css-dev-only-do-not-override-j0nf2s).ant-select:not(.ant-select-disabled):not(
+      .ant-select-customize-input
+    ):not(.ant-pagination-size-changer):hover
+    .ant-select-selector {
+    border-color: ${({theme}) => theme.palette.colors.primary};
+  }
+  :where(.css-dev-only-do-not-override-j0nf2s).ant-select-focused:not(.ant-select-disabled).ant-select:not(
+      .ant-select-customize-input
+    ):not(.ant-pagination-size-changer)
+    .ant-select-selector {
+    border-color: ${({theme}) => theme.palette.colors.primary};
+    box-shadow: none;
+  }
+    svg {
+      display: none;
+    }
   }
 `;
 
@@ -132,5 +161,13 @@ export const DatePickerStyled = styled(DatePicker)`
   }
   &.ant-select-selector {
     border-color: ${({theme}) => theme.palette.colors.primary} !important;
+  }
+`;
+
+export const StyledInputNumber = styled(InputNumber)`
+  ${inputStyle};
+
+  svg {
+    color: ${({theme}) => theme.palette.colors.primary};
   }
 `;
