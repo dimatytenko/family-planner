@@ -51,7 +51,7 @@ export const Spaces: React.FC<ISpacesProps> = ({
                   deleteItem={onDelete}
                   dellId={dellId}
                   item={ITEM_TYPES.SPACE}
-                  isOwner={space.user.id === user?._id}
+                  isOwner={space.user._id === user?._id}
                   avatar={space.user.avatar}
                   username={space.user.username}
                 />

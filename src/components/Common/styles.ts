@@ -8,10 +8,7 @@ import {TASK_STATUSES} from '../../queries/types/task';
 
 export const ItemTitle = styled(Text2)<{none?: boolean}>`
   display: inline-block;
-  max-width: 260px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  max-width: 250px;
 
   ${Media.down.m} {
     display: ${({none}) => (none ? 'none' : 'inline-block')};
@@ -64,7 +61,7 @@ export const InfoIcon = styled(InfoCircleOutlined)`
 
 export const InfoWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: ${({theme}) => theme.spacer._2};
 `;
 
