@@ -1,23 +1,30 @@
 import styled from 'styled-components';
 
 import {Text2, Text2Bold} from '../../ui-kit/Typography';
+import {Media} from '../../ui-kit/theme/breakpoints';
 
 export const UserWrapper = styled.div`
   position: relative;
   display: flex;
   gap: ${({theme}) => theme.spacer._3};
-  max-width: 400px;
   background-color: ${({theme}) => theme.palette.colors.lightGray};
   padding: ${({theme}) => theme.spacer._2};
   padding-right: ${({theme}) => theme.spacer._5};
   border: 1px solid ${({theme}) => theme.palette.colors.grayscale};
   border-radius: ${({theme}) => theme.spacer._1};
+  width: 100%;
 `;
 
 export const UserList = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: ${({theme}) => theme.spacer._2};
+  max-width: 767px;
+
+  ${Media.down.m} {
+    width: 100%;
+  }
 `;
 
 export const UserName = styled(Text2)`

@@ -4,8 +4,18 @@ import {Spaces} from '../../components/Space/Spaces';
 import {useSpaceList} from '../../hooks/space';
 
 export const SpacesContainer = () => {
-  const {spaces, isLoading, error, resetError, dellId, deleteSpace, user, deleteTask, updateTaskStatus} =
-    useSpaceList();
+  const {
+    spaces,
+    isLoading,
+    error,
+    resetError,
+    dellId,
+    deleteSpace,
+    user,
+    deleteTask,
+    updateTaskStatus,
+    updateItemTaskStatus,
+  } = useSpaceList();
 
   return (
     <Spaces
@@ -18,6 +28,7 @@ export const SpacesContainer = () => {
       user={user}
       deleteTask={deleteTask}
       updateTaskStatus={updateTaskStatus}
+      updateItemTaskStatus={updateItemTaskStatus}
     />
   );
 };

@@ -24,9 +24,15 @@ export const HomeLink: React.FC<WithChildren> = ({children, ...props}) => {
   );
 };
 
-export const GhostWrapper: React.FC<CustomButtonProps & WithChildren> = ({children, onClick, loading, ...props}) => {
+export const GhostWrapper: React.FC<CustomButtonProps & WithChildren> = ({
+  children,
+  onClick,
+  loading,
+  black,
+  ...props
+}) => {
   return (
-    <StyledGhostWrapper onClick={onClick} {...props}>
+    <StyledGhostWrapper onClick={onClick} black={black} {...props}>
       {loading ? <StyledLoadingOutlined /> : <>{children}</>}
     </StyledGhostWrapper>
   );

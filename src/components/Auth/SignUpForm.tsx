@@ -16,14 +16,7 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, res
   };
 
   return (
-    <Form
-      form={form}
-      name="register"
-      onFinish={onFinish}
-      onChange={resetError}
-      scrollToFirstError
-      layout="vertical"
-      style={{maxWidth: 450}}>
+    <Form form={form} name="register" onFinish={onFinish} onChange={resetError} scrollToFirstError layout="vertical">
       <FormItem
         name="email"
         label="E-mail"

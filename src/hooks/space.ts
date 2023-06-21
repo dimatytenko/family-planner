@@ -6,8 +6,8 @@ import {info, loading, errorMessage} from '../helpers/common';
 import {SpaceValuesT, ISpace} from '../types/space';
 import {createSpaceQuery, getSpaceQuery, updateSpaceQuery, deleteSpaceQuery, getSpacesQuery} from '../queries/space';
 import {SizeCustomType} from '../types/picker';
-import {deleteTaskQuery, updateTaskStatusQuery} from '../queries/task';
-import {statusTaskReqBody} from '../queries/types/task';
+import {deleteTaskQuery, updateTaskStatusQuery, updateItemStatusQuery} from '../queries/task';
+import {statusTaskReqBody, itemStatusReqBody} from '../queries/types/task';
 
 export const useSpace = (redirect?: () => void) => {
   const {id} = useParams();
@@ -19,7 +19,6 @@ export const useSpace = (redirect?: () => void) => {
   const resetError = () => setError('');
 
   const onSubmit = async (values: SpaceValuesT) => {
-    console.log('values', values);
     try {
       setIsLoading((prev) => ({...prev, send: true}));
       if (!id) {
@@ -95,7 +94,7 @@ export const useSpace = (redirect?: () => void) => {
 };
 
 export const useSpaceList = () => {
-  const [isLoading, setIsLoading] = useState(loading);
+  const [isLoading, setIsLoading] = useState({...loading, page: true});
   const [error, setError] = useState('');
   const [spaces, setSpaces] = useState<ISpace[]>([]);
   const [dellId, setDellId] = useState('');
@@ -185,6 +184,31 @@ export const useSpaceList = () => {
     }
   };
 
+  const updateItemTaskStatus = async (taskId: string, values: itemStatusReqBody) => {
+    try {
+      if (!taskId) return;
+      setIsLoading((prev) => ({...prev, send: true}));
+      const res = await updateItemStatusQuery(taskId, values);
+      if (res) {
+        setSpaces((prev) =>
+          prev.map((item) => ({
+            ...item,
+            tasks: item.tasks.map((task) =>
+              task._id === res.body.data._id ? {...task, items: res.body.data.items} : task,
+            ),
+          })),
+        );
+        info('Success');
+      }
+    } catch (e) {
+      console.log(e);
+      const message = errorMessage(e);
+      message ? setError(message) : setError('Something went wrong. Please try again.');
+    } finally {
+      setIsLoading((prev) => ({...prev, send: false}));
+    }
+  };
+
   return {
     isLoading,
     spaces,
@@ -195,5 +219,6 @@ export const useSpaceList = () => {
     user,
     deleteTask,
     updateTaskStatus,
+    updateItemTaskStatus,
   };
 };

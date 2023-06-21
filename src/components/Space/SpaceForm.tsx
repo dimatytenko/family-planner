@@ -21,8 +21,6 @@ export const SpaceForm: React.FC<ISpaceFormProps> = ({
     form.resetFields();
   };
 
-  console.log('initialValues', initialValues?.name);
-
   const initUsers = initialValues?.users.map((user) => user.username);
 
   return (
@@ -32,8 +30,7 @@ export const SpaceForm: React.FC<ISpaceFormProps> = ({
       onChange={resetError}
       layout="vertical"
       initialValues={{size: sizeForm}}
-      size={sizeForm as SizeType}
-      style={{maxWidth: 450}}>
+      size={sizeForm as SizeType}>
       <FormItem
         name="name"
         label="Space Name"
@@ -75,7 +72,7 @@ export const SpaceForm: React.FC<ISpaceFormProps> = ({
                           },
                         ]}
                         noStyle>
-                        <Input placeholder="enter a username..." />
+                        <Input placeholder="enter a username..." tooltip="User will be added only after confirmation" />
                       </FormItem>
                       {
                         <GhostWrapperStyled>
@@ -101,9 +98,11 @@ export const SpaceForm: React.FC<ISpaceFormProps> = ({
           </StyledButton>
         </FormItem>
         {initialValues && (
-          <StyledButton variant="secondary" htmlType="button" loading={isLoading?.delete} onClick={deleteSpace}>
-            Delete
-          </StyledButton>
+          <FormItem>
+            <StyledButton variant="secondary" htmlType="button" loading={isLoading?.delete} onClick={deleteSpace}>
+              Delete
+            </StyledButton>
+          </FormItem>
         )}
       </ButtonsWrapper>
       {error && <Label variant="error" label={error} icon />}

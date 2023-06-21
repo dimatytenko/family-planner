@@ -7,8 +7,8 @@ import {route} from '../../constants/routes';
 
 export const PickerEdit = () => {
   const navigate = useNavigate();
-  const toCalendar = () => navigate(route.calendar.path);
-  const {isLoading, initialValues, formActions} = usePick(toCalendar);
+  const redirect = () => navigate(route.calendar.path);
+  const {isLoading, initialValues, formActions} = usePick(redirect);
   const goBack = () => navigate(-1);
 
   return (

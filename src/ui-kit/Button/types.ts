@@ -16,4 +16,5 @@ export type CustomButtonProps = {
   loading?: boolean;
   onClick?: (value: any) => void;
   round?: boolean;
+  black?: boolean;
 };

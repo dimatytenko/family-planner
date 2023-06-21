@@ -5,9 +5,8 @@ import {HeadingMedium3} from '../../ui-kit/Typography';
 import {LinkButton} from '../../ui-kit/Button';
 
 export const EmptyWrapper = styled.div`
-  width: fit-content;
+  max-width: 340px;
   padding: ${({theme}) => theme.spacer._3} ${({theme}) => theme.spacer._9};
-  margin: 0 auto;
   border-radius: ${({theme}) => theme.spacer._3};
   background-color: ${({theme}) => theme.palette.colors.secondary};
 `;

@@ -43,11 +43,9 @@ export const UserForm: React.FC<IUserFormProps> = ({
       <FormItem
         name="username"
         label="Username"
-        tooltip="What do you want others to call you?"
-        // tooltip={<Tooltip placement="bottomLeft" text="What do you want others to call you?" />}
         rules={[{required: true, message: 'Please input your nickname!', whitespace: true}]}
         initialValue={getUserInfoField(USER.username, userInfo)}>
-        <Input />
+        <Input tooltip="What do you want others to call you?" />
       </FormItem>
 
       <FormItem

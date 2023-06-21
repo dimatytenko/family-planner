@@ -16,14 +16,7 @@ export const ReverifyForm: React.FC<IReverifyFormProps> = ({titleButton, onSubmi
   };
 
   return (
-    <Form
-      form={form}
-      name="reverify"
-      onFinish={onFinish}
-      onChange={resetError}
-      scrollToFirstError
-      layout="vertical"
-      style={{maxWidth: 450}}>
+    <Form form={form} name="reverify" onFinish={onFinish} onChange={resetError} scrollToFirstError layout="vertical">
       <FormItem
         name="email"
         label="E-mail"

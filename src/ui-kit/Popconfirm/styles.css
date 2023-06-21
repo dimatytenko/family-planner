@@ -1,12 +1,10 @@
-.ant-popover-content {
-}
-
 .ant-popconfirm-buttons {
   display: flex;
   justify-content: flex-end;
   margin-top: 16px;
 }
-:where(.css-dev-only-do-not-override-j0nf2s).ant-popconfirm .ant-popconfirm-buttons button {
+
+.ant-popconfirm .ant-popconfirm-buttons button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +13,8 @@
   padding: 12px 20px;
 }
 
-.ant-btn.css-dev-only-do-not-override-j0nf2s.ant-btn-primary.ant-btn-sm {
+.ant-picker-ok > .ant-btn-primary.ant-btn-sm,
+.ant-popconfirm-buttons > .ant-btn-primary.ant-btn-sm {
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
@@ -23,13 +22,16 @@
   background-color: #000;
   border-color: #000;
 }
-.ant-btn.css-dev-only-do-not-override-j0nf2s.ant-btn-primary.ant-btn-sm:hover {
+
+.ant-picker-ok > .ant-btn-primary.ant-btn-sm:hover,
+.ant-popconfirm-buttons > .ant-btn-primary.ant-btn-sm:hover {
   color: #10b369;
   border-color: #10b369;
+  background-color: #000;
   opacity: 1;
 }
 
-.ant-btn.css-dev-only-do-not-override-j0nf2s.ant-btn-default.ant-btn-sm {
+.ant-popconfirm-buttons > .ant-btn-default.ant-btn-sm {
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
@@ -38,7 +40,7 @@
   border-color: #ff0000;
 }
 
-.ant-btn.css-dev-only-do-not-override-j0nf2s.ant-btn-default.ant-btn-sm:hover {
+.ant-popconfirm-buttons > .ant-btn-default.ant-btn-sm:hover {
   color: #000;
   border-color: #ff0000;
   background-color: #ff0000;

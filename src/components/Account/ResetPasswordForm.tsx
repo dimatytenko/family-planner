@@ -22,8 +22,7 @@ export const ResetPasswordForm: React.FC<IResetPasswordFormProps> = ({onSubmit, 
       onFinish={onFinish}
       onChange={resetError}
       scrollToFirstError
-      layout="vertical"
-      style={{maxWidth: 450}}>
+      layout="vertical">
       <FormItem
         name="oldPassword"
         label="Current password"

@@ -39,7 +39,6 @@ export const usePick = (redirect?: () => void) => {
   };
 
   const onPickerItemChange = (event: string) => {
-    console.log(event);
     setPickerItem(event);
   };
 
@@ -49,7 +48,6 @@ export const usePick = (redirect?: () => void) => {
   };
 
   const onSubmit = async (values: PickerValuesT) => {
-    console.log('values', values);
     const _values = {...values, repeatability: values.repeatability === 'one time' ? '' : values.repeatability};
     try {
       setIsLoading((prev) => ({...prev, send: true}));
@@ -63,7 +61,6 @@ export const usePick = (redirect?: () => void) => {
       } else {
         const res = await updateEventQuery(id, {..._values, pickerItems});
         if (res) {
-          console.log('res.body.data.event', res.body.data.event);
           setInitialValues(res.body.data.event);
           info('Success');
           redirect?.();

@@ -16,7 +16,6 @@ export const useTask = (redirect?: () => void) => {
   const [error, setError] = useState('');
   const [initialValues, setInitialValues] = useState<ITask | null>();
   const [initialAssignee, setInitialAssignee] = useState<IInitialAssignee[]>();
-  console.log('id', id);
 
   const resetError = () => setError('');
 
@@ -25,14 +24,19 @@ export const useTask = (redirect?: () => void) => {
       setIsLoading((prev) => ({...prev, send: true}));
       if (!taskId) {
         if (!id) return;
-        const res = await createTaskQuery(id, values);
+        const items = values.items?.map((item) => ({name: item, status: false}));
+        const res = await createTaskQuery(id, {...values, items});
         if (res) {
           info('Success');
           redirect?.();
         }
       } else {
         if (!taskId) return;
-        const res = await updateTaskQuery(taskId, values);
+        const items = values.items?.map((item) => {
+          const oldItem = initialValues?.items?.find((oldItem) => oldItem.name === item);
+          return oldItem ? oldItem : {name: item, status: false};
+        });
+        const res = await updateTaskQuery(taskId, {...values, items});
         if (res) {
           info('Success');
           redirect?.();
@@ -72,7 +76,6 @@ export const useTask = (redirect?: () => void) => {
       setIsLoading((prev) => ({...prev, page: true}));
       const res = await getSpaceQuery(id);
       if (res) {
-        console.log('res', res);
         setInitialAssignee(res.body.data.users);
       }
     } catch (e) {

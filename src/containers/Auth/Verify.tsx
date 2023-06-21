@@ -10,7 +10,6 @@ export const VerifyContainer = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const message = urlParams.get('message');
-    console.log('message', message);
     setMessage(message);
     const queryParamsString = urlParams.get('queryParams');
     if (!queryParamsString) return;

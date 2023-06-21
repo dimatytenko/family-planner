@@ -1,28 +1,31 @@
 import React from 'react';
-import {Badge, BadgeProps, Dropdown, Menu} from 'antd';
-import {ItemType} from 'antd/es/menu/hooks/useItems';
+import {Badge, BadgeProps, Dropdown} from 'antd';
+import type {MenuProps} from 'antd';
 import {MoreOutlined} from '@ant-design/icons';
 
 import {
+  MainItemWrapper,
   ItemEditLink,
   ItemWrapper,
   EditIcon,
   DeleteIcon,
-  InfoIcon,
   InfoWrapper,
   ItemTitle,
   ItemTaskTitle,
   ActionsWrapper,
   MenuAction,
   TaskLabel,
+  ItemDescription,
+  ItemInfoWrapper,
 } from './styles';
 import {route} from '../../constants/routes';
 import {GhostWrapper} from '../../ui-kit/Button';
 import {Tooltip} from '../../ui-kit/Tooltip';
 import {Popconfirm} from '../../ui-kit/Popconfirm';
 import {Avatar} from '../../ui-kit/Avatar';
-import {TASK_STATUSES, statusTaskReqBody} from '../../queries/types/task';
+import {TASK_STATUSES, statusTaskReqBody, ITasksItem, itemStatusReqBody} from '../../queries/types/task';
 import {ITEM_TYPES} from '../../types/common';
+import {ItemTask} from './ItemTask';
 
 const text = (str: string) => `Are you sure to delete this ${str}?`;
 const description = (str: string) => `Delete the ${str}`;
@@ -41,6 +44,8 @@ interface IItem {
   taskId?: string;
   status?: TASK_STATUSES;
   updateTaskStatus?: (id: string, body: statusTaskReqBody) => void;
+  taskItems?: ITasksItem[];
+  updateItemTaskStatus?: (id: string, body: itemStatusReqBody) => void;
 }
 
 export const Item: React.FC<IItem> = ({
@@ -57,63 +62,67 @@ export const Item: React.FC<IItem> = ({
   taskId,
   status,
   updateTaskStatus,
+  taskItems,
+  updateItemTaskStatus,
 }) => {
   const editPath = item === ITEM_TYPES.SPACE ? route.spaceEdit.get({id: id}) : route.pickerEdit.get({id: id});
   const confirm = (id: string) => {
     deleteItem?.(id);
   };
+
   return (
-    <ItemWrapper key={id} $status={status}>
-      {status && <TaskLabel $status={status}>{status}</TaskLabel>}
-      {descr ? (
-        <Tooltip placement="bottomLeft" text={descr}>
-          <GhostWrapper>
+    <MainItemWrapper key={id} $status={status}>
+      <ItemWrapper>
+        {status && <TaskLabel $status={status}>{status}</TaskLabel>}
+        {descr ? (
+          <ItemInfoWrapper>
             <InfoWrapper>
               {type && <Badge status={type as BadgeProps['status']} />}
               <ItemTitle>{title}</ItemTitle>
-              <InfoIcon />
             </InfoWrapper>
-          </GhostWrapper>
-        </Tooltip>
-      ) : (
-        <GhostWrapper>
+            <ItemDescription>{descr}</ItemDescription>
+          </ItemInfoWrapper>
+        ) : (
           <InfoWrapper>
             {type && <Badge status={type as BadgeProps['status']} />}
             <ItemTaskTitle>{title}</ItemTaskTitle>
           </InfoWrapper>
-        </GhostWrapper>
+        )}
+        <ActionsWrapper>
+          {(isOwner || item === ITEM_TYPES.EVENT) && (
+            <>
+              <ItemEditLink
+                to={item === ITEM_TYPES.TASK && taskId ? route.editTask.get({id: id, taskId: taskId}) : editPath}>
+                <GhostWrapper>
+                  <EditIcon />
+                </GhostWrapper>
+              </ItemEditLink>
+
+              <Popconfirm
+                placement="bottomRight"
+                title={text(item)}
+                description={description(item)}
+                onConfirm={() => confirm?.(taskId ? taskId : id)}>
+                <GhostWrapper loading={dellId === id}>
+                  <DeleteIcon />
+                </GhostWrapper>
+              </Popconfirm>
+            </>
+          )}
+
+          {avatar && username && (
+            <Tooltip text={username}>
+              <Avatar src={avatar} />
+            </Tooltip>
+          )}
+
+          {item === ITEM_TYPES.TASK && <MenuMore id={taskId} updateTaskStatus={updateTaskStatus} />}
+        </ActionsWrapper>
+      </ItemWrapper>
+      {!!taskItems?.length && (
+        <ItemTask items={taskItems} taskId={taskId} updateItemTaskStatus={updateItemTaskStatus} />
       )}
-      <ActionsWrapper>
-        {(isOwner || item === ITEM_TYPES.EVENT) && (
-          <>
-            <ItemEditLink
-              to={item === ITEM_TYPES.TASK && taskId ? route.editTask.get({id: id, taskId: taskId}) : editPath}>
-              <GhostWrapper>
-                <EditIcon />
-              </GhostWrapper>
-            </ItemEditLink>
-
-            <Popconfirm
-              placement="bottomRight"
-              title={text(item)}
-              description={description(item)}
-              onConfirm={() => confirm?.(taskId ? taskId : id)}>
-              <GhostWrapper loading={dellId === id}>
-                <DeleteIcon />
-              </GhostWrapper>
-            </Popconfirm>
-          </>
-        )}
-
-        {avatar && username && (
-          <Tooltip text={username}>
-            <Avatar src={avatar} />
-          </Tooltip>
-        )}
-
-        {item === ITEM_TYPES.TASK && <MenuMore id={taskId} updateTaskStatus={updateTaskStatus} />}
-      </ActionsWrapper>
-    </ItemWrapper>
+    </MainItemWrapper>
   );
 };
 
@@ -127,7 +136,7 @@ export const MenuMore: React.FC<MenuMoreProps> = ({id, updateTaskStatus}) => {
     if (!id) return;
     updateTaskStatus?.(id, {status});
   };
-  const ddActions: ItemType[] = [
+  const items: MenuProps['items'] = [
     {
       key: 1,
       label: (
@@ -155,7 +164,7 @@ export const MenuMore: React.FC<MenuMoreProps> = ({id, updateTaskStatus}) => {
   ];
 
   return (
-    <Dropdown overlay={<Menu items={ddActions} />} trigger={['click']}>
+    <Dropdown menu={{items}} trigger={['click']}>
       <GhostWrapper>
         <MoreOutlined />
       </GhostWrapper>

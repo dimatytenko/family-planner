@@ -18,7 +18,7 @@ export const StyledFormItem = styled(Item)`
     ${mixins.font.tertiary.regular};
     font-size: 12px;
   }
-  &:where(.css-dev-only-do-not-override-j0nf2s).ant-form-item .ant-form-item-label > label {
+  &.ant-form-item .ant-form-item-label > label {
     color: ${({theme}) => theme.palette.colors.primary};
     ${mixins.font.primary.regular};
   }
@@ -73,16 +73,16 @@ const inputStyle = css`
     border-color: ${({theme}) => theme.palette.colors.primary};
     box-shadow: none;
   }
-  & :where(.css-dev-only-do-not-override-j0nf2s).ant-input::placeholder {
+  & .ant-input::placeholder {
     color: ${({theme}) => theme.palette.colors.grayscale};
   }
-  &:where(.css-dev-only-do-not-override-j0nf2s).ant-input-affix-wrapper > input.ant-input {
+  &.ant-input-affix-wrapper > input.ant-input {
     ${InputTextStyles}
   }
-  &:where(.css-dev-only-do-not-override-j0nf2s).ant-input {
+  &.ant-input {
     ${InputTextStyles}
   }
-  & :where(.css-dev-only-do-not-override-j0nf2s).ant-input {
+  & .ant-input {
     ${InputTextStyles}
   }
 `;
@@ -100,9 +100,9 @@ export const StyledInputTextArea = styled(TextArea)`
   padding: 0;
   border: none;
 
-  & :where(.css-dev-only-do-not-override-j0nf2s).ant-input:hover,
-  & :where(.css-dev-only-do-not-override-j0nf2s).ant-input:focus,
-  & :where(.css-dev-only-do-not-override-j0nf2s).ant-input:active {
+  & .ant-input:hover,
+  & .ant-input:focus,
+  & .ant-input:active {
     border-color: ${({theme}) => theme.palette.colors.primary};
     box-shadow: none;
   }
@@ -122,44 +122,25 @@ export const StyledSelect = styled(Select)`
   .ant-select-selection-item {
     ${InputTextStyles};
   }
-  :where(.css-dev-only-do-not-override-j0nf2s).ant-select:not(.ant-select-disabled):not(
-      .ant-select-customize-input
-    ):not(.ant-pagination-size-changer):hover
-    .ant-select-selector {
-    border-color: ${({theme}) => theme.palette.colors.primary};
-  }
-  :where(.css-dev-only-do-not-override-j0nf2s).ant-select-focused:not(.ant-select-disabled).ant-select:not(
-      .ant-select-customize-input
-    ):not(.ant-pagination-size-changer)
-    .ant-select-selector {
-    border-color: ${({theme}) => theme.palette.colors.primary};
-    box-shadow: none;
-  }
-    svg {
-      display: none;
-    }
+  svg {
+    display: none;
   }
 `;
 
 export const DatePickerStyled = styled(DatePicker)`
+  ${inputStyle};
   & .ant-picker-panel-layout {
     width: 280px;
     overflow: auto;
   }
-  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker-focused {
-    border-color: ${({theme}) => theme.palette.colors.primary};
-  }
-  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker .ant-picker-input > input::placeholder {
+  &.ant-picker .ant-picker-input > input::placeholder {
     ${InputTextStyles};
     color: ${({theme}) => theme.palette.colors.grayscale};
   }
-  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker .ant-picker-input > input {
+  &.ant-picker .ant-picker-input > input {
     ${InputTextStyles};
   }
-  &:where(.css-dev-only-do-not-override-j0nf2s).ant-picker-dropdown .ant-picker-header-view button:hover {
-    color: ${({theme}) => theme.palette.colors.primary};
-  }
-  &.ant-select-selector {
+  .ant-select-selector {
     border-color: ${({theme}) => theme.palette.colors.primary} !important;
   }
 `;

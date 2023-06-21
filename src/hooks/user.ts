@@ -39,7 +39,6 @@ export const useUser = () => {
       setIsLoading((prev) => ({...prev, send: true}));
 
       const res = await updateUserQuery({...values});
-      console.log('res', res);
       if (res) {
         updateUser(res.body.user);
         info('Success');

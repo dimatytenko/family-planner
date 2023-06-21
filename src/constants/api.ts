@@ -36,11 +36,12 @@ export const SpaceQueryList = {
 };
 
 export const TaskQueryList = {
-  createSpace: (spaceId: string) => `/api/tasks/create/${spaceId}`,
-  getSpace: (taskId: string) => `/api/tasks/${taskId}`,
-  deleteSpace: (taskId: string) => `/api/tasks/${taskId}`,
-  updateSpace: (taskId: string) => `/api/tasks/${taskId}`,
-  updateSpaceStatus: (taskId: string) => `/api/tasks/${taskId}/status`,
+  createTask: (spaceId: string) => `/api/tasks/create/${spaceId}`,
+  getTask: (taskId: string) => `/api/tasks/${taskId}`,
+  deleteTask: (taskId: string) => `/api/tasks/${taskId}`,
+  updateTask: (taskId: string) => `/api/tasks/${taskId}`,
+  updateTaskStatus: (taskId: string) => `/api/tasks/${taskId}/status`,
+  updateItemStatus: (taskId: string) => `/api/tasks/${taskId}/status-item`,
 };
 
 export enum TryQueryList {

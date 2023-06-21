@@ -24,8 +24,7 @@ export const LogInForm: React.FC<ILoginFormProps> = ({authData: {onSubmit, isLoa
       initialValues={{remember: true}}
       onFinish={onFinish}
       onChange={resetError}
-      layout="vertical"
-      style={{maxWidth: 450}}>
+      layout="vertical">
       <FormItem name="username" rules={[{required: true, message: 'Please input your Username!'}]}>
         <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
       </FormItem>

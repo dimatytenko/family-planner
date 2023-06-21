@@ -3,8 +3,7 @@ import {SizeCustomType} from './picker';
 import {spaceReqBody} from '../queries/types/space';
 import {IUser} from './user';
 import {ITask} from './task';
-import {statusTaskReqBody} from '../queries/types/task';
-
+import {statusTaskReqBody, itemStatusReqBody} from '../queries/types/task';
 export interface ISpace {
   createdAt: string;
   name: string;
@@ -44,4 +43,5 @@ export interface ISpacesProps {
   resetError?: () => void;
   user?: IUser | null;
   updateTaskStatus?: (id: string, body: statusTaskReqBody) => void;
+  updateItemTaskStatus?: (id: string, body: itemStatusReqBody) => void;
 }

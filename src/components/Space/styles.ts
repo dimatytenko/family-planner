@@ -1,6 +1,33 @@
 import styled from 'styled-components';
 
 import {BackButton, Button, GhostWrapper, LinkButton} from '../../ui-kit/Button';
+import {Media} from '../../ui-kit/theme/breakpoints';
+
+export const SpacesWrapper = styled.div`
+  max-width: 767px;
+`;
+
+export const SpacesBody = styled.div`
+  ${Media.down.m} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const SpaceFormWrapper = styled.div`
+  max-width: 450px;
+`;
+
+export const SpaceWrapper = styled.div``;
+
+export const SpaceHeader = styled.div`
+  max-width: 450px;
+
+  ${Media.down.m} {
+    margin: 0 auto;
+  }
+`;
 
 export const BackButtonStyled = styled(BackButton)`
   margin-bottom: ${({theme}) => theme.spacer._3};
@@ -20,13 +47,14 @@ export const StyledButton = styled(Button)`
 `;
 
 export const SpacesList = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: ${({theme}) => theme.spacer._2};
 `;
 
 export const WorkSpace = styled.div`
-  max-width: 400px;
+  width: 100%;
   min-height: 100px;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: ${({theme}) => theme.spacer._1};
@@ -64,4 +92,8 @@ export const TasksList = styled.div`
   gap: ${({theme}) => theme.spacer._2};
 `;
 
-export const SpaceWrapper = styled.div``;
+export const ActionsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({theme}) => theme.spacer._1};
+`;

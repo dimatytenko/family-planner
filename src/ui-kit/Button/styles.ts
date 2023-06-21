@@ -35,8 +35,9 @@ const styles = css`
   }
 `;
 
-export const StyledGhostWrapper = styled.div`
+export const StyledGhostWrapper = styled.div<{black?: boolean}>`
   ${styles}
+  background-color: ${({theme, black}) => black && theme.palette.colors.primary};
 `;
 
 export const StyledLoadingOutlined = styled(LoadingOutlined)``;

@@ -1,7 +1,7 @@
 import {ILoading} from './common';
 import {IUser} from './user';
 import {ISpace} from './space';
-import {TASK_STATUSES, taskReqBody} from '../queries/types/task';
+import {TASK_STATUSES, ITasksItem} from '../queries/types/task';
 import {SizeCustomType} from './picker';
 
 export interface ITask {
@@ -14,9 +14,10 @@ export interface ITask {
   status: TASK_STATUSES;
   assignee: IUser;
   users?: IUser[];
+  items?: ITasksItem[];
 }
 
-export type TaskValuesT = taskReqBody;
+export type TaskValuesT = {name: string; status?: TASK_STATUSES; assignee: string; items?: string[]};
 
 export type TaskPropsT = ITaskFormProps & {
   goBack?: () => void;
