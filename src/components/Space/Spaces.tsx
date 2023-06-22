@@ -121,6 +121,7 @@ export const Spaces: React.FC<ISpacesProps> = ({
                           dellId={dellId}
                           item={ITEM_TYPES.TASK}
                           isOwner={task.user.id === user?._id}
+                          isAssignee={task.assignee?._id === user?._id}
                           avatar={task.assignee?.avatar}
                           username={task.assignee?.username}
                           taskId={task._id}
@@ -195,7 +196,7 @@ export const MenuMore: React.FC<MenuMoreProps> = ({id, setFilter, setTaskId}) =>
 
   return (
     <Dropdown menu={{items}} trigger={['click']}>
-      <GhostWrapper black>
+      <GhostWrapper>
         <StyledFilterIcon />
       </GhostWrapper>
     </Dropdown>

@@ -28,11 +28,12 @@ export const GhostWrapper: React.FC<CustomButtonProps & WithChildren> = ({
   children,
   onClick,
   loading,
-  black,
+  disabled,
   ...props
 }) => {
+  console.log(disabled);
   return (
-    <StyledGhostWrapper onClick={onClick} black={black} {...props}>
+    <StyledGhostWrapper onClick={onClick} disabled={disabled} {...props}>
       {loading ? <StyledLoadingOutlined /> : <>{children}</>}
     </StyledGhostWrapper>
   );

@@ -17,9 +17,18 @@ const borderRadius = (props: CustomButtonProps) => {
   return props.round ? '50%' : props.theme.spacer._0;
 };
 
+const cursor = (props: CustomButtonProps) => {
+  return props.disabled ? 'no-drop' : 'pointer';
+};
+
+const backgroundColorGost = (props: CustomButtonProps) => {
+  return props.black ? props.theme.palette.colors.primary : 'transparrent';
+};
+
 const styles = css`
-  cursor: pointer;
+  cursor: ${cursor};
   border-radius: ${borderRadius};
+  background-color: ${backgroundColorGost};
   padding: ${({theme}) => theme.spacer._1} ${({theme}) => theme.spacer._0};
   transition: background-color ${({theme}) => theme.transition.primary};
 
@@ -35,9 +44,8 @@ const styles = css`
   }
 `;
 
-export const StyledGhostWrapper = styled.div<{black?: boolean}>`
+export const StyledGhostWrapper = styled.button<{disabled?: boolean}>`
   ${styles}
-  background-color: ${({theme, black}) => black && theme.palette.colors.primary};
 `;
 
 export const StyledLoadingOutlined = styled(LoadingOutlined)``;

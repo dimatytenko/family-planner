@@ -20,9 +20,10 @@ interface IItemTask {
   items?: ITasksItem[];
   taskId?: string;
   updateItemTaskStatus?: (id: string, body: itemStatusReqBody) => void;
+  isAssignee?: boolean;
 }
 
-export const ItemTask: React.FC<IItemTask> = ({items, taskId, updateItemTaskStatus}) => {
+export const ItemTask: React.FC<IItemTask> = ({items, taskId, updateItemTaskStatus, isAssignee}) => {
   const [currentItems, setCurrentItems] = useState(items);
   const [filter, setFilter] = useState<boolean | 'all'>('all');
 
@@ -50,7 +51,7 @@ export const ItemTask: React.FC<IItemTask> = ({items, taskId, updateItemTaskStat
       </FilterItemsWrapper>
       {currentItems?.map((item) => (
         <TaskItemWrapper key={item.name}>
-          <StyledIconButton onClick={() => changeItemStatus(item.name)}>
+          <StyledIconButton onClick={() => changeItemStatus(item.name)} disabled={!isAssignee}>
             {item.status ? <StyledDoneItemIcon /> : <StyledTodoItemIcon />}
           </StyledIconButton>
           <ItemTaskTitle>{item.name}</ItemTaskTitle>
@@ -82,7 +83,7 @@ export const MenuMore: React.FC<MenuMoreProps> = ({onFilter}) => {
 
   return (
     <Dropdown menu={{items}} trigger={['click']}>
-      <GhostWrapper black>
+      <GhostWrapper>
         <StyledFilterIcon />
       </GhostWrapper>
     </Dropdown>

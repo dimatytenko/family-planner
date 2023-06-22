@@ -1,9 +1,9 @@
 import styled, {css} from 'styled-components';
-import {EditFilled, DeleteFilled, CheckCircleOutlined, StopOutlined, FilterOutlined} from '@ant-design/icons';
+import {EditOutlined, DeleteOutlined, CheckCircleOutlined, StopOutlined, FilterOutlined} from '@ant-design/icons';
 
 import {Link} from 'react-router-dom';
 
-import {Text2, Text1} from '../../ui-kit/Typography';
+import {Text2, Text1, Text3} from '../../ui-kit/Typography';
 import {Media} from '../../ui-kit/theme/breakpoints';
 import {TASK_STATUSES} from '../../queries/types/task';
 import {GhostWrapper} from '../../ui-kit/Button';
@@ -19,7 +19,7 @@ export const ItemTitle = styled(Text1)<{none?: boolean}>`
 
 export const ItemTaskTitle = styled(Text2)``;
 
-export const ItemDescription = styled(Text2)``;
+export const ItemDescription = styled(Text3)``;
 
 const statusStyles = {
   [TASK_STATUSES.DEFAULT]: css`
@@ -55,11 +55,11 @@ export const ItemWrapper = styled.div`
 
 export const ItemEditLink = styled(Link)``;
 
-export const EditIcon = styled(EditFilled)`
+export const EditIcon = styled(EditOutlined)`
   font-size: 20px;
 `;
 
-export const DeleteIcon = styled(DeleteFilled)`
+export const DeleteIcon = styled(DeleteOutlined)`
   color: ${({theme}) => theme.palette.colors.alert};
   font-size: 20px;
   cursor: pointer;
@@ -156,5 +156,5 @@ export const StyledIconButton = styled(GhostWrapper)``;
 
 export const StyledFilterIcon = styled(FilterOutlined)`
   font-size: 18px;
-  color: ${({theme}) => theme.palette.colors.secondary};
+  color: ${({theme}) => theme.palette.colors.primary};
 `;

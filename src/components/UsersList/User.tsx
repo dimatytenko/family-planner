@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import {MoreOutlined} from '@ant-design/icons';
+// import {MoreOutlined} from '@ant-design/icons';
 
 import {IUserProps} from '../../types/user';
-import {UserWrapper, UserName, UserUserName, UserContent, MoreButton} from './styles';
+import {UserWrapper, UserName, UserUserName, UserContent} from './styles';
 import {Modal} from '../../ui-kit/Modal';
 import {Avatar} from '../../ui-kit/Avatar';
-import {Tooltip} from '../../ui-kit/Tooltip';
-import {GhostWrapper} from '../../ui-kit/Button';
+// import {GhostWrapper} from '../../ui-kit/Button';
 
 export const User: React.FC<IUserProps> = ({user}) => {
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -20,13 +19,11 @@ export const User: React.FC<IUserProps> = ({user}) => {
         <UserName>{`${user?.name ? user?.name : ' '} ${user.lastName ? user.lastName : ' '}`}</UserName>
         <UserUserName>{user.username}</UserUserName>
       </UserContent>
-      <MoreButton>
-        <Tooltip text={''} placement={'left'}>
-          <GhostWrapper>
-            <MoreOutlined />
-          </GhostWrapper>
-        </Tooltip>
-      </MoreButton>
+      {/* <MoreButton>
+        <GhostWrapper>
+          <MoreOutlined />
+        </GhostWrapper>
+      </MoreButton> */}
       <Modal open={previewOpen} footer={null} onCancel={handleCancel}>
         <img alt="avatar" style={{width: '100%'}} src={user?.avatar} />
       </Modal>

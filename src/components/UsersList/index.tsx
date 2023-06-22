@@ -11,7 +11,7 @@ export const UsersList: React.FC<IUsersListProps> = ({users, loading}) => {
 
   return (
     <>
-      <Title>Users</Title>
+      <Title>Your activity users</Title>
       <UserList>
         {users.map((user) => (
           <User key={user.username} user={user} />

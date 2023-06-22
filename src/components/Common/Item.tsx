@@ -46,6 +46,7 @@ interface IItem {
   updateTaskStatus?: (id: string, body: statusTaskReqBody) => void;
   taskItems?: ITasksItem[];
   updateItemTaskStatus?: (id: string, body: itemStatusReqBody) => void;
+  isAssignee?: boolean;
 }
 
 export const Item: React.FC<IItem> = ({
@@ -64,6 +65,7 @@ export const Item: React.FC<IItem> = ({
   updateTaskStatus,
   taskItems,
   updateItemTaskStatus,
+  isAssignee,
 }) => {
   const editPath = item === ITEM_TYPES.SPACE ? route.spaceEdit.get({id: id}) : route.pickerEdit.get({id: id});
   const confirm = (id: string) => {
@@ -116,11 +118,16 @@ export const Item: React.FC<IItem> = ({
             </Tooltip>
           )}
 
-          {item === ITEM_TYPES.TASK && <MenuMore id={taskId} updateTaskStatus={updateTaskStatus} />}
+          {item === ITEM_TYPES.TASK && isAssignee && <MenuMore id={taskId} updateTaskStatus={updateTaskStatus} />}
         </ActionsWrapper>
       </ItemWrapper>
       {!!taskItems?.length && (
-        <ItemTask items={taskItems} taskId={taskId} updateItemTaskStatus={updateItemTaskStatus} />
+        <ItemTask
+          items={taskItems}
+          taskId={taskId}
+          updateItemTaskStatus={updateItemTaskStatus}
+          isAssignee={isAssignee}
+        />
       )}
     </MainItemWrapper>
   );
