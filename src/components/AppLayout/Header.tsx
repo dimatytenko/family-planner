@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {HeaderComponentWrapper, Container, HeaderContainer} from './styles';
 import {Navigation} from '../Navigation';
@@ -12,8 +12,18 @@ export const HeaderComponent: React.FC<IHeaderComponentProps> = ({
   visibleSignup,
   drawerActions,
 }) => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      window?.pageYOffset > 30 ? setScrolled(true) : setScrolled(false);
+    };
+    window?.addEventListener('scroll', handleScroll);
+    return () => window?.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <HeaderComponentWrapper>
+    <HeaderComponentWrapper $scrolled={scrolled}>
       <Container>
         <HeaderContainer>
           <HomeLink aria-label="Go home">

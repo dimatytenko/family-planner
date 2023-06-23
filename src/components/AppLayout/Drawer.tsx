@@ -1,5 +1,4 @@
 import React from 'react';
-import {Drawer} from 'antd';
 import {LogoutOutlined} from '@ant-design/icons';
 
 import {IDrawerActions} from '../../types/layout';
@@ -8,6 +7,7 @@ import {route} from '../../constants/routes';
 import {Drawerlist, StyledLogout, DrawerElWrapper, DrawerTitle, StyledClose} from './styles';
 import {AccountContainer} from '../../containers/Settings/Account';
 import {Avatar} from '../../ui-kit/Avatar';
+import {Drawer} from '../../ui-kit/Drawer';
 
 export const DrawerComponent: React.FC<IDrawerActions> = ({
   open,

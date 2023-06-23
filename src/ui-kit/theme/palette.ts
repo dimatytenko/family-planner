@@ -12,6 +12,11 @@ const colors = {
   blue: '#0000ff',
 };
 
+const shadows = {
+  primary: '0px 1px 5px rgba(0, 0, 0, 0.3)',
+};
+
 export const palette = {
   colors,
+  shadows,
 };

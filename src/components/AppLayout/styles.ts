@@ -32,16 +32,25 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  padding: ${defaultTheme.spacer._6} 0;
+  padding: ${defaultTheme.spacer._15} 0;
   flex: 1 1 auto;
   width: 100%;
   height: 100%;
 `;
 
-export const HeaderComponentWrapper = styled.div`
+export const HeaderComponentWrapper = styled.div<{$scrolled?: boolean}>`
+  position: fixed;
+  z-index: 100;
   width: 100%;
-  height: 100%;
+  transition: all ${defaultTheme.transition.primary};
   padding: ${defaultTheme.spacer._3} 0;
+  ${({$scrolled}) =>
+    $scrolled &&
+    `
+    border-bottom: 1px solid ${defaultTheme.palette.colors.lightGray};
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: ${defaultTheme.palette.shadows.primary};
+    `}
 `;
 
 export const Logo = styled.div``;
