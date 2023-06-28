@@ -1,0 +1,38 @@
+{
+  "buttons": {
+    "calendar": "Calendar",
+    "createSpace": "Create a new Space",
+    "addEvent": "Add event",
+    "todo": "todo",
+    "inProgress": "in progress",
+    "done": "done",
+    "reset": "reset",
+    "addSpace": "Add space",
+    "addTask": "Add task",
+    "goBack": "Go back"
+  },
+  "titles": {
+    "accountInfo": "Account info",
+    "pages": "Pages",
+    "space": "space",
+    "task": "task",
+    "event": "event",
+    "commonEvents": "Today`s events",
+    "taskSpaces": "Task spaces",
+    "userList": "Your activity users"
+  },
+  "messages": {
+    "noTasks": "You have no task spaces!",
+    "noEvents": "You have no events for today!",
+    "delete": "Delete the {{text}}",
+    "deleteText": "Are you sure to delete this {{text}}?",
+    "register": "Now check your email to verify your account. Please check your spam folder just in case!",
+    "verificationFailed": "Verification failed!",
+    "verificationSuccess": "Verification successful!",
+    "verificationAlreadyPassed": "Verification has already been passed!",
+    "alreadyAdded": "You are already added!",
+    "verificationEmailSent": "Verification email sent!",
+    "getNewPassword": "You get a new password on email!",
+    "passwordChangedSuccess": "Password changed successfully!"
+  }
+}

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-
 import {Dropdown} from 'antd';
 import type {MenuProps} from 'antd';
+import {useTranslation} from 'react-i18next';
 
 import {
   TaskItemsWrapper,
@@ -66,18 +66,20 @@ export type MenuMoreProps = {
 };
 
 export const MenuMore: React.FC<MenuMoreProps> = ({onFilter}) => {
+  const {t} = useTranslation();
+
   const items: MenuProps['items'] = [
     {
       key: 1,
-      label: <MenuAction onClick={() => onFilter?.(false)}>todo</MenuAction>,
+      label: <MenuAction onClick={() => onFilter?.(false)}>{t('common:buttons.todo')}</MenuAction>,
     },
     {
       key: 2,
-      label: <MenuAction onClick={() => onFilter?.(true)}>done</MenuAction>,
+      label: <MenuAction onClick={() => onFilter?.(true)}>{t('common:buttons.done')}</MenuAction>,
     },
     {
       key: 0,
-      label: <MenuAction onClick={() => onFilter?.('all')}>reset</MenuAction>,
+      label: <MenuAction onClick={() => onFilter?.('all')}>{t('common:buttons.reset')}</MenuAction>,
     },
   ];
 

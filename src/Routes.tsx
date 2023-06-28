@@ -13,7 +13,7 @@ import {Calendar} from './containers/Calendar';
 import {VerifyContainer} from './containers/Auth/Verify';
 import {ReverifyContaiber} from './containers/Auth/Reverify';
 import {ForgotPasswordContainer} from './containers/Auth/ForgotPassword';
-import {ChangePasswordContainer} from './containers/Account/ChangePassword';
+import {ChangePasswordContainer} from './containers/Settings/ChangePassword';
 import {SpaceContainer} from './containers/Space';
 import {SpaceEditContainer} from './containers/Space/Edit';
 import {TaskContainer} from './containers/Task';

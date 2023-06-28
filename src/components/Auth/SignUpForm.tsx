@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form} from 'antd';
+import {useTranslation} from 'react-i18next';
 
 import {ISignUpFormProps} from '../../types/auth';
 import {signupReqBody} from '../../queries/types/auth';
@@ -10,6 +11,7 @@ import {Label} from '../../ui-kit/Label';
 
 export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, resetError, error, isLoading}}) => {
   const [form] = Form.useForm();
+  const {t} = useTranslation();
 
   const onFinish = (values: signupReqBody) => {
     onSubmit(values);
@@ -19,15 +21,15 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, res
     <Form form={form} name="register" onFinish={onFinish} onChange={resetError} scrollToFirstError layout="vertical">
       <FormItem
         name="email"
-        label="E-mail"
+        label={t('auth:forms.email')}
         rules={[
           {
             type: 'email',
-            message: 'The input is not valid E-mail!',
+            message: t('auth:messages.emailFormat'),
           },
           {
             required: true,
-            message: 'Please input your E-mail!',
+            message: t('auth:messages.emailRequired'),
           },
         ]}>
         <Input />
@@ -35,11 +37,11 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, res
 
       <FormItem
         name="password"
-        label="Password"
+        label={t('auth:forms.password')}
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: t('auth:messages.passwordRequired'),
           },
         ]}
         hasFeedback>
@@ -48,21 +50,20 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, res
 
       <FormItem
         name="confirm"
-        label="Confirm Password"
+        label={t('auth:forms.confirmPassword')}
         dependencies={['password']}
         hasFeedback
         rules={[
           {
             required: true,
-
-            message: 'Please confirm your password!',
+            message: t('auth:messages.passwordConfirm'),
           },
           ({getFieldValue}) => ({
             validator(_, value) {
               if (!value || getFieldValue('password') === value) {
                 return Promise.resolve();
               }
-              return Promise.reject(new Error('The two passwords that you entered do not match!'));
+              return Promise.reject(new Error(t('auth:messages.confirmPasswordFormat')));
             },
           }),
         ]}>
@@ -71,14 +72,14 @@ export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, res
 
       <FormItem
         name="username"
-        label="Username"
-        rules={[{required: true, message: 'Please input your nickname!', whitespace: true}]}>
-        <Input tooltip="What do you want others to call you?" />
+        label={t('auth:forms.username')}
+        rules={[{required: true, message: t('auth:messages.usernameRequired'), whitespace: true}]}>
+        <Input tooltip={t('auth:notes.callYou')} />
       </FormItem>
 
       <FormItem>
         <StyledButton variant="tertiary" htmlType="submit" loading={isLoading?.send}>
-          Sign up
+          {t('auth:buttons.signUp')}
         </StyledButton>
       </FormItem>
       {error && <Label variant="error" label={error} icon />}

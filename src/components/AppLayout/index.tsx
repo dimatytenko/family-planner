@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
+import {isMobile} from 'react-device-detect';
 
 import {StyledLayout, Main, Container} from './styles';
 import {DrawerComponent} from './Drawer';
@@ -25,7 +26,7 @@ export const AppLayout: React.FC<IAppLayoutProps> = ({
   return (
     <StyledLayout {...props}>
       {!hideHeader && header}
-      <Main>
+      <Main $isMobile={isMobile}>
         <Container>{children}</Container>
         <DrawerComponent
           open={drawerActions.open}

@@ -46,7 +46,9 @@ export const Drawerlist = styled.div`
 
 export const DrawerItemField = styled(Text4)``;
 
-export const DrawerItemLabel = styled(Text2Bold)``;
+export const DrawerItemLabel = styled(Text2Bold)`
+  text-transform: capitalize;
+`;
 
 export const FormWrapper = styled.div`
   max-width: 450px;

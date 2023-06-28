@@ -50,12 +50,12 @@ export interface IUserValues {
 }
 
 export enum USER {
-  name = 'Name',
-  lastName = 'Last name',
-  username = 'Username',
-  email = 'Email',
-  age = 'Age',
-  sex = 'Gender',
+  name = 'name',
+  lastName = 'lastName',
+  username = 'username',
+  email = 'email',
+  age = 'age',
+  sex = 'gender',
 }
 
 export interface IAccountAvatarProps {

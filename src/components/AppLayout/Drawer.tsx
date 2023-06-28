@@ -1,5 +1,7 @@
 import React from 'react';
 import {LogoutOutlined} from '@ant-design/icons';
+import {isMobile} from 'react-device-detect';
+import {useTranslation} from 'react-i18next';
 
 import {IDrawerActions} from '../../types/layout';
 import {LinkButton, Button} from '../../ui-kit/Button';
@@ -18,6 +20,8 @@ export const DrawerComponent: React.FC<IDrawerActions> = ({
   showChildrenDrawer,
   user,
 }) => {
+  const {t} = useTranslation();
+
   const onLogOutHandler = () => {
     onLogOut?.();
     onClose?.();
@@ -26,7 +30,8 @@ export const DrawerComponent: React.FC<IDrawerActions> = ({
   return (
     <>
       <Drawer
-        title={<DrawerTitle>Pages</DrawerTitle>}
+        isMobile={isMobile}
+        title={<DrawerTitle>{t('common:titles.pages')}</DrawerTitle>}
         closeIcon={
           <Button>
             <StyledClose />
@@ -45,15 +50,16 @@ export const DrawerComponent: React.FC<IDrawerActions> = ({
         }>
         <Drawerlist>
           <LinkButton variant="tertiary" to={route.calendar.path} onClick={onClose}>
-            Calendar
+            {t('common:buttons.calendar')}
           </LinkButton>
           <LinkButton variant="tertiary" to={route.createSpace.path} onClick={onClose}>
-            Create a new Space
+            {t('common:buttons.createSpace')}
           </LinkButton>
         </Drawerlist>
 
         <Drawer
-          title={<DrawerTitle>Account info</DrawerTitle>}
+          isMobile={isMobile}
+          title={<DrawerTitle>{t('common:titles.accountInfo')}</DrawerTitle>}
           closeIcon={
             <Button>
               <StyledClose />

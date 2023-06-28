@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form} from 'antd';
+import {useTranslation} from 'react-i18next';
 
 import {StyledButton} from './styles';
 import {InputPassword} from '../../ui-kit/Form/Input';
@@ -10,6 +11,7 @@ import {ResetPasswordReqBody} from '../../queries/types/user';
 
 export const ResetPasswordForm: React.FC<IResetPasswordFormProps> = ({onSubmit, resetError, isLoading, error}) => {
   const [form] = Form.useForm();
+  const {t} = useTranslation();
 
   const onFinish = (values: ResetPasswordReqBody) => {
     onSubmit(values);
@@ -25,11 +27,11 @@ export const ResetPasswordForm: React.FC<IResetPasswordFormProps> = ({onSubmit, 
       layout="vertical">
       <FormItem
         name="oldPassword"
-        label="Current password"
+        label={t('account:forms.currentPassword')}
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: t('account:messages.passwordRequired'),
           },
         ]}
         hasFeedback>
@@ -38,11 +40,11 @@ export const ResetPasswordForm: React.FC<IResetPasswordFormProps> = ({onSubmit, 
 
       <FormItem
         name="newPassword"
-        label="New Password"
+        label={t('account:forms.newPassword')}
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: t('account:messages.passwordRequired'),
           },
         ]}
         hasFeedback>
@@ -51,21 +53,21 @@ export const ResetPasswordForm: React.FC<IResetPasswordFormProps> = ({onSubmit, 
 
       <FormItem
         name="confirm"
-        label="Confirm Password"
+        label={t('account:forms.confirmPassword')}
         dependencies={['newPassword']}
         hasFeedback
         rules={[
           {
             required: true,
 
-            message: 'Please confirm your password!',
+            message: t('account:messages.passwordConfirm'),
           },
           ({getFieldValue}) => ({
             validator(_, value) {
               if (!value || getFieldValue('newPassword') === value) {
                 return Promise.resolve();
               }
-              return Promise.reject(new Error('The two passwords that you entered do not match!'));
+              return Promise.reject(new Error(t('account:messages.confirmPasswordFormat')));
             },
           }),
         ]}>
@@ -74,7 +76,7 @@ export const ResetPasswordForm: React.FC<IResetPasswordFormProps> = ({onSubmit, 
 
       <FormItem>
         <StyledButton variant="tertiary" htmlType="submit" loading={isLoading?.send}>
-          Update password
+          {t('account:buttons.updatePassword')}
         </StyledButton>
       </FormItem>
       {error && <Label variant="error" label={error} icon />}

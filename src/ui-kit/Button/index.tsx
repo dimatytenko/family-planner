@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {ButtonProps} from 'antd';
+import {useTranslation} from 'react-i18next';
 
 import {WithChildren} from '../../types/helpers';
 import {
@@ -40,10 +41,12 @@ export const GhostWrapper: React.FC<CustomButtonProps & WithChildren> = ({
 };
 
 export const BackButton: React.FC<{onClick?: () => void}> = ({onClick, ...props}) => {
+  const {t} = useTranslation();
+
   return (
     <BackButtonWrapper onClick={onClick} {...props}>
       <ArrowLeftIcon />
-      <BackText>Go back</BackText>
+      <BackText>{t('common:buttons.goBack')}</BackText>
     </BackButtonWrapper>
   );
 };

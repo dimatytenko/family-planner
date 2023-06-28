@@ -1,0 +1,45 @@
+{  
+  "buttons": {
+    "generateAvatar": "Згенерувати аватар",
+    "deleteAvatar": "Видалити аватар",
+    "updateAvatar": "Оновити аватар",
+    "updatePassword": "Оновити пароль",
+    "editProfile": "Редагувати профіль",
+    "changePassword": "Змінити пароль",
+    "saveChanges": "Зберегти зміни",
+    "cancel": "Скасувати"
+  },
+  "forms": {
+    "currentPassword": "Поточний пароль",
+    "newPassword": "Новий пароль",
+    "confirmPassword": "Підтвердіть пароль",
+    "firstName": "Ім'я",
+    "lastName": "Фамілія",
+    "username": "Юзернейм",
+    "email": "Пошта",
+    "age": "Вік",
+    "gender": "Стать"
+  },
+  "messages": {
+    "passwordRequired": "Будь-ласка введіть ваш Пароль!",
+    "passwordConfirm": "Будь-ласка підтвердіть ваш Пароль!",
+    "confirmPasswordFormat": "Два паролі, які ви ввели, не збігаються!",
+    "usernameRequired": "Будь-ласка введіть ваш Юзернейм!",
+    "emailRequired": "Будь-ласка введіть вашу Пошту!",
+    "emailFormat": "Уведіть валідну пошту!",
+    "changeSex": "Виберіть опцію та змініть введений текст вище!"
+  },
+  "fields": {
+    "name": "ім'я",
+    "lastName": "фамілія",
+    "email": "пошта",
+    "username": "юзернейм",
+    "age": "вік",
+    "gender": "стать",
+    "male": "чоловік",
+    "female": "жінка"
+  },
+  "notes": {
+    "callYou": "Як ви хочете, щоб вас називали інші?"
+  }
+}

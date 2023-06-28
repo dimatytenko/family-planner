@@ -1,6 +1,7 @@
 import {IUser} from '../types/user';
 import {WithChildren} from '../types/helpers';
 import {TUserInfo} from '../types/user';
+import {Language} from '../states/layout';
 
 export interface IDrawerActions {
   showDrawer?: () => void;
@@ -38,4 +39,17 @@ export interface IAppLayoutProps extends WithChildren {
   drawerActions: IDrawerActions;
   onLogOut: () => void;
   user?: IUser | null;
+}
+
+export interface INavigationProps {
+  user?: IUser | null;
+  visibleLogin?: boolean;
+  visibleSignup?: boolean;
+  drawerActions: IDrawerActions;
+}
+
+export interface ILanguageProps {
+  language: Language | null;
+  onChangeLanguage: (language: Language) => void;
+  languageValues: {country: Language}[];
 }

@@ -31,19 +31,21 @@ export const Container = styled.div`
   }
 `;
 
-export const Main = styled.main`
-  padding: ${defaultTheme.spacer._15} 0;
+export const Main = styled.main<{$isMobile?: boolean}>`
+  padding-top: ${({$isMobile}) => ($isMobile ? defaultTheme.spacer._16 : defaultTheme.spacer._15)};
+  padding-bottom: ${defaultTheme.spacer._3};
   flex: 1 1 auto;
   width: 100%;
   height: 100%;
 `;
 
-export const HeaderComponentWrapper = styled.div<{$scrolled?: boolean}>`
+export const HeaderComponentWrapper = styled.div<{$scrolled?: boolean; $isMobile?: boolean}>`
   position: fixed;
   z-index: 100;
   width: 100%;
   transition: all ${defaultTheme.transition.primary};
-  padding: ${defaultTheme.spacer._3} 0;
+  padding-top: ${({$isMobile}) => ($isMobile ? defaultTheme.spacer._11 : defaultTheme.spacer._3)};
+  padding-bottom: ${defaultTheme.spacer._3};
   ${({$scrolled}) =>
     $scrolled &&
     `

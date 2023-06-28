@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Avatar as AvatarAntd, Dropdown} from 'antd';
 import type {MenuProps} from 'antd';
+import {useTranslation} from 'react-i18next';
 
 import {Title} from '../../styles/common';
 import {Label} from '../../ui-kit/Label';
@@ -43,6 +44,7 @@ export const Spaces: React.FC<ISpacesProps> = ({
   const [currentSpases, setCurrentSpases] = useState(spaces);
   const [filter, setFilter] = useState<TASK_STATUSES | 'all'>('all');
   const [taskId, setTaskId] = useState<string | null>(null);
+  const {t} = useTranslation();
 
   const onDelete = (id: string) => {
     resetError?.();
@@ -74,7 +76,7 @@ export const Spaces: React.FC<ISpacesProps> = ({
 
   return (
     <SpacesWrapper>
-      <Title>Task spaces</Title>
+      <Title>{t('common:titles.taskSpaces')}</Title>
       <SpacesBody>
         {!!currentSpases?.length ? (
           <>
@@ -106,7 +108,7 @@ export const Spaces: React.FC<ISpacesProps> = ({
                       </AvatarAntd.Group>
                       <ActionsWrapper>
                         <LinkButtonStyled variant="tertiary" to={route.createTask.get({id: space._id})}>
-                          Add task
+                          {t('common:buttons.addTask')}
                         </LinkButtonStyled>
                         <MenuMore id={space._id} setFilter={setFilter} setTaskId={setTaskId} />
                       </ActionsWrapper>
@@ -141,8 +143,8 @@ export const Spaces: React.FC<ISpacesProps> = ({
           </>
         ) : (
           <EmptyComponent
-            description={'You have no task spaces!'}
-            titleButton={'Add space'}
+            description={t('common:messages.noTasks')}
+            titleButton={t('common:buttons.addSpace')}
             to={route.createSpace.path}
           />
         )}
@@ -158,6 +160,8 @@ export type MenuMoreProps = {
 };
 
 export const MenuMore: React.FC<MenuMoreProps> = ({id, setFilter, setTaskId}) => {
+  const {t} = useTranslation();
+
   const handleChange = (filter: TASK_STATUSES | 'all') => {
     setTaskId(id);
     setFilter?.(filter);
@@ -168,7 +172,7 @@ export const MenuMore: React.FC<MenuMoreProps> = ({id, setFilter, setTaskId}) =>
       key: 1,
       label: (
         <MenuAction $status={TASK_STATUSES.TODO} onClick={() => handleChange(TASK_STATUSES.TODO)}>
-          {TASK_STATUSES.TODO}
+          {t(`common:buttons.${TASK_STATUSES.TODO}`)}
         </MenuAction>
       ),
     },
@@ -176,7 +180,7 @@ export const MenuMore: React.FC<MenuMoreProps> = ({id, setFilter, setTaskId}) =>
       key: 2,
       label: (
         <MenuAction $status={TASK_STATUSES.IN_PROGRESS} onClick={() => handleChange(TASK_STATUSES.IN_PROGRESS)}>
-          {TASK_STATUSES.IN_PROGRESS}
+          {t(`common:buttons.${TASK_STATUSES.IN_PROGRESS}`)}
         </MenuAction>
       ),
     },
@@ -184,13 +188,13 @@ export const MenuMore: React.FC<MenuMoreProps> = ({id, setFilter, setTaskId}) =>
       key: 3,
       label: (
         <MenuAction $status={TASK_STATUSES.DONE} onClick={() => handleChange(TASK_STATUSES.DONE)}>
-          {TASK_STATUSES.DONE}
+          {t(`common:buttons.${TASK_STATUSES.DONE}`)}
         </MenuAction>
       ),
     },
     {
       key: 0,
-      label: <MenuAction onClick={() => handleChange('all')}>reset</MenuAction>,
+      label: <MenuAction onClick={() => handleChange('all')}> {t('common:buttons.reset')}</MenuAction>,
     },
   ];
 

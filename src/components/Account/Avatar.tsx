@@ -1,6 +1,7 @@
 import React from 'react';
 import {PlusOutlined} from '@ant-design/icons';
 import Avatar from 'react-nice-avatar';
+import {useTranslation} from 'react-i18next';
 
 import {AvatarWrapper, StyledUpload, Drawerlist, StyledButton} from './styles';
 import {IAccountAvatarProps} from '../../types/user';
@@ -22,6 +23,8 @@ export const AccountAvatar: React.FC<IAccountAvatarProps> = ({
     saveGenerateAvatar,
   },
 }) => {
+  const {t} = useTranslation();
+
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -46,16 +49,16 @@ export const AccountAvatar: React.FC<IAccountAvatarProps> = ({
         )}
       </AvatarWrapper>
       <Drawerlist>
-        <StyledButton onClick={generateAvatar}>Generate avatar</StyledButton>
+        <StyledButton onClick={generateAvatar}>{t('account:buttons.generateAvatar')}</StyledButton>
         <>
           {configAvatar && (
             <StyledButton variant="secondary" onClick={deleteAvatar}>
-              Delete avatar
+              {t('account:buttons.deleteAvatar')}
             </StyledButton>
           )}
           {(configAvatar || fileList[0]?.status === 'error') && (
             <StyledButton variant="success" onClick={saveGenerateAvatar}>
-              Update avatar
+              {t('account:buttons.updateAvatar')}
             </StyledButton>
           )}
         </>

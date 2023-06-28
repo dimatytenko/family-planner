@@ -2,6 +2,7 @@ import React from 'react';
 import {Badge, BadgeProps, Dropdown} from 'antd';
 import type {MenuProps} from 'antd';
 import {MoreOutlined} from '@ant-design/icons';
+import {useTranslation} from 'react-i18next';
 
 import {
   MainItemWrapper,
@@ -26,9 +27,6 @@ import {Avatar} from '../../ui-kit/Avatar';
 import {TASK_STATUSES, statusTaskReqBody, ITasksItem, itemStatusReqBody} from '../../queries/types/task';
 import {ITEM_TYPES} from '../../types/common';
 import {ItemTask} from './ItemTask';
-
-const text = (str: string) => `Are you sure to delete this ${str}?`;
-const description = (str: string) => `Delete the ${str}`;
 
 interface IItem {
   item: ITEM_TYPES;
@@ -67,6 +65,8 @@ export const Item: React.FC<IItem> = ({
   updateItemTaskStatus,
   isAssignee,
 }) => {
+  const {t} = useTranslation();
+
   const editPath = item === ITEM_TYPES.SPACE ? route.spaceEdit.get({id: id}) : route.pickerEdit.get({id: id});
   const confirm = (id: string) => {
     deleteItem?.(id);
@@ -75,7 +75,7 @@ export const Item: React.FC<IItem> = ({
   return (
     <MainItemWrapper key={id} $status={status}>
       <ItemWrapper>
-        {status && <TaskLabel $status={status}>{status}</TaskLabel>}
+        {status && <TaskLabel $status={status}>{t(`common:buttons.${status}`)}</TaskLabel>}
         {descr ? (
           <ItemInfoWrapper>
             <InfoWrapper>
@@ -102,8 +102,12 @@ export const Item: React.FC<IItem> = ({
 
               <Popconfirm
                 placement="bottomRight"
-                title={text(item)}
-                description={description(item)}
+                title={t('common:messages.deleteText', {
+                  text: t(`common:titles.${item}`),
+                })}
+                description={t('common:messages.delete', {
+                  text: t(`common:titles.${item}`),
+                })}
                 onConfirm={() => confirm?.(taskId ? taskId : id)}>
                 <GhostWrapper loading={dellId === id}>
                   <DeleteIcon />
@@ -139,6 +143,8 @@ export type MenuMoreProps = {
 };
 
 export const MenuMore: React.FC<MenuMoreProps> = ({id, updateTaskStatus}) => {
+  const {t} = useTranslation();
+
   const onUpdateStatus = (status: TASK_STATUSES) => {
     if (!id) return;
     updateTaskStatus?.(id, {status});
@@ -148,7 +154,7 @@ export const MenuMore: React.FC<MenuMoreProps> = ({id, updateTaskStatus}) => {
       key: 1,
       label: (
         <MenuAction $status={TASK_STATUSES.TODO} onClick={() => onUpdateStatus(TASK_STATUSES.TODO)}>
-          {TASK_STATUSES.TODO}
+          {t(`common:buttons.${TASK_STATUSES.TODO}`)}
         </MenuAction>
       ),
     },
@@ -156,7 +162,7 @@ export const MenuMore: React.FC<MenuMoreProps> = ({id, updateTaskStatus}) => {
       key: 2,
       label: (
         <MenuAction $status={TASK_STATUSES.IN_PROGRESS} onClick={() => onUpdateStatus(TASK_STATUSES.IN_PROGRESS)}>
-          {TASK_STATUSES.IN_PROGRESS}
+          {t(`common:buttons.${TASK_STATUSES.IN_PROGRESS}`)}
         </MenuAction>
       ),
     },
@@ -164,7 +170,7 @@ export const MenuMore: React.FC<MenuMoreProps> = ({id, updateTaskStatus}) => {
       key: 3,
       label: (
         <MenuAction $status={TASK_STATUSES.DONE} onClick={() => onUpdateStatus(TASK_STATUSES.DONE)}>
-          {TASK_STATUSES.DONE}
+          {t(`common:buttons.${TASK_STATUSES.DONE}`)}
         </MenuAction>
       ),
     },

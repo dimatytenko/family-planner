@@ -1,0 +1,46 @@
+{  
+  "buttons": {
+    "generateAvatar": "Generate avatar",
+    "deleteAvatar": "Delete avatar",
+    "updateAvatar": "Update avatar",
+    "updatePassword": "Update password",
+    "editProfile": "Edit profile",
+    "changePassword": "Change password",
+    "saveChanges": "Save changes",
+    "cancel": "Cancel"
+  },
+  "forms": {
+    "confirmPassword": "Confirm password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "username": "Username",
+    "email": "E-mail",
+    "age": "Age",
+    "gender": "Gender"
+
+  },
+  "messages": {
+    "passwordRequired": "Please input your Password!",
+    "passwordConfirm": "Please confirm your password!",
+    "confirmPasswordFormat": "The two passwords that you entered do not match!",
+    "usernameRequired": "Please input your Username!",
+    "emailRequired": "Please input your E-mail!",
+    "emailFormat": "The input is not valid E-mail!",
+    "changeSex": "Select a option and change input text above!"
+  },
+  "fields": {
+    "name": "name",
+    "lastName": "last name",
+    "email": "email",
+    "username": "username",
+    "age": "age",
+    "gender": "sex",
+    "male": "male",
+    "female": "female"
+  },
+    "notes": {
+    "callYou": "What do you want others to call you?"
+  }
+}

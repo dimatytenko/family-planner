@@ -1,0 +1,46 @@
+{
+  "buttons": {
+    "send": "Надіслати",
+    "delete": "Видалити",
+    "addItem": "Додати елемент",
+    "addPartisipant": "Додати учасника",
+    "small": "Маленький",
+    "default": "Звичайний",
+    "large": "Великий",
+    "oneTime": "разовo",
+    "daily": "щоденно",
+    "weekly": "тижнево",
+    "monthly": "місячно",
+    "yearly": "щорічно"
+  },
+  "form": {
+    "task": "Завдання",
+    "status": "Статус",
+    "assignee": "Виконавець",
+    "items": "Елементи",
+    "spaceName": "Назва простору",
+    "spaceDescription": "Опис простору",
+    "partisipants": "Учасники",
+    "enterDescription": "Уведіть опис...",
+    "enterUsername": "Уведіть юзернейм...",
+    "formSize": "Розмір форми",
+    "date": "Дата",
+    "event": "Подія",
+    "description": "Опис",
+    "repitability": "Повторюваність",
+    "enterItemText": "Уведіть текст елемента...",
+    "addNewEvent": "Виберіть або додайте нову подію",
+    "enterItem": "Уведіть елемент..."
+  },
+  "messages": {
+    "taskRequired": "Завдання обов'язкове!",
+    "statusRequired": "Статус обов'язковий!",
+    "assigneeRequired": "Виконавець обов'язковий!",
+    "inputItemText": "Будь ласка, введіть текст елемента або видаліть це поле!",
+    "userWillBeAdded": "Користувач буде доданий до списку учасників після підтвердження!",
+    "requiredName": "Назва обов'язкова!",
+    "requiredDescription": "Опис обов'язковий!",
+    "dateRequired": "Дата обов'язкова!",
+    "eventRequired": "Подія обов'язкова!"
+  }
+}

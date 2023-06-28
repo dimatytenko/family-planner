@@ -1,0 +1,46 @@
+{
+  "buttons": {
+    "send": "Send",
+    "delete": "Delete",
+    "addItem": "Add item",
+    "addPartisipant": "Add partisipant",
+    "small": "Small",
+    "default": "Default",
+    "large": "Large",
+    "oneTime": "one time",
+    "daily": "daily",
+    "weekly": "weekly",
+    "monthly": "monthly",
+    "yearly": "yearly"
+  },
+  "form": {
+    "task": "Task",
+    "status": "Status",
+    "assignee": "Assignee",
+    "items": "Items",
+    "spaceName": "Space name",
+    "spaceDescription": "Space description",
+    "partisipants": "Partisipants",
+    "enterDescription": "Enter description...",
+    "enterUsername": "Enter username...",
+    "formSize": "Form size",
+    "date": "Date",
+    "event": "Event",
+    "description": "Description",
+    "repitability": "Repitability",
+    "enterItemText": "Enter item`s text...",
+    "addNewEvent": "Choose or add new event",
+    "enterItem": "Please enter item"
+  },
+  "messages": {
+    "taskRequired": "Task is required!",
+    "statusRequired": "Status is required!",
+    "assigneeRequired": "Assignee is required!",
+    "inputItemText": "Please input item`s text or delete this field!",
+    "userWillBeAdded": "User will be added only after confirmation!",
+    "requiredName": "Name is required!",
+    "requiredDescription": "Description is required!",
+    "dateRequired": "Date is required!",
+    "eventRequired": "Event is required!"
+  }
+}

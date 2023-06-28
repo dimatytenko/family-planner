@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form} from 'antd';
+import {useTranslation} from 'react-i18next';
 
 import {StyledButton} from './styles';
 import {Input} from '../../ui-kit/Form/Input';
@@ -10,6 +11,7 @@ import {reverifyReqBody} from '../../queries/types/auth';
 
 export const ReverifyForm: React.FC<IReverifyFormProps> = ({titleButton, onSubmit, resetError, isLoading, error}) => {
   const [form] = Form.useForm();
+  const {t} = useTranslation();
 
   const onFinish = (values: reverifyReqBody) => {
     onSubmit(values);
@@ -19,15 +21,15 @@ export const ReverifyForm: React.FC<IReverifyFormProps> = ({titleButton, onSubmi
     <Form form={form} name="reverify" onFinish={onFinish} onChange={resetError} scrollToFirstError layout="vertical">
       <FormItem
         name="email"
-        label="E-mail"
+        label={t('auth:forms.email')}
         rules={[
           {
             type: 'email',
-            message: 'The input is not valid E-mail!',
+            message: t('auth:messages.emailFormat'),
           },
           {
             required: true,
-            message: 'Please input your E-mail!',
+            message: t('auth:messages.emailRequired'),
           },
         ]}>
         <Input />
@@ -35,7 +37,7 @@ export const ReverifyForm: React.FC<IReverifyFormProps> = ({titleButton, onSubmi
 
       <FormItem>
         <StyledButton variant="tertiary" htmlType="submit" loading={isLoading?.send}>
-          {titleButton}
+          {t(`auth:buttons.${titleButton}`)}
         </StyledButton>
       </FormItem>
       {error && <Label variant="error" label={error} icon />}

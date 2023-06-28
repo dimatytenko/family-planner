@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form} from 'antd';
 import {MinusCircleOutlined} from '@ant-design/icons';
+import {useTranslation} from 'react-i18next';
 
 import {SizeType} from '../../types/picker';
 import {ButtonsWrapper, StyledButton, GhostWrapperStyled, ItemsInputWrapper, InputWrapper} from './styles';
@@ -17,6 +18,7 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
   initialValues,
   formActions: {onSubmit, resetError, error, sizeForm, deleteTask},
 }) => {
+  const {t} = useTranslation();
   const [form] = Form.useForm();
 
   const onFinish = (values: TaskValuesT) => {
@@ -41,33 +43,35 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
       style={{maxWidth: 450}}>
       <FormItem
         name="name"
-        label="Task"
+        label={t('forms:form.task')}
         initialValue={initialValues?.name}
-        rules={[{required: true, message: 'Task is required!'}]}>
+        rules={[{required: true, message: t('forms:messages.taskRequired')}]}>
         <Input />
       </FormItem>
 
       <FormItem
-        label="Status"
-        name="status"
-        initialValue={initialValues ? initialValues.status : TASK_STATUSES.TODO}
-        rules={[{required: true, message: 'status is required!'}]}>
+        name="Status"
+        label={t('forms:form.status')}
+        initialValue={
+          initialValues ? t(`common:buttons.${initialValues.status}`) : t(`common:buttons.${TASK_STATUSES.TODO}`)
+        }
+        rules={[{required: true, message: t('forms:messages.statusRequired')}]}>
         <Select
-          placeholder="status"
+          placeholder={t('forms:form.status')}
           options={itemsStatuses.map((item) => ({
-            label: item,
+            label: t(`common:buttons.${item}`),
             value: item,
           }))}
         />
       </FormItem>
 
       <FormItem
-        label="Assignee"
-        name="assignee"
-        rules={[{required: true, message: 'assignee is required!'}]}
+        name="Assignee"
+        label={t('forms:form.assignee')}
+        rules={[{required: true, message: t('forms:messages.assigneeRequired')}]}
         initialValue={initialValues?.assignee?.username}>
         <Select
-          placeholder="assignee"
+          placeholder={t('forms:form.assignee')}
           options={initialAssignee?.map((item) => ({
             label: item.username,
             value: item.username,
@@ -80,7 +84,7 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
           <>
             {fields.map((field, index) => (
               <ItemsInputWrapper key={field.key}>
-                <FormItem label={index === 0 ? 'Items' : ''} required={false}>
+                <FormItem label={index === 0 ? t('forms:form.items') : ''} required={false}>
                   <InputWrapper>
                     <FormItem
                       {...field}
@@ -90,11 +94,11 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
                         {
                           required: true,
                           whitespace: true,
-                          message: 'Please input item`s text or delete this field.',
+                          message: t('forms:messages.inputItemText'),
                         },
                       ]}
                       noStyle>
-                      <Input placeholder="enter item`s text..." />
+                      <Input placeholder={t('forms:form.enterItemText')} />
                     </FormItem>
                     {
                       <GhostWrapperStyled>
@@ -106,7 +110,7 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
               </ItemsInputWrapper>
             ))}
             <FormItem>
-              <StyledButton onClick={() => add()}>Add item</StyledButton>
+              <StyledButton onClick={() => add()}>{t('forms:buttons.addItem')}</StyledButton>
             </FormItem>
           </>
         )}
@@ -115,13 +119,13 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
       <ButtonsWrapper>
         <FormItem>
           <StyledButton variant="success" htmlType="submit" loading={isLoading?.send}>
-            Send
+            {t('forms:buttons.send')}
           </StyledButton>
         </FormItem>
         {initialValues && (
           <FormItem>
             <StyledButton variant="secondary" htmlType="button" loading={isLoading?.delete} onClick={deleteTask}>
-              Delete
+              {t('forms:buttons.delete')}
             </StyledButton>
           </FormItem>
         )}

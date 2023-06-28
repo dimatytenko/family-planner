@@ -8,7 +8,7 @@ export const ReverifyContaiber = () => {
 
   return (
     <Reverify
-      titleButton={'Send'}
+      titleButton={'send'}
       onSubmit={onReverify}
       resetError={resetError}
       isLoading={isLoading}

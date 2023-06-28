@@ -8,7 +8,7 @@ export const ForgotPasswordContainer = () => {
 
   return (
     <Reverify
-      titleButton={'Get a new password'}
+      titleButton={'getNewPassword'}
       onSubmit={onForgetPassword}
       resetError={resetError}
       isLoading={isLoading}

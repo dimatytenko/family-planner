@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 
 import {EventList} from '../EventList';
 import {MainEventListI} from '../../types/calendar';
@@ -16,13 +17,15 @@ export const MainEventList: React.FC<MainEventListI> = ({
   dellId,
   isLoading,
 }) => {
+  const {t} = useTranslation();
+
   if (isLoading?.page || !events) return null;
 
   const listData = getListData(selectedValue, events);
 
   return (
     <MainEventListWrapper>
-      <Title>Today`s events</Title>
+      <Title>{t('common:titles.commonEvents')}</Title>
       <EventListBody>
         {!!listData.length ? (
           <EventListWrapper>
@@ -37,8 +40,8 @@ export const MainEventList: React.FC<MainEventListI> = ({
           </EventListWrapper>
         ) : (
           <EmptyComponent
-            description={'You have no events for today!'}
-            titleButton={'Add event'}
+            description={t('common:messages.noEvents')}
+            titleButton={t('common:buttons.addEvent')}
             to={route.picker.path}
           />
         )}

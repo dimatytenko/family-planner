@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form} from 'antd';
+import {useTranslation} from 'react-i18next';
 
 import {IUserFormProps, USER} from '../../types/user';
 import {getUserInfoField} from '../../helpers/user';
@@ -17,6 +18,7 @@ export const UserForm: React.FC<IUserFormProps> = ({
   onChangeMode,
   userInfo,
 }) => {
+  const {t} = useTranslation();
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
@@ -32,58 +34,61 @@ export const UserForm: React.FC<IUserFormProps> = ({
       scrollToFirstError
       layout="vertical"
       style={{maxWidth: 600}}>
-      <FormItem name="name" label="First Name" initialValue={getUserInfoField(USER.name, userInfo)}>
+      <FormItem name="name" label={t('account:forms.firstName')} initialValue={getUserInfoField(USER.name, userInfo)}>
         <Input />
       </FormItem>
 
-      <FormItem name="lastName" label="Last Name" initialValue={getUserInfoField(USER.lastName, userInfo)}>
+      <FormItem
+        name="lastName"
+        label={t('account:forms.lastName')}
+        initialValue={getUserInfoField(USER.lastName, userInfo)}>
         <Input />
       </FormItem>
 
       <FormItem
         name="username"
-        label="Username"
-        rules={[{required: true, message: 'Please input your nickname!', whitespace: true}]}
+        label={t('account:forms.username')}
+        rules={[{required: true, message: t('account:messages.usernameRequired'), whitespace: true}]}
         initialValue={getUserInfoField(USER.username, userInfo)}>
-        <Input tooltip="What do you want others to call you?" />
+        <Input tooltip={t('account:notes.callYou')} />
       </FormItem>
 
       <FormItem
         name="email"
-        label="E-mail"
+        label={t('account:forms.email')}
         rules={[
           {
             type: 'email',
-            message: 'The input is not valid E-mail!',
+            message: t('account:messages.emailFormat'),
           },
           {
             required: true,
-            message: 'Please input your E-mail!',
+            message: t('account:messages.emailRequired'),
           },
         ]}
         initialValue={getUserInfoField(USER.email, userInfo)}>
         <Input />
       </FormItem>
 
-      <FormItem name="age" label="Age" initialValue={getUserInfoField(USER.age, userInfo)}>
+      <FormItem name="age" label={t('account:forms.age')} initialValue={getUserInfoField(USER.age, userInfo)}>
         <InputNumber size="small" min={1} max={99} />
       </FormItem>
 
-      <FormItem name="sex" label="Gender" initialValue={getUserInfoField(USER.sex, userInfo)}>
+      <FormItem name="sex" label={t('account:forms.gender')} initialValue={getUserInfoField(USER.sex, userInfo)}>
         <Select
-          placeholder="Select a option and change input text above"
+          placeholder={t('account:messages.changeSex')}
           allowClear
-          options={genderItems.map((item) => ({label: item, value: item}))}></Select>
+          options={genderItems.map((item) => ({label: t(`account:fields.${item}`), value: item}))}></Select>
       </FormItem>
 
       <FormButtonsWrapper>
         <FormItem>
           <Button htmlType="submit" variant="success" loading={isLoading?.send}>
-            Save changes
+            {t('account:buttons.saveChanges')}
           </Button>
         </FormItem>
         <Button variant="secondary" onClick={onChangeMode}>
-          Сancel
+          {t('account:buttons.cancel')}
         </Button>
       </FormButtonsWrapper>
       {error && <div style={{color: 'red'}}>{error}</div>}

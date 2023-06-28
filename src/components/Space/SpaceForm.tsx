@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form} from 'antd';
 import {MinusCircleOutlined} from '@ant-design/icons';
+import {useTranslation} from 'react-i18next';
 
 import {SizeType} from '../../types/picker';
 import {ButtonsWrapper, StyledButton, GhostWrapperStyled, InputWrapper, UsernamesInputWrapper} from './styles';
@@ -14,6 +15,7 @@ export const SpaceForm: React.FC<ISpaceFormProps> = ({
   initialValues,
   formActions: {onSubmit, resetError, error, sizeForm, deleteSpace},
 }) => {
+  const {t} = useTranslation();
   const [form] = Form.useForm();
 
   const onFinish = (values: SpaceValuesT) => {
@@ -33,22 +35,22 @@ export const SpaceForm: React.FC<ISpaceFormProps> = ({
       size={sizeForm as SizeType}>
       <FormItem
         name="name"
-        label="Space Name"
+        label={t('forms:form.spaceName')}
         initialValue={initialValues?.name}
-        rules={[{required: true, message: 'Name space is required!'}]}>
+        rules={[{required: true, message: t('forms:messages.requiredName')}]}>
         <Input />
       </FormItem>
 
       <FormItem
-        label="Space Description"
+        label={t('forms:form.spaceDescription')}
         name="descr"
         initialValue={initialValues?.description}
-        rules={[{required: true, message: 'Description is required!'}]}>
+        rules={[{required: true, message: t('forms:messages.requiredDescription')}]}>
         <InputTextArea
           showCount
           maxLength={200}
           style={{height: 120, marginBottom: 24}}
-          placeholder="enter a description... "
+          placeholder={t('forms:form.enterDescription')}
         />
       </FormItem>
 
@@ -58,7 +60,7 @@ export const SpaceForm: React.FC<ISpaceFormProps> = ({
             <>
               {fields.map((field, index) => (
                 <UsernamesInputWrapper key={field.key}>
-                  <FormItem label={index === 0 ? 'Participants' : ''} required={false}>
+                  <FormItem label={index === 0 ? t('forms:form.partisipants') : ''} required={false}>
                     <InputWrapper>
                       <FormItem
                         {...field}
@@ -68,11 +70,14 @@ export const SpaceForm: React.FC<ISpaceFormProps> = ({
                           {
                             required: true,
                             whitespace: true,
-                            message: 'Please input username or delete this field.',
+                            message: t('forms:messages.inputItemText'),
                           },
                         ]}
                         noStyle>
-                        <Input placeholder="enter a username..." tooltip="User will be added only after confirmation" />
+                        <Input
+                          placeholder={t('forms:form.enterUsername')}
+                          tooltip={t('forms:messages.userWillBeAdded')}
+                        />
                       </FormItem>
                       {
                         <GhostWrapperStyled>
@@ -84,7 +89,7 @@ export const SpaceForm: React.FC<ISpaceFormProps> = ({
                 </UsernamesInputWrapper>
               ))}
               <FormItem>
-                <StyledButton onClick={() => add()}>Add participant</StyledButton>
+                <StyledButton onClick={() => add()}>{t('forms:buttons.addPartisipant')}</StyledButton>
               </FormItem>
             </>
           )}
@@ -94,13 +99,13 @@ export const SpaceForm: React.FC<ISpaceFormProps> = ({
       <ButtonsWrapper>
         <FormItem>
           <StyledButton variant="success" htmlType="submit" loading={isLoading?.send}>
-            Send
+            {t('forms:buttons.send')}
           </StyledButton>
         </FormItem>
         {initialValues && (
           <FormItem>
             <StyledButton variant="secondary" htmlType="button" loading={isLoading?.delete} onClick={deleteSpace}>
-              Delete
+              {t('forms:buttons.delete')}
             </StyledButton>
           </FormItem>
         )}

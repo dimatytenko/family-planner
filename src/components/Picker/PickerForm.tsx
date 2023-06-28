@@ -2,6 +2,7 @@ import React from 'react';
 import {Form, Radio, Divider, Space, Segmented} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import dayjs from 'dayjs';
+import {useTranslation} from 'react-i18next';
 
 import {IPickerFormProps, SizeType} from '../../types/picker';
 import {PickerValuesT} from '../../types/picker';
@@ -32,6 +33,7 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
     deleteEvent,
   },
 }) => {
+  const {t} = useTranslation();
   const [form] = Form.useForm();
 
   const onFinish = (values: PickerValuesT) => {
@@ -54,19 +56,19 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
       onValuesChange={onFormLayoutChange}
       size={sizeForm as SizeType}
       style={{maxWidth: 450}}>
-      <FormItem label="Form Size" name="size">
+      <FormItem label={t('forms:form.formSize')} name="size">
         <Radio.Group>
-          <Radio.Button value="small">Small</Radio.Button>
-          <Radio.Button value="default">Default</Radio.Button>
-          <Radio.Button value="large">Large</Radio.Button>
+          <Radio.Button value="small">{t('forms:buttons.small')}</Radio.Button>
+          <Radio.Button value="default">{t('forms:buttons.default')}</Radio.Button>
+          <Radio.Button value="large">{t('forms:buttons.large')}</Radio.Button>
         </Radio.Group>
       </FormItem>
 
       <FormItem
-        label="Date"
+        label={t('forms:form.date')}
         name="date"
         initialValue={initialValues?.date ? dayjs(initialValues?.date) : null}
-        rules={[{required: true, message: 'Date is required!'}]}>
+        rules={[{required: true, message: t('forms:messages.dateRequired')}]}>
         <DatePicker
           disabledDate={disabledDate}
           disabledTime={disabledDateTime}
@@ -76,21 +78,21 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
       </FormItem>
 
       <FormItem
-        label="Event"
+        label={t('forms:form.event')}
         name="event"
-        rules={[{required: true, message: 'Event is required!'}]}
+        rules={[{required: true, message: t('forms:messages.eventRequired')}]}
         initialValue={initialValues?.event}>
         <Select
-          placeholder="choose or add new event"
+          placeholder={t('forms:form.addNewEvent')}
           onChange={onPickerItemChange}
           dropdownRender={(menu) => (
             <>
               {menu}
               <Divider style={{margin: '8px 0'}} />
               <Space style={{padding: '0 8px 4px'}}>
-                <Input placeholder="Please enter item" onChange={onNameChange} value={name} />
+                <Input placeholder={t('forms:form.enterItem')} onChange={onNameChange} value={name} />
                 <Button variant="success" icon={<PlusOutlined />} onClick={addItem}>
-                  Add item
+                  {t('forms:buttons.addItem')}
                 </Button>
               </Space>
             </>
@@ -110,31 +112,40 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
       </FormItem>
 
       <FormItem
-        label="Description"
+        label={t('forms:form.description')}
         name="descr"
         initialValue={initialValues?.description}
-        rules={[{required: true, message: 'Description is required!'}]}>
+        rules={[{required: true, message: t('forms:messages.requiredDescription')}]}>
         <InputTextArea
           showCount
           maxLength={200}
           style={{height: 120, marginBottom: 24}}
-          placeholder="enter a description... "
+          placeholder={t('forms:form.enterDescription')}
         />
       </FormItem>
 
-      <FormItem label="Repeatability" name="repeatability" initialValue={initialValues?.repeat}>
-        <Segmented size="small" options={['one time', 'daily', 'weekly', 'monthly', 'yearly']} />
+      <FormItem label={t('forms:form.repitability')} name="repeatability" initialValue={initialValues?.repeat}>
+        <Segmented
+          size="small"
+          options={[
+            t('forms:buttons.oneTime'),
+            t('forms:buttons.daily'),
+            t('forms:buttons.weekly'),
+            t('forms:buttons.monthly'),
+            t('forms:buttons.yearly'),
+          ]}
+        />
       </FormItem>
 
       <ButtonsWrapper>
         <FormItem>
           <StyledButton variant="success" htmlType="submit" loading={isLoading?.send}>
-            Send
+            {t('forms:buttons.send')}
           </StyledButton>
         </FormItem>
         {initialValues && (
           <StyledButton variant="secondary" htmlType="button" loading={isLoading?.delete} onClick={deleteEvent}>
-            Delete
+            {t('forms:buttons.delete')}
           </StyledButton>
         )}
       </ButtonsWrapper>

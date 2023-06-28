@@ -1,11 +1,14 @@
 import React from 'react';
 import {List} from 'antd';
+import {useTranslation} from 'react-i18next';
 
 import {UserInfolist, DrawerItemField, DrawerItemLabel} from './styles';
 import {IUserInfoProps} from '../../types/user';
 import {Button} from '../../ui-kit/Button';
 
 export const UserInfo: React.FC<IUserInfoProps> = ({userInfo, onChangeMode, goToChangePassword}) => {
+  const {t} = useTranslation();
+
   return (
     <>
       <List
@@ -15,7 +18,7 @@ export const UserInfo: React.FC<IUserInfoProps> = ({userInfo, onChangeMode, goTo
           item.field && (
             <List.Item>
               <List.Item.Meta
-                title={<DrawerItemLabel>{item.label}</DrawerItemLabel>}
+                title={<DrawerItemLabel>{t(`account:fields.${item.label}`)}</DrawerItemLabel>}
                 description={<DrawerItemField>{item.field}</DrawerItemField>}
               />
             </List.Item>
@@ -23,8 +26,8 @@ export const UserInfo: React.FC<IUserInfoProps> = ({userInfo, onChangeMode, goTo
         }
       />
       <UserInfolist>
-        <Button onClick={onChangeMode}>Edit profile</Button>
-        <Button onClick={goToChangePassword}>Change password</Button>
+        <Button onClick={onChangeMode}>{t('account:buttons.editProfile')}</Button>
+        <Button onClick={goToChangePassword}>{t('account:buttons.changePassword')}</Button>
       </UserInfolist>
     </>
   );

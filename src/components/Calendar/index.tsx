@@ -1,6 +1,7 @@
 import React from 'react';
 import {BadgeProps, Skeleton, Badge} from 'antd';
 import type {Dayjs} from 'dayjs';
+import {useTranslation} from 'react-i18next';
 
 import {CalendarPropsI} from '../../types/calendar';
 import {CallendarWrapper, ButtonWrapper, FloatButtonCallendar, EventListWrapper, StyledCalendar} from './styles';
@@ -22,6 +23,8 @@ export const CalendarComponent: React.FC<CalendarPropsI> = ({
   error,
   dellId,
 }) => {
+  const {t} = useTranslation();
+
   const monthCellRender = (value: Dayjs) => {
     const num = getMonthData(value);
     return num ? (
@@ -72,7 +75,7 @@ export const CalendarComponent: React.FC<CalendarPropsI> = ({
         disabledDate={disabledDate}
       />
 
-      <FloatButtonCallendar onClick={goToPicker} text={'Add event'} />
+      <FloatButtonCallendar onClick={goToPicker} text={t('common:buttons.addEvent')} />
     </CallendarWrapper>
   );
 };
