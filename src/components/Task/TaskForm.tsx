@@ -50,11 +50,9 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
       </FormItem>
 
       <FormItem
-        name="Status"
+        name="status"
         label={t('forms:form.status')}
-        initialValue={
-          initialValues ? t(`common:buttons.${initialValues.status}`) : t(`common:buttons.${TASK_STATUSES.TODO}`)
-        }
+        initialValue={initialValues ? initialValues.status : TASK_STATUSES.TODO}
         rules={[{required: true, message: t('forms:messages.statusRequired')}]}>
         <Select
           placeholder={t('forms:form.status')}
@@ -66,7 +64,7 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
       </FormItem>
 
       <FormItem
-        name="Assignee"
+        name="assignee"
         label={t('forms:form.assignee')}
         rules={[{required: true, message: t('forms:messages.assigneeRequired')}]}
         initialValue={initialValues?.assignee?.username}>

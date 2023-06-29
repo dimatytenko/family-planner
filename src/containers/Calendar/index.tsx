@@ -6,7 +6,7 @@ import {useCalendarData} from '../../hooks/calendar';
 import {route} from '../../constants/routes';
 import {getListData} from '../../helpers/event';
 
-export const Calendar: React.FC = () => {
+const Calendar: React.FC = () => {
   const navigate = useNavigate();
   const {value, onSelect, onPanelChange, getMonthData, isLoading, selectedValue, deleteEvent, events, error, dellId} =
     useCalendarData();
@@ -30,3 +30,5 @@ export const Calendar: React.FC = () => {
     />
   );
 };
+
+export default Calendar;

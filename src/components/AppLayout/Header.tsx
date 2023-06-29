@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {isMobile} from 'react-device-detect';
+import {isAndroid} from 'react-device-detect';
 
 import {HeaderComponentWrapper, Container, HeaderContainer} from './styles';
 import {Navigation} from '../Navigation';
@@ -24,7 +24,7 @@ export const HeaderComponent: React.FC<IHeaderComponentProps> = ({
   }, []);
 
   return (
-    <HeaderComponentWrapper $scrolled={scrolled} $isMobile={isMobile}>
+    <HeaderComponentWrapper $scrolled={scrolled} $isMobile={isAndroid}>
       <Container>
         <HeaderContainer>
           <HomeLink aria-label="Go home">

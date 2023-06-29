@@ -5,7 +5,7 @@ import {useLogin} from '../../hooks/auth';
 import {LogInComponent} from '../../components/Auth/LogIn';
 import {route} from '../../constants/routes';
 
-export const LogIn = () => {
+const LogIn = () => {
   const navigate = useNavigate();
   const authData = useLogin();
 
@@ -18,3 +18,5 @@ export const LogIn = () => {
 
   return <LogInComponent authData={authData} goToReverify={goToReverify} goToForgotPassword={goToForgotPassword} />;
 };
+
+export default LogIn;

@@ -5,7 +5,7 @@ import {SignUpComponent} from '../../components/Auth/SignUp';
 import {useSignup} from '../../hooks/auth';
 import {route} from '../../constants/routes';
 
-export const SignUp = () => {
+const SignUp = () => {
   const navigate = useNavigate();
 
   const onRedirect = () => navigate(route.verify.path + '?message=register');
@@ -14,3 +14,5 @@ export const SignUp = () => {
 
   return <SignUpComponent authData={authData} />;
 };
+
+export default SignUp;

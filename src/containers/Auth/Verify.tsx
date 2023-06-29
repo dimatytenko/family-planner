@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {useSetLogin} from '../../hooks/auth';
 import {EmptyComponent} from '../../ui-kit/Empty';
 
-export const VerifyContainer = () => {
+const VerifyContainer = () => {
   const [message, setMessage] = useState<string | null>(null);
   const {setUser} = useSetLogin();
   const {t} = useTranslation();
@@ -21,3 +21,5 @@ export const VerifyContainer = () => {
 
   return <EmptyComponent description={t(`common:messages.${message}`)} />;
 };
+
+export default VerifyContainer;

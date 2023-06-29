@@ -128,11 +128,11 @@ export const PickerForm: React.FC<IPickerFormProps> = ({
         <Segmented
           size="small"
           options={[
-            t('forms:buttons.oneTime'),
-            t('forms:buttons.daily'),
-            t('forms:buttons.weekly'),
-            t('forms:buttons.monthly'),
-            t('forms:buttons.yearly'),
+            {label: t('forms:buttons.oneTime'), value: 'one time'},
+            {label: t('forms:buttons.daily'), value: 'daily'},
+            {label: t('forms:buttons.weekly'), value: 'weekly'},
+            {label: t('forms:buttons.monthly'), value: 'monthly'},
+            {label: t('forms:buttons.yearly'), value: 'yearly'},
           ]}
         />
       </FormItem>

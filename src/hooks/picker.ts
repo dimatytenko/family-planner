@@ -48,6 +48,8 @@ export const usePick = (redirect?: () => void) => {
   };
 
   const onSubmit = async (values: PickerValuesT) => {
+    console.log('values', values);
+
     const _values = {...values, repeatability: values.repeatability === 'one time' ? '' : values.repeatability};
     try {
       setIsLoading((prev) => ({...prev, send: true}));

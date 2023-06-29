@@ -3,7 +3,7 @@ import React from 'react';
 import {Reverify} from '../../components/Auth/Reverify';
 import {useReverify} from '../../hooks/auth';
 
-export const ForgotPasswordContainer = () => {
+const ForgotPasswordContainer = () => {
   const {onForgetPassword, resetError, isLoading, error, message} = useReverify();
 
   return (
@@ -17,3 +17,5 @@ export const ForgotPasswordContainer = () => {
     />
   );
 };
+
+export default ForgotPasswordContainer;

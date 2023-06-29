@@ -45,6 +45,7 @@ export const HeaderComponentWrapper = styled.div<{$scrolled?: boolean; $isMobile
   width: 100%;
   transition: all ${defaultTheme.transition.primary};
   padding-top: ${({$isMobile}) => ($isMobile ? defaultTheme.spacer._11 : defaultTheme.spacer._3)};
+  // padding-top: ${({$isMobile}) => ($isMobile ? defaultTheme.spacer._3 : defaultTheme.spacer._3)};
   padding-bottom: ${defaultTheme.spacer._3};
   ${({$scrolled}) =>
     $scrolled &&

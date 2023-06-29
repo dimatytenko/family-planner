@@ -1,23 +1,26 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import {Route, Routes} from 'react-router-dom';
 
 import {PrivateRoute} from './containers/Routes';
 import {PublicRoute} from './containers/Routes';
 import {route} from './constants/routes';
-import {LogIn} from './containers/Auth/Login';
-import {SignUp} from './containers/Auth/SignUp';
+import {Spinner} from './ui-kit/Spinner';
+
 import {Main} from './containers/Main';
 import {Picker} from './containers/Picker';
 import {PickerEdit} from './containers/Picker/Edit';
-import {Calendar} from './containers/Calendar';
-import {VerifyContainer} from './containers/Auth/Verify';
-import {ReverifyContaiber} from './containers/Auth/Reverify';
-import {ForgotPasswordContainer} from './containers/Auth/ForgotPassword';
-import {ChangePasswordContainer} from './containers/Settings/ChangePassword';
 import {SpaceContainer} from './containers/Space';
 import {SpaceEditContainer} from './containers/Space/Edit';
 import {TaskContainer} from './containers/Task';
 import {EditTaskContainer} from './containers/Task/Edit';
+
+const ChangePasswordContainer = lazy(() => import('./containers/Settings/ChangePassword'));
+const VerifyContainer = lazy(() => import('./containers/Auth/Verify'));
+const ReverifyContaiber = lazy(() => import('./containers/Auth/Reverify'));
+const ForgotPasswordContainer = lazy(() => import('./containers/Auth/ForgotPassword'));
+const LogIn = lazy(() => import('./containers/Auth/Login'));
+const SignUp = lazy(() => import('./containers/Auth/SignUp'));
+const Calendar = lazy(() => import('./containers/Calendar'));
 
 const PublicRoutes = [
   <Route
@@ -153,10 +156,12 @@ const PrivateRoutes = [
 
 const RoutesSwitch: React.FC = () => {
   return (
-    <Routes>
-      {PublicRoutes}
-      {PrivateRoutes}
-    </Routes>
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        {PublicRoutes}
+        {PrivateRoutes}
+      </Routes>
+    </Suspense>
   );
 };
 

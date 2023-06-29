@@ -3,7 +3,7 @@ import React from 'react';
 import {Reverify} from '../../components/Auth/Reverify';
 import {useReverify} from '../../hooks/auth';
 
-export const ReverifyContaiber = () => {
+const ReverifyContaiber = () => {
   const {onReverify, resetError, isLoading, error, message} = useReverify();
 
   return (
@@ -17,3 +17,5 @@ export const ReverifyContaiber = () => {
     />
   );
 };
+
+export default ReverifyContaiber;
