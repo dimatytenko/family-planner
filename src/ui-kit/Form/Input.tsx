@@ -5,9 +5,10 @@ import {StyledInput, StyledInputPassword, StyledInputTextArea} from './styles';
 import {InputPropsT, TextAreaPropsT} from './types';
 import {Tooltip} from '../Tooltip';
 
-export const Input: React.FC<InputPropsT> = ({tooltip, ...props}) => {
+export const Input: React.FC<InputPropsT> = ({tooltip, icon, ...props}) => {
   return (
     <StyledInput
+      prefix={icon}
       suffix={
         tooltip && (
           <Tooltip placement={'bottomRight'} text={tooltip}>

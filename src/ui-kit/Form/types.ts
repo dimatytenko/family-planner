@@ -1,11 +1,12 @@
-import {FormItemProps, InputNumberProps} from 'antd';
+import {ReactNode} from 'react';
+import {FormItemProps, InputNumberProps, DatePickerProps} from 'antd';
 import {InputProps} from 'antd/lib/input/Input';
 import {TextAreaProps} from 'antd/lib/input';
 import {SelectProps, InternalSelectProps} from 'antd/lib/select';
-import {DatePickerProps} from 'antd';
 
 export type InputPropsT = InputProps & {
   tooltip?: string;
+  icon?: ReactNode;
 };
 export type FormItemPropsT = FormItemProps;
 

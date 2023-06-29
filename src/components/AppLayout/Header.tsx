@@ -5,7 +5,7 @@ import {HeaderComponentWrapper, Container, HeaderContainer} from './styles';
 import {Navigation} from '../Navigation';
 import {HomeLink} from '../../ui-kit/Button';
 import {IHeaderComponentProps} from '../../types/layout';
-import {Logo} from '../../ui-kit/Logo';
+import {IconSvg} from '../../ui-kit/Icon/Svg';
 
 export const HeaderComponent: React.FC<IHeaderComponentProps> = ({
   user,
@@ -28,7 +28,7 @@ export const HeaderComponent: React.FC<IHeaderComponentProps> = ({
       <Container>
         <HeaderContainer>
           <HomeLink aria-label="Go home">
-            <Logo />
+            <IconSvg type="logo" />
           </HomeLink>
 
           <Navigation

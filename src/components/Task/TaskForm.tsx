@@ -11,6 +11,7 @@ import {Label} from '../../ui-kit/Label';
 import {ITaskFormProps, TaskValuesT} from '../../types/task';
 import {Select} from '../../ui-kit/Form/Select';
 import {TASK_STATUSES} from '../../queries/types/task';
+import {StyledDoneItemIcon, StyledTodoItemIcon} from '../Common/styles';
 
 export const TaskForm: React.FC<ITaskFormProps> = ({
   isLoading,
@@ -87,7 +88,7 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
                     <FormItem
                       {...field}
                       validateTrigger={['onChange', 'onBlur']}
-                      initialValue={initItems && initItems[index]}
+                      initialValue={field.name}
                       rules={[
                         {
                           required: true,
@@ -96,7 +97,10 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
                         },
                       ]}
                       noStyle>
-                      <Input placeholder={t('forms:form.enterItemText')} />
+                      <Input
+                        icon={initialValues?.items?.[index].status ? <StyledDoneItemIcon /> : <StyledTodoItemIcon />}
+                        placeholder={t('forms:form.enterItemText')}
+                      />
                     </FormItem>
                     {
                       <GhostWrapperStyled>
