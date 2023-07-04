@@ -1,5 +1,5 @@
-import React from 'react';
 import {useLottie} from 'lottie-react';
+
 import plan from '../../files/plan.json';
 
 export const Lottie = () => {

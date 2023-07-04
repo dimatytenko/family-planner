@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {useTranslation} from 'react-i18next';
 
 import {IReverifyProps} from '../../types/auth';
@@ -6,7 +6,7 @@ import {ReverifyForm} from './ReverifyForm';
 import {EmptyComponent} from '../../ui-kit/Empty';
 import {FormWrapper} from './styles';
 
-export const Reverify: React.FC<IReverifyProps> = ({titleButton, onSubmit, resetError, isLoading, error, message}) => {
+export const Reverify: FC<IReverifyProps> = ({titleButton, onSubmit, resetError, isLoading, error, message}) => {
   const {t} = useTranslation();
 
   if (message) {

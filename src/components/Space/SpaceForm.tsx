@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {Form} from 'antd';
 import {MinusCircleOutlined} from '@ant-design/icons';
 import {useTranslation} from 'react-i18next';
@@ -10,7 +10,7 @@ import {InputTextArea, Input} from '../../ui-kit/Form/Input';
 import {Label} from '../../ui-kit/Label';
 import {ISpaceFormProps, SpaceValuesT} from '../../types/space';
 
-export const SpaceForm: React.FC<ISpaceFormProps> = ({
+export const SpaceForm: FC<ISpaceFormProps> = ({
   isLoading,
   initialValues,
   formActions: {onSubmit, resetError, error, sizeForm, deleteSpace},

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {Reverify} from '../../components/Auth/Reverify';
 import {useReverify} from '../../hooks/auth';
 

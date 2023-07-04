@@ -21,6 +21,7 @@ const ForgotPasswordContainer = lazy(() => import('./containers/Auth/ForgotPassw
 const LogIn = lazy(() => import('./containers/Auth/Login'));
 const SignUp = lazy(() => import('./containers/Auth/SignUp'));
 const Calendar = lazy(() => import('./containers/Calendar'));
+const NotFoundContainer = lazy(() => import('./containers/Layout/NotFound'));
 
 const PublicRoutes = [
   <Route
@@ -160,6 +161,7 @@ const RoutesSwitch: React.FC = () => {
       <Routes>
         {PublicRoutes}
         {PrivateRoutes}
+        <Route path="*" element={<NotFoundContainer />} />
       </Routes>
     </Suspense>
   );

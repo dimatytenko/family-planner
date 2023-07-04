@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {Form} from 'antd';
 import {useTranslation} from 'react-i18next';
 
@@ -9,7 +9,7 @@ import {Label} from '../../ui-kit/Label';
 import {IReverifyFormProps} from '../../types/auth';
 import {reverifyReqBody} from '../../queries/types/auth';
 
-export const ReverifyForm: React.FC<IReverifyFormProps> = ({titleButton, onSubmit, resetError, isLoading, error}) => {
+export const ReverifyForm: FC<IReverifyFormProps> = ({titleButton, onSubmit, resetError, isLoading, error}) => {
   const [form] = Form.useForm();
   const {t} = useTranslation();
 

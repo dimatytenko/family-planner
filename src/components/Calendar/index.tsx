@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {BadgeProps, Skeleton, Badge} from 'antd';
 import type {Dayjs} from 'dayjs';
 import {useTranslation} from 'react-i18next';
@@ -9,7 +9,7 @@ import {disabledDate} from '../../helpers/callendar';
 import {EventList} from '../../components/EventList';
 import {ItemTitle, InfoWrapper} from '../Common/styles';
 
-export const CalendarComponent: React.FC<CalendarPropsI> = ({
+export const CalendarComponent: FC<CalendarPropsI> = ({
   value,
   onSelect,
   onPanelChange,

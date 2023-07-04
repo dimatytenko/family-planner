@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {FC, useState, useEffect} from 'react';
 import {Avatar as AvatarAntd, Dropdown} from 'antd';
 import type {MenuProps} from 'antd';
 import {useTranslation} from 'react-i18next';
@@ -29,7 +29,7 @@ import {StyledFilterIcon, MenuAction} from '../Common/styles';
 import {GhostWrapper} from '../../ui-kit/Button';
 import {TASK_STATUSES} from '../../queries/types/task';
 
-export const Spaces: React.FC<ISpacesProps> = ({
+export const Spaces: FC<ISpacesProps> = ({
   spaces,
   isLoading,
   error,

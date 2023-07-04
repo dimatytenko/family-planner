@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {List} from 'antd';
 import {useTranslation} from 'react-i18next';
 
@@ -6,7 +6,7 @@ import {UserInfolist, DrawerItemField, DrawerItemLabel} from './styles';
 import {IUserInfoProps, USER} from '../../types/user';
 import {Button} from '../../ui-kit/Button';
 
-export const UserInfo: React.FC<IUserInfoProps> = ({userInfo, onChangeMode, goToChangePassword}) => {
+export const UserInfo: FC<IUserInfoProps> = ({userInfo, onChangeMode, goToChangePassword}) => {
   const {t} = useTranslation();
 
   console.log('userInfo', userInfo);

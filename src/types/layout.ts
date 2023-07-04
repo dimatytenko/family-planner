@@ -53,3 +53,11 @@ export interface ILanguageProps {
   onChangeLanguage: (language: Language) => void;
   languageValues: {country: Language}[];
 }
+
+export interface INotFoundProps {
+  goBack?: () => void;
+}
+
+export interface IFooterComponentProps {
+  year: number;
+}

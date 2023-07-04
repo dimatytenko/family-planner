@@ -66,13 +66,13 @@ export const usePick = (redirect?: () => void) => {
           setInitialValues(res.body.data.event);
           info('Success');
           redirect?.();
-          setIsLoading((prev) => ({...prev, send: false}));
         }
       }
     } catch (e) {
       console.log(e);
       const message = errorMessage(e);
       message ? setError(message) : setError('Something went wrong. Please try again.');
+    } finally {
       setIsLoading((prev) => ({...prev, send: false}));
     }
   };
@@ -84,10 +84,10 @@ export const usePick = (redirect?: () => void) => {
       const res = await getEventQuery(id);
       if (res) {
         setInitialValues(res.body.data);
-        setIsLoading((prev) => ({...prev, page: false}));
       }
     } catch (e) {
       console.log(e);
+    } finally {
       setIsLoading((prev) => ({...prev, page: false}));
     }
   };
@@ -100,12 +100,12 @@ export const usePick = (redirect?: () => void) => {
       if (res) {
         info('Success');
         redirect?.();
-        setIsLoading((prev) => ({...prev, delete: false}));
       }
     } catch (e) {
       console.log(e);
       const message = errorMessage(e);
       message ? setError(message) : setError('Something went wrong. Please try again.');
+    } finally {
       setIsLoading((prev) => ({...prev, delete: false}));
     }
   };

@@ -1,5 +1,7 @@
-import React from 'react';
+import {FooterComponent} from '../../../components/AppLayout/Footer';
 
 export const Footer = () => {
-  return <div></div>;
+  const year = new Date().getFullYear();
+
+  return <FooterComponent year={year} />;
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {Form} from 'antd';
 import {MinusCircleOutlined} from '@ant-design/icons';
 import {useTranslation} from 'react-i18next';
@@ -13,7 +13,7 @@ import {Select} from '../../ui-kit/Form/Select';
 import {TASK_STATUSES} from '../../queries/types/task';
 import {StyledDoneItemIcon, StyledTodoItemIcon} from '../Common/styles';
 
-export const TaskForm: React.FC<ITaskFormProps> = ({
+export const TaskForm: FC<ITaskFormProps> = ({
   isLoading,
   initialAssignee,
   initialValues,
@@ -88,7 +88,6 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
                     <FormItem
                       {...field}
                       validateTrigger={['onChange', 'onBlur']}
-                      initialValue={field.name}
                       rules={[
                         {
                           required: true,
@@ -98,7 +97,9 @@ export const TaskForm: React.FC<ITaskFormProps> = ({
                       ]}
                       noStyle>
                       <Input
-                        icon={initialValues?.items?.[index].status ? <StyledDoneItemIcon /> : <StyledTodoItemIcon />}
+                        icon={
+                          initialValues?.items?.[field.key]?.status ? <StyledDoneItemIcon /> : <StyledTodoItemIcon />
+                        }
                         placeholder={t('forms:form.enterItemText')}
                       />
                     </FormItem>

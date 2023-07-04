@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {Language} from '../../../components/AppLayout/Language';
 import {useLanguage} from '../../../hooks/layout';
 

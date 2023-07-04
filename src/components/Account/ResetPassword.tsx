@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {useTranslation} from 'react-i18next';
 
 import {ResetPasswordForm} from './ResetPasswordForm';
@@ -6,7 +6,7 @@ import {EmptyComponent} from '../../ui-kit/Empty';
 import {IResetPasswordProps} from '../../types/user';
 import {FormWrapper} from './styles';
 
-export const ResetPassword: React.FC<IResetPasswordProps> = ({onSubmit, resetError, isLoading, error, message}) => {
+export const ResetPassword: FC<IResetPasswordProps> = ({onSubmit, resetError, isLoading, error, message}) => {
   const {t} = useTranslation();
 
   if (message) {

@@ -122,7 +122,6 @@ export const useSpaceList = () => {
     try {
       if (!id) return;
       setDellId(id);
-      setIsLoading((prev) => ({...prev, delete: true}));
       const res = await deleteSpaceQuery(id);
       if (res) {
         setSpaces((prev) => prev.filter((item) => item._id !== id));
@@ -198,7 +197,7 @@ export const useSpaceList = () => {
             ),
           })),
         );
-        info('Success');
+        // info('Success');
       }
     } catch (e) {
       console.log(e);

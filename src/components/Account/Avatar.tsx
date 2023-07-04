@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {PlusOutlined} from '@ant-design/icons';
 import Avatar from 'react-nice-avatar';
 import {useTranslation} from 'react-i18next';
@@ -7,7 +7,7 @@ import {AvatarWrapper, StyledUpload, Drawerlist, StyledButton} from './styles';
 import {IAccountAvatarProps} from '../../types/user';
 import {Modal} from '../../ui-kit/Modal';
 
-export const AccountAvatar: React.FC<IAccountAvatarProps> = ({
+export const AccountAvatar: FC<IAccountAvatarProps> = ({
   avatarData: {
     avatarRef,
     configAvatar,

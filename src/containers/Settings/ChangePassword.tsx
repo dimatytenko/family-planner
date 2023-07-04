@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {ResetPassword} from '../../components/Account/ResetPassword';
 import {useChangePassword} from '../../hooks/user';
 

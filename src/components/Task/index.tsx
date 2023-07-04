@@ -1,11 +1,11 @@
-import React from 'react';
+import {FC} from 'react';
 import {Skeleton} from 'antd';
 
 import {TaskForm} from './TaskForm';
 import {BackButtonStyled} from './styles';
 import {TaskPropsT} from '../../types/task';
 
-export const Task: React.FC<TaskPropsT> = ({isLoading, initialValues, formActions, initialAssignee, goBack}) => {
+export const Task: FC<TaskPropsT> = ({isLoading, initialValues, formActions, initialAssignee, goBack}) => {
   if (isLoading?.page || !formActions.sizeForm) return <Skeleton active />;
 
   return (

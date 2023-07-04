@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {Form, Radio, Divider, Space, Segmented} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import dayjs from 'dayjs';
@@ -15,7 +15,7 @@ import {DatePicker} from '../../ui-kit/Form/DatePicker';
 import {Select} from '../../ui-kit/Form/Select';
 import {Label} from '../../ui-kit/Label';
 
-export const PickerForm: React.FC<IPickerFormProps> = ({
+export const PickerForm: FC<IPickerFormProps> = ({
   isLoading,
   initialValues,
   formActions: {

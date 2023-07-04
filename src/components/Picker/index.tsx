@@ -1,11 +1,11 @@
-import React from 'react';
+import {FC} from 'react';
 import {Skeleton} from 'antd';
 
 import {PickerForm} from './PickerForm';
 import {PickerComponentPropsT} from '../../types/picker';
 import {BackButtonStyled} from './styles';
 
-export const PickerComponent: React.FC<PickerComponentPropsT> = ({isLoading, initialValues, formActions, goBack}) => {
+export const PickerComponent: FC<PickerComponentPropsT> = ({isLoading, initialValues, formActions, goBack}) => {
   if (isLoading?.page || !formActions.sizeForm) return <Skeleton active />;
 
   return (

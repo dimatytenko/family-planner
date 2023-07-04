@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {FC, useState, useEffect} from 'react';
 import {Dropdown} from 'antd';
 import type {MenuProps} from 'antd';
 import {useTranslation} from 'react-i18next';
@@ -23,7 +23,7 @@ interface IItemTask {
   isAssignee?: boolean;
 }
 
-export const ItemTask: React.FC<IItemTask> = ({items, taskId, updateItemTaskStatus, isAssignee}) => {
+export const ItemTask: FC<IItemTask> = ({items, taskId, updateItemTaskStatus, isAssignee}) => {
   const [currentItems, setCurrentItems] = useState(items);
   const [filter, setFilter] = useState<boolean | 'all'>('all');
 

@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import {defaultTheme} from '../../ui-kit/theme/theme';
 import {Media} from '../../ui-kit/theme/breakpoints';
 import back from './assets/back-min.jpg';
-import {StyledHeading5} from '../../ui-kit/Typography/styles';
+import {StyledHeading5, TextSmall} from '../../ui-kit/Typography/styles';
 import {CloseCircleOutlined} from '@ant-design/icons';
+import {BackButton} from '../../ui-kit/Button';
 
 export const StyledLayout = styled.div`
   min-height: 100%;
@@ -33,7 +34,7 @@ export const Container = styled.div`
 
 export const Main = styled.main<{$isMobile?: boolean}>`
   padding-top: ${({$isMobile}) => ($isMobile ? defaultTheme.spacer._16 : defaultTheme.spacer._15)};
-  padding-bottom: ${defaultTheme.spacer._3};
+  padding-bottom: ${defaultTheme.spacer._5};
   flex: 1 1 auto;
   width: 100%;
   height: 100%;
@@ -103,3 +104,41 @@ export const DrawerTitle = styled(StyledHeading5)``;
 export const StyledClose = styled(CloseCircleOutlined)`
   font-size: 20px;
 `;
+
+// 404
+
+export const BackButtonStyled = styled(BackButton)`
+  margin-bottom: ${({theme}) => theme.spacer._3};
+`;
+
+export const WrapperSVG = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${Media.down.l} {
+    & svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+`;
+// ======================
+
+// footer
+
+export const FooterComponentWrapper = styled.footer`
+  padding: ${({theme}) => theme.spacer._8} 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  min-height: 90px;
+`;
+
+export const FooterContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TextCopy = styled(TextSmall)`
+  color: ${({theme}) => theme.palette.colors.secondary};
+`;
+// ======================

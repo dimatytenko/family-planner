@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {useTranslation} from 'react-i18next';
 
 import {LinkButton} from '../../ui-kit/Button';
@@ -9,7 +9,7 @@ import {MenuFoldOutlined} from '@ant-design/icons';
 import {Button} from '../../ui-kit/Button';
 import {ChangeLanguageContainer} from '../../containers/Layout/Header/ChangeLanguageContainer';
 
-export const Navigation: React.FC<INavigationProps> = ({user, visibleLogin, visibleSignup, drawerActions}) => {
+export const Navigation: FC<INavigationProps> = ({user, visibleLogin, visibleSignup, drawerActions}) => {
   const {t} = useTranslation();
 
   return (
@@ -21,11 +21,9 @@ export const Navigation: React.FC<INavigationProps> = ({user, visibleLogin, visi
           {visibleSignup && <LinkButton to={route.signup.path}>{t('auth:buttons.signUp')}</LinkButton>}
         </>
       ) : (
-        <>
-          <Button variant="tertiary" onClick={drawerActions.showDrawer}>
-            <MenuFoldOutlined />
-          </Button>
-        </>
+        <Button variant="tertiary" onClick={drawerActions.showDrawer}>
+          <MenuFoldOutlined />
+        </Button>
       )}
     </NavigationWrapper>
   );

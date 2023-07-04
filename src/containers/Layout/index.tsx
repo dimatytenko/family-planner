@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {FC, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import {ConfigProvider} from 'antd';
 import localeUA from 'antd/locale/uk_UA';
@@ -14,7 +14,7 @@ import {useDrawer, useLanguage} from '../../hooks/layout';
 import {useViewer} from '../../hooks/user';
 import {Language as LangType} from '../../states/layout';
 
-export const Layout: React.FC<WithChildren> = ({children}) => {
+export const Layout: FC<WithChildren> = ({children}) => {
   const user = useViewer();
   const {pathname} = useLocation();
   const drawerActions = useDrawer();

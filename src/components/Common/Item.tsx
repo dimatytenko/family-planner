@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {Badge, BadgeProps, Dropdown} from 'antd';
 import type {MenuProps} from 'antd';
 import {MoreOutlined} from '@ant-design/icons';
@@ -47,7 +47,7 @@ interface IItem {
   isAssignee?: boolean;
 }
 
-export const Item: React.FC<IItem> = ({
+export const Item: FC<IItem> = ({
   id,
   title,
   type,

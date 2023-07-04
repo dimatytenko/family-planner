@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {Form} from 'antd';
 import {useTranslation} from 'react-i18next';
 
@@ -13,7 +13,7 @@ import {InputNumber} from '../../ui-kit/Form/InputNumber';
 
 const genderItems = ['male', 'female'];
 
-export const UserForm: React.FC<IUserFormProps> = ({
+export const UserForm: FC<IUserFormProps> = ({
   userData: {onSubmit, resetError, error, isLoading},
   onChangeMode,
   userInfo,

@@ -14,14 +14,14 @@ import './ui-kit/Form/styles.css';
 function App() {
   return (
     <RecoilProvider>
-      <CurrentUser>
-        <ThemeProvider theme={defaultTheme}>
-          <GlobalStyles />
-          <Layout>
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyles />
+        <Layout>
+          <CurrentUser>
             <RoutesSwitch />
-          </Layout>
-        </ThemeProvider>
-      </CurrentUser>
+          </CurrentUser>
+        </Layout>
+      </ThemeProvider>
     </RecoilProvider>
   );
 }

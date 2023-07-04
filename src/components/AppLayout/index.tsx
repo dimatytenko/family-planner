@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {FC, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import {isMobile} from 'react-device-detect';
 
@@ -6,7 +6,7 @@ import {StyledLayout, Main, Container} from './styles';
 import {DrawerComponent} from './Drawer';
 import {IAppLayoutProps} from '../../types/layout';
 
-export const AppLayout: React.FC<IAppLayoutProps> = ({
+export const AppLayout: FC<IAppLayoutProps> = ({
   children,
   header,
   footer,

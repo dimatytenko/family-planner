@@ -1,9 +1,9 @@
-import React from 'react';
+import {FC} from 'react';
 
 import {Select} from '../../ui-kit/Form/Select';
 import {ILanguageProps} from '../../types/layout';
 
-export const Language: React.FC<ILanguageProps> = ({language, onChangeLanguage, languageValues}) => {
+export const Language: FC<ILanguageProps> = ({language, onChangeLanguage, languageValues}) => {
   return (
     <Select
       defaultValue={language}

@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {Skeleton} from 'antd';
 import {useTranslation} from 'react-i18next';
 
@@ -7,7 +7,7 @@ import {IUsersListProps} from '../../types/user';
 import {User} from './User';
 import {UserList} from './styles';
 
-export const UsersList: React.FC<IUsersListProps> = ({users, loading}) => {
+export const UsersList: FC<IUsersListProps> = ({users, loading}) => {
   const {t} = useTranslation();
 
   if (loading) return <Skeleton active />;

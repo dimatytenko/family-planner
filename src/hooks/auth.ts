@@ -43,13 +43,13 @@ export const useSignup = (redirect?: () => void) => {
       const res = await signupQuery(body);
       if (res.status) {
         setSuccess(true);
-        setIsLoading((prev) => ({...prev, send: false}));
         redirect?.();
       }
     } catch (e) {
       console.log(e);
       const message = errorMessage(e);
       setError(message);
+    } finally {
       setIsLoading((prev) => ({...prev, send: false}));
     }
   };
@@ -104,15 +104,11 @@ export const useLogin = () => {
 
 export function useFetchSession() {
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const checkAuth = useCheckAuthorize();
   const setSession = useSetRecoilState(sessionState);
-  const [mounted, setMounted] = useState(false);
   const token = getToken();
 
   useEffect(() => {
-    if (mounted) return;
-    setMounted(true);
     const setAuthorize = async () => {
       setLoading(true);
       if (!token) return setLoading(false);
@@ -120,10 +116,8 @@ export function useFetchSession() {
       const res = await checkAuth();
       if (res) {
         setSession({sessionToken: token, user: res});
-        setSuccess(true);
         setLoading(false);
       } else {
-        setToken(null);
         setSession(null);
         setLoading(false);
       }
@@ -131,13 +125,7 @@ export function useFetchSession() {
     setAuthorize();
   }, []);
 
-  if (!mounted) return {loading: true, success};
-  if (!token) {
-    setToken(null);
-    setSession(null);
-    return {loading: false, success};
-  }
-  return {loading, success};
+  return {loading};
 }
 
 export const useCheckAuthorize = () => async () => {

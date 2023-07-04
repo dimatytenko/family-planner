@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {LogoutOutlined} from '@ant-design/icons';
 import {isMobile} from 'react-device-detect';
 import {useTranslation} from 'react-i18next';
@@ -11,7 +11,7 @@ import {AccountContainer} from '../../containers/Settings/Account';
 import {Avatar} from '../../ui-kit/Avatar';
 import {Drawer} from '../../ui-kit/Drawer';
 
-export const DrawerComponent: React.FC<IDrawerActions> = ({
+export const DrawerComponent: FC<IDrawerActions> = ({
   open,
   onClose,
   onLogOut,
@@ -32,11 +32,7 @@ export const DrawerComponent: React.FC<IDrawerActions> = ({
       <Drawer
         isMobile={isMobile}
         title={<DrawerTitle>{t('common:titles.pages')}</DrawerTitle>}
-        closeIcon={
-          <Button>
-            <StyledClose />
-          </Button>
-        }
+        closeIcon={<StyledClose />}
         onClose={onClose}
         open={open}
         width={320}
@@ -51,6 +47,9 @@ export const DrawerComponent: React.FC<IDrawerActions> = ({
         <Drawerlist>
           <LinkButton variant="tertiary" to={route.calendar.path} onClick={onClose}>
             {t('common:buttons.calendar')}
+          </LinkButton>
+          <LinkButton variant="tertiary" to={route.picker.path} onClick={onClose}>
+            {t('common:buttons.addEvent')}
           </LinkButton>
           <LinkButton variant="tertiary" to={route.createSpace.path} onClick={onClose}>
             {t('common:buttons.createSpace')}

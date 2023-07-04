@@ -1,11 +1,11 @@
-import React from 'react';
+import {FC} from 'react';
 
 import {useFetchSession} from '../hooks/auth';
 import {WithChildren} from '../types/helpers';
 import {Spinner} from '../ui-kit/Spinner';
 // import {Lottie} from './Lottie';
 
-const CurrentUser: React.FC<WithChildren> = ({children}) => {
+const CurrentUser: FC<WithChildren> = ({children}) => {
   const session = useFetchSession();
   // const [loading, setLoading] = useState(false);
 

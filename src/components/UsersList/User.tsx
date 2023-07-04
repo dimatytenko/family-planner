@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {FC, useState} from 'react';
 // import {MoreOutlined} from '@ant-design/icons';
 
 import {IUserProps} from '../../types/user';
@@ -7,7 +7,7 @@ import {Modal} from '../../ui-kit/Modal';
 import {Avatar} from '../../ui-kit/Avatar';
 // import {GhostWrapper} from '../../ui-kit/Button';
 
-export const User: React.FC<IUserProps> = ({user}) => {
+export const User: FC<IUserProps> = ({user}) => {
   const [previewOpen, setPreviewOpen] = useState(false);
 
   const handleOpen = () => setPreviewOpen(true);

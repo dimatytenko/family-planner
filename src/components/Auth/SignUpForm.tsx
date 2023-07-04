@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {Form} from 'antd';
 import {useTranslation} from 'react-i18next';
 
@@ -9,7 +9,7 @@ import {Input, InputPassword} from '../../ui-kit/Form/Input';
 import {FormItem} from '../../ui-kit/Form/Form';
 import {Label} from '../../ui-kit/Label';
 
-export const SignUpForm: React.FC<ISignUpFormProps> = ({authData: {onSubmit, resetError, error, isLoading}}) => {
+export const SignUpForm: FC<ISignUpFormProps> = ({authData: {onSubmit, resetError, error, isLoading}}) => {
   const [form] = Form.useForm();
   const {t} = useTranslation();
 

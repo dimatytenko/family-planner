@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {FC, useState, useEffect} from 'react';
 import {isAndroid} from 'react-device-detect';
 
 import {HeaderComponentWrapper, Container, HeaderContainer} from './styles';
@@ -7,12 +7,7 @@ import {HomeLink} from '../../ui-kit/Button';
 import {IHeaderComponentProps} from '../../types/layout';
 import {IconSvg} from '../../ui-kit/Icon/Svg';
 
-export const HeaderComponent: React.FC<IHeaderComponentProps> = ({
-  user,
-  visibleLogin,
-  visibleSignup,
-  drawerActions,
-}) => {
+export const HeaderComponent: FC<IHeaderComponentProps> = ({user, visibleLogin, visibleSignup, drawerActions}) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -28,7 +23,7 @@ export const HeaderComponent: React.FC<IHeaderComponentProps> = ({
       <Container>
         <HeaderContainer>
           <HomeLink aria-label="Go home">
-            <IconSvg type="logo" />
+            <IconSvg type="logo" width={'48'} height={'48'} />
           </HomeLink>
 
           <Navigation

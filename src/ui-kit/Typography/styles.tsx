@@ -185,13 +185,13 @@ export const TextBody4Bold = styled(Text)`
 export const TextSmall = styled(Text)`
   ${common};
   ${mixins.font.primary.regular};
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.2;
 `;
 export const TextSmallBold = styled(Text)`
   ${common};
   ${mixins.font.primary.bold};
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.4;
 `;
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {Spaces} from '../../components/Space/Spaces';
 import {useSpaceList} from '../../hooks/space';
 

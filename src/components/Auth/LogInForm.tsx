@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Form} from 'antd';
 import {useTranslation} from 'react-i18next';
@@ -10,7 +10,7 @@ import {Input} from '../../ui-kit/Form/Input';
 import {FormItem} from '../../ui-kit/Form/Form';
 import {Label} from '../../ui-kit/Label';
 
-export const LogInForm: React.FC<ILoginFormProps> = ({authData: {onSubmit, isLoading, error, resetError}}) => {
+export const LogInForm: FC<ILoginFormProps> = ({authData: {onSubmit, isLoading, error, resetError}}) => {
   const [form] = Form.useForm();
   const {t} = useTranslation();
 

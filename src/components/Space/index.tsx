@@ -1,11 +1,11 @@
-import React from 'react';
+import {FC} from 'react';
 import {Skeleton} from 'antd';
 
 import {SpaceFormWrapper, BackButtonStyled} from './styles';
 import {SpaceForm} from './SpaceForm';
 import {SpacePropsT} from '../../types/space';
 
-export const Space: React.FC<SpacePropsT> = ({isLoading, initialValues, formActions, goBack}) => {
+export const Space: FC<SpacePropsT> = ({isLoading, initialValues, formActions, goBack}) => {
   if (isLoading?.page || !formActions.sizeForm) return <Skeleton active />;
 
   return (

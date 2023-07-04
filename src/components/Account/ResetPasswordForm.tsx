@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {Form} from 'antd';
 import {useTranslation} from 'react-i18next';
 
@@ -9,7 +9,7 @@ import {Label} from '../../ui-kit/Label';
 import {IResetPasswordFormProps} from '../../types/user';
 import {ResetPasswordReqBody} from '../../queries/types/user';
 
-export const ResetPasswordForm: React.FC<IResetPasswordFormProps> = ({onSubmit, resetError, isLoading, error}) => {
+export const ResetPasswordForm: FC<IResetPasswordFormProps> = ({onSubmit, resetError, isLoading, error}) => {
   const [form] = Form.useForm();
   const {t} = useTranslation();
 

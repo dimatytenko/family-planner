@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import {useTranslation} from 'react-i18next';
 
 import {EventList} from '../EventList';
@@ -8,7 +8,7 @@ import {EmptyComponent} from '../../ui-kit/Empty';
 import {route} from '../../constants/routes';
 import {MainEventListWrapper, EventListBody, EventListWrapper} from './styles';
 
-export const MainEventList: React.FC<MainEventListI> = ({
+export const MainEventList: FC<MainEventListI> = ({
   selectedValue,
   getListData,
   events,
