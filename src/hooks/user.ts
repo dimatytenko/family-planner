@@ -7,7 +7,13 @@ import domtoimage from 'dom-to-image';
 
 import {getUserInfo} from '../helpers/user';
 import {info, loading, errorMessage} from '../helpers/common';
-import {updateUserQuery, updateAvatarQuery, resetPasswordQuery, getUsersQuery} from '../queries/user';
+import {
+  updateUserQuery,
+  updateAvatarQuery,
+  resetPasswordQuery,
+  getUsersQuery,
+  changeFirstLoginQuery,
+} from '../queries/user';
 import {UpdateUserReqBody, ResetPasswordReqBody} from '../queries/types/user';
 import {userState} from '../states/session';
 import {IUser} from '../types/user';
@@ -234,4 +240,21 @@ export const useUsers = () => {
   }, []);
 
   return {users, loading};
+};
+
+export const useChangeFirstLogin = () => {
+  const [viewer, updateViewer] = useRecoilState(userState);
+
+  const changeFirstLogin = async () => {
+    try {
+      const res = await changeFirstLoginQuery();
+      if (res?.status) {
+        updateViewer((prev) => ({...prev, firstLogin: res.body.user.firstLogin}));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return {viewer, changeFirstLogin};
 };

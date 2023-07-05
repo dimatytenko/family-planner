@@ -1,7 +1,9 @@
+import {FC, RefObject} from 'react';
+
 import {Spaces} from '../../components/Space/Spaces';
 import {useSpaceList} from '../../hooks/space';
 
-export const SpacesContainer = () => {
+export const SpacesContainer: FC<{refSpaces: RefObject<HTMLDivElement>}> = ({refSpaces}) => {
   const {
     spaces,
     isLoading,
@@ -17,6 +19,7 @@ export const SpacesContainer = () => {
 
   return (
     <Spaces
+      refSpaces={refSpaces}
       spaces={spaces}
       isLoading={isLoading}
       error={error}

@@ -10,17 +10,19 @@ import {GlobalStyles} from './styles/index';
 import CurrentUser from './containers/CurrentUser';
 import './ui-kit/Popconfirm/styles.css';
 import './ui-kit/Form/styles.css';
+import './ui-kit/Tour/styles.css';
+import './ui-kit/Tooltip/styles.css';
 
 function App() {
   return (
     <RecoilProvider>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyles />
-        <Layout>
-          <CurrentUser>
+        <CurrentUser>
+          <Layout>
             <RoutesSwitch />
-          </CurrentUser>
-        </Layout>
+          </Layout>
+        </CurrentUser>
       </ThemeProvider>
     </RecoilProvider>
   );

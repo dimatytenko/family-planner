@@ -7,4 +7,8 @@ export const StyledDrawer = styled(Drawer)<{$isMobile?: boolean}>`
     padding-bottom: ${({theme}) => theme.spacer._3};
     box-shadow: ${({theme}) => theme.palette.shadows.primary};
   }
+
+  & .ant-drawer-close {
+    color: ${({theme}) => theme.palette.colors.primary};
+  }
 `;

@@ -1,3 +1,4 @@
+import {RefObject} from 'react';
 import type {Dayjs} from 'dayjs';
 
 import {ILoading} from './common';
@@ -39,4 +40,5 @@ export interface EventListPropsI {
 
 export interface MainEventListI extends EventListPropsI {
   isLoading?: ILoading;
+  refEvent?: RefObject<HTMLDivElement>;
 }

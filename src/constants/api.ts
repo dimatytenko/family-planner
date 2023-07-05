@@ -13,6 +13,7 @@ export const userQueryList = {
   updateAvatar: () => `/api/users/update-avatar`,
   updateUser: () => `/api/users/update-user`,
   resetPassword: () => `/api/users/reset-password`,
+  changeFirstLogin: () => `/api/users/change-first-login`,
 };
 
 export enum PickerQueryList {

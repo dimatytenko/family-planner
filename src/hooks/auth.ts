@@ -103,7 +103,7 @@ export const useLogin = () => {
 };
 
 export function useFetchSession() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const checkAuth = useCheckAuthorize();
   const setSession = useSetRecoilState(sessionState);
   const token = getToken();

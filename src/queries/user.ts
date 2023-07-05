@@ -13,3 +13,5 @@ export const resetPasswordQuery = async (body: ResetPasswordReqBody) =>
   await postQuery(userQueryList.resetPassword()).send(body);
 
 export const getUsersQuery = async () => await getQuery(userQueryList.users());
+
+export const changeFirstLoginQuery = async () => await getQuery(userQueryList.changeFirstLogin());

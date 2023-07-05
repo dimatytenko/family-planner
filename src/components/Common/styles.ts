@@ -138,10 +138,11 @@ export const FilterItemsWrapper = styled.div`
   margin-left: auto;
 `;
 
-export const TaskItemWrapper = styled.div`
+export const TaskItemWrapper = styled.div<{$isFirst?: boolean}>`
   display: flex;
   align-items: center;
   gap: ${({theme}) => theme.spacer._2};
+  padding-right: ${({theme, $isFirst}) => ($isFirst ? theme.spacer._6 : 0)};
 `;
 
 export const StyledDoneItemIcon = styled(CheckCircleOutlined)`

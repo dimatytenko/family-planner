@@ -6,7 +6,7 @@ import {MainEventListI} from '../../types/calendar';
 import {Title} from '../../styles/common';
 import {EmptyComponent} from '../../ui-kit/Empty';
 import {route} from '../../constants/routes';
-import {MainEventListWrapper, EventListBody, EventListWrapper} from './styles';
+import {MainEventListWrapper, EventListBody, EventListWrapper, EmptyWrapper} from './styles';
 
 export const MainEventList: FC<MainEventListI> = ({
   selectedValue,
@@ -16,6 +16,7 @@ export const MainEventList: FC<MainEventListI> = ({
   deleteEvent,
   dellId,
   isLoading,
+  refEvent,
 }) => {
   const {t} = useTranslation();
 
@@ -39,11 +40,13 @@ export const MainEventList: FC<MainEventListI> = ({
             />
           </EventListWrapper>
         ) : (
-          <EmptyComponent
-            description={t('common:messages.noEvents')}
-            titleButton={t('common:buttons.addEvent')}
-            to={route.picker.path}
-          />
+          <EmptyWrapper ref={refEvent}>
+            <EmptyComponent
+              description={t('common:messages.noEvents')}
+              titleButton={t('common:buttons.addEvent')}
+              to={route.picker.path}
+            />
+          </EmptyWrapper>
         )}
       </EventListBody>
     </MainEventListWrapper>

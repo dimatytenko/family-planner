@@ -1,0 +1,54 @@
+.ant-tour {
+  width: 355px;
+  font-family: 'Proxima Nova';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
+
+  @media (max-width: 375px) {
+    width: 100%;
+  }
+}
+
+.ant-tour-content {
+  width: 100%;
+  margin: 0 auto;
+
+  @media (max-width: 375px) {
+    padding: 0 16px;
+  }
+}
+
+.ant-tour .ant-tour-inner .ant-tour-footer .ant-tour-indicators .ant-tour-indicator {
+  background: #c5c3c3;
+}
+
+.ant-tour .ant-tour-inner .ant-tour-footer .ant-tour-indicators .ant-tour-indicator-active {
+  background: #000000;
+}
+
+.ant-tour .ant-tour-inner .ant-tour-footer .ant-tour-buttons button {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+}
+
+.ant-tour .ant-tour-inner .ant-tour-footer .ant-tour-buttons button:hover {
+  color: #10b369;
+  border-color: #10b369;
+  background-color: #000;
+  opacity: 1;
+}
+
+.ant-tour .ant-tour-inner .ant-tour-close {
+  color: #000;
+}
+
+.ant-tour .ant-tour-inner .ant-tour-header .ant-tour-title {
+  font-size: 16px;
+  font-weight: 500;
+}

@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 import {Media} from '../../ui-kit/theme/breakpoints';
 
-export const MainEventListWrapper = styled.div``;
+export const MainEventListWrapper = styled.div`
+  max-width: 767px;
+`;
 
 export const EventListBody = styled.div`
   max-width: 767px;
@@ -17,4 +19,8 @@ export const EventListBody = styled.div`
 export const EventListWrapper = styled.div`
   width: 100%;
   max-width: 450px;
+`;
+
+export const EmptyWrapper = styled.div`
+  width: fit-content;
 `;

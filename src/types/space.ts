@@ -1,3 +1,5 @@
+import {RefObject} from 'react';
+
 import {ILoading} from './common';
 import {SizeCustomType} from './picker';
 import {spaceReqBody} from '../queries/types/space';
@@ -44,4 +46,5 @@ export interface ISpacesProps {
   user?: IUser | null;
   updateTaskStatus?: (id: string, body: statusTaskReqBody) => void;
   updateItemTaskStatus?: (id: string, body: itemStatusReqBody) => void;
+  refSpaces?: RefObject<HTMLDivElement>;
 }

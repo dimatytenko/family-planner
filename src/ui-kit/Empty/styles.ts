@@ -3,12 +3,17 @@ import {Empty} from 'antd';
 
 import {HeadingMedium3} from '../../ui-kit/Typography';
 import {LinkButton} from '../../ui-kit/Button';
+import {Media} from '../../ui-kit/theme/breakpoints';
 
 export const EmptyWrapper = styled.div`
-  max-width: 340px;
+  width: 375px;
   padding: ${({theme}) => theme.spacer._3} ${({theme}) => theme.spacer._9};
   border-radius: ${({theme}) => theme.spacer._3};
   background-color: ${({theme}) => theme.palette.colors.secondary};
+
+  ${Media.down.xxs} {
+    width: 100%;
+  }
 `;
 
 export const StyledEmpty = styled(Empty)``;

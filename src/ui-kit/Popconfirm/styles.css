@@ -1,3 +1,11 @@
+.ant-popconfirm {
+  font-family: 'Proxima Nova';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
+}
+
 .ant-popconfirm-buttons {
   display: flex;
   justify-content: flex-end;
@@ -15,8 +23,6 @@
 
 .ant-picker-ok > .ant-btn-primary.ant-btn-sm,
 .ant-popconfirm-buttons > .ant-btn-primary.ant-btn-sm {
-  font-size: 14px;
-  line-height: 20px;
   font-weight: 500;
   color: #fff;
   background-color: #000;
@@ -32,8 +38,6 @@
 }
 
 .ant-popconfirm-buttons > .ant-btn-default.ant-btn-sm {
-  font-size: 14px;
-  line-height: 20px;
   font-weight: 500;
   color: #ff0000;
   background-color: transparent;

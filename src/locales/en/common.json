@@ -34,5 +34,11 @@
     "verificationEmailSent": "Verification email sent!",
     "getNewPassword": "You get a new password on email!",
     "passwordChangedSuccess": "Password changed successfully!"
+  },
+  "tours": {
+    "eventTitle": "Events",
+    "eventText": "Your events or reminders for today will be displayed here. You can add or view all of them on the calendar page!",
+    "spaceTitle": "Spaces",
+    "spaceText": "Your spaces will be displayed here. Create new ones, add users and exchange tasks!"
   }
 }

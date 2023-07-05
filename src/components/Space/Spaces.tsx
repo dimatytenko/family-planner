@@ -18,6 +18,7 @@ import {
   TasksList,
   SpaceWrapper,
   ActionsWrapper,
+  EmptyWrapper,
 } from './styles';
 import {EmptyComponent} from '../../ui-kit/Empty';
 import {route} from '../../constants/routes';
@@ -40,6 +41,7 @@ export const Spaces: FC<ISpacesProps> = ({
   deleteTask,
   updateTaskStatus,
   updateItemTaskStatus,
+  refSpaces,
 }) => {
   const [currentSpases, setCurrentSpases] = useState(spaces);
   const [filter, setFilter] = useState<TASK_STATUSES | 'all'>('all');
@@ -83,21 +85,21 @@ export const Spaces: FC<ISpacesProps> = ({
             <SpacesList>
               {currentSpases?.map((space) => (
                 <SpaceWrapper key={space._id}>
-                  <SpaceHeader>
-                    <Item
-                      id={space._id}
-                      title={space.name}
-                      descr={space.description}
-                      deleteItem={onDelete}
-                      dellId={dellId}
-                      item={ITEM_TYPES.SPACE}
-                      isOwner={space.user._id === user?._id}
-                      avatar={space.user.avatar}
-                      username={space.user.username}
-                    />
-                  </SpaceHeader>
-                  <Br />
                   <WorkSpace>
+                    <SpaceHeader>
+                      <Item
+                        id={space._id}
+                        title={space.name}
+                        descr={space.description}
+                        deleteItem={onDelete}
+                        dellId={dellId}
+                        item={ITEM_TYPES.SPACE}
+                        isOwner={space.user._id === user?._id}
+                        avatar={space.user.avatar}
+                        username={space.user.username}
+                      />
+                    </SpaceHeader>
+                    <Br />
                     <HeadWrapper>
                       <AvatarAntd.Group>
                         {space.users.map((user) => (
@@ -142,11 +144,13 @@ export const Spaces: FC<ISpacesProps> = ({
             {error && <Label variant="error" label={error} icon />}
           </>
         ) : (
-          <EmptyComponent
-            description={t('common:messages.noTasks')}
-            titleButton={t('common:buttons.addSpace')}
-            to={route.createSpace.path}
-          />
+          <EmptyWrapper ref={refSpaces}>
+            <EmptyComponent
+              description={t('common:messages.noTasks')}
+              titleButton={t('common:buttons.addSpace')}
+              to={route.createSpace.path}
+            />
+          </EmptyWrapper>
         )}
       </SpacesBody>
     </SpacesWrapper>

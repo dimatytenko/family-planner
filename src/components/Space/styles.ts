@@ -23,10 +23,6 @@ export const SpaceWrapper = styled.div``;
 
 export const SpaceHeader = styled.div`
   max-width: 450px;
-
-  ${Media.down.m} {
-    margin: 0 auto;
-  }
 `;
 
 export const BackButtonStyled = styled(BackButton)`
@@ -96,4 +92,8 @@ export const ActionsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: ${({theme}) => theme.spacer._1};
+`;
+
+export const EmptyWrapper = styled.div`
+  width: fit-content;
 `;

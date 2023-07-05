@@ -15,6 +15,7 @@ export interface IUser {
     pickerItems?: string[];
   };
   _id?: string;
+  isFirstLogin?: boolean;
 }
 
 export interface IUSerInfo {

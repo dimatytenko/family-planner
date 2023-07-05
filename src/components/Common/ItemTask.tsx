@@ -50,7 +50,7 @@ export const ItemTask: FC<IItemTask> = ({items, taskId, updateItemTaskStatus, is
         <MenuMore onFilter={setFilter} />
       </FilterItemsWrapper>
       {currentItems?.map((item) => (
-        <TaskItemWrapper key={item.name}>
+        <TaskItemWrapper key={item.name} $isFirst>
           <StyledIconButton onClick={() => changeItemStatus(item.name)} disabled={!isAssignee}>
             {item.status ? <StyledDoneItemIcon /> : <StyledTodoItemIcon />}
           </StyledIconButton>
