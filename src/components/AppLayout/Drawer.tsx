@@ -4,7 +4,7 @@ import {isMobile} from 'react-device-detect';
 import {useTranslation} from 'react-i18next';
 
 import {IDrawerActions} from '../../types/layout';
-import {LinkButton, Button} from '../../ui-kit/Button';
+import {LinkButton} from '../../ui-kit/Button';
 import {route} from '../../constants/routes';
 import {Drawerlist, StyledLogout, DrawerElWrapper, DrawerTitle, StyledClose} from './styles';
 import {AccountContainer} from '../../containers/Settings/Account';
@@ -59,11 +59,7 @@ export const DrawerComponent: FC<IDrawerActions> = ({
         <Drawer
           isMobile={isMobile}
           title={<DrawerTitle>{t('common:titles.accountInfo')}</DrawerTitle>}
-          closeIcon={
-            <Button>
-              <StyledClose />
-            </Button>
-          }
+          closeIcon={<StyledClose />}
           width={320}
           onClose={onChildrenDrawerClose}
           open={childrenDrawer}>

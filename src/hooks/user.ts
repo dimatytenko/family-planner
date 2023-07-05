@@ -4,6 +4,8 @@ import type {RcFile, UploadProps} from 'antd/es/upload';
 import type {UploadFile} from 'antd/es/upload/interface';
 import {genConfig, AvatarFullConfig} from 'react-nice-avatar';
 import domtoimage from 'dom-to-image';
+import type {TourProps} from 'antd';
+import {useTranslation} from 'react-i18next';
 
 import {getUserInfo} from '../helpers/user';
 import {info, loading, errorMessage} from '../helpers/common';
@@ -244,6 +246,39 @@ export const useUsers = () => {
 
 export const useChangeFirstLogin = () => {
   const [viewer, updateViewer] = useRecoilState(userState);
+  const [open, setOpen] = useState<boolean>(false);
+  const refEvent = useRef(null);
+  const refSpaces = useRef(null);
+  const {t} = useTranslation();
+
+  const steps: TourProps['steps'] = [
+    {
+      title: t('common:tours.eventTitle'),
+      description: t('common:tours.eventText'),
+      target: () => refEvent.current,
+    },
+    {
+      title: t('common:tours.spaceTitle'),
+      description: t('common:tours.spaceText'),
+      target: () => refSpaces.current,
+      scrollIntoViewOptions: true,
+    },
+  ];
+
+  const onHintEnd = () => {
+    changeFirstLogin?.();
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if (!viewer?.isFirstLogin) return;
+
+    const id = setTimeout(() => {
+      setOpen(viewer?.isFirstLogin || false);
+    }, 500);
+
+    return () => clearTimeout(id);
+  }, []);
 
   const changeFirstLogin = async () => {
     try {
@@ -256,5 +291,5 @@ export const useChangeFirstLogin = () => {
     }
   };
 
-  return {viewer, changeFirstLogin};
+  return {viewer, changeFirstLogin, open, steps, onHintEnd, refEvent, refSpaces};
 };
