@@ -15,6 +15,7 @@ export interface ISpace {
   users: IUser[];
   _id: string;
   tasks: ITask[];
+  order: number;
 }
 
 export type SpaceValuesT = spaceReqBody;
@@ -47,4 +48,9 @@ export interface ISpacesProps {
   updateTaskStatus?: (id: string, body: statusTaskReqBody) => void;
   updateItemTaskStatus?: (id: string, body: itemStatusReqBody) => void;
   refSpaces?: RefObject<HTMLDivElement>;
+}
+
+export interface ISpacesOrder {
+  id: string;
+  order: number;
 }

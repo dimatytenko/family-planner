@@ -5,14 +5,13 @@ import {useTranslation} from 'react-i18next';
 
 import {Title} from '../../styles/common';
 import {Label} from '../../ui-kit/Label';
-import {ISpacesProps} from '../../types/space';
+import {ISpace, ISpacesProps} from '../../types/space';
 import {Item} from '../Common';
 import {
   SpacesWrapper,
   SpacesList,
   SpacesBody,
   SpaceHeader,
-  WorkSpace,
   LinkButtonStyled,
   HeadWrapper,
   TasksList,
@@ -43,10 +42,11 @@ export const Spaces: FC<ISpacesProps> = ({
   updateItemTaskStatus,
   refSpaces,
 }) => {
-  const [currentSpases, setCurrentSpases] = useState(spaces);
+  const [currentSpaces, setCurrentSpaces] = useState(spaces);
   const [filter, setFilter] = useState<TASK_STATUSES | 'all'>('all');
   const [taskId, setTaskId] = useState<string | null>(null);
   const {t} = useTranslation();
+  const [currentSpace, setCurrentSpace] = useState<ISpace | null>(null);
 
   const onDelete = (id: string) => {
     resetError?.();
@@ -58,8 +58,8 @@ export const Spaces: FC<ISpacesProps> = ({
   };
 
   const onFilterTasks = (id: string | null, filter: TASK_STATUSES | 'all') => {
-    if (filter === 'all' || !id) return setCurrentSpases(spaces);
-    setCurrentSpases(
+    if (filter === 'all' || !id) return setCurrentSpaces(spaces);
+    setCurrentSpaces(
       spaces?.map((item) => {
         if (item._id !== id) return item;
         return {
@@ -74,69 +74,129 @@ export const Spaces: FC<ISpacesProps> = ({
     onFilterTasks(taskId, filter);
   }, [spaces, filter, taskId]);
 
-  if (isLoading?.page || !currentSpases) return null;
+  const onDragStart = (e: React.DragEvent<HTMLDivElement>, space: ISpace) => {
+    typeof e;
+
+    setCurrentSpace(space);
+  };
+
+  const onDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    // eslint-disable-next-line
+    // @ts-ignore
+    e.currentTarget.style.boxShadow = 'none';
+  };
+
+  const onDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
+    // eslint-disable-next-line
+    // @ts-ignore
+    e.currentTarget.style.boxShadow = 'none';
+  };
+
+  const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    // eslint-disable-next-line
+    // @ts-ignore
+    e.currentTarget.style.boxShadow = 'red 0px 0px 0px 3px';
+  };
+
+  const onDrop = (e: React.DragEvent<HTMLDivElement>, space: ISpace) => {
+    e.preventDefault();
+
+    if (!currentSpace) return;
+    const updatedSpaces = currentSpaces?.map((c) => {
+      if (c._id === space._id) {
+        return {...c, order: currentSpace.order};
+      }
+      if (c._id === currentSpace._id) {
+        return {...c, order: space.order};
+      }
+      return c;
+    });
+    setCurrentSpaces(updatedSpaces);
+    const spacesOrder = updatedSpaces?.map((item: ISpace) => {
+      return {order: item.order, id: item._id};
+    });
+
+    localStorage.setItem('spacesOrder', JSON.stringify(spacesOrder));
+    e.currentTarget.style.boxShadow = 'none';
+  };
+
+  const sortSpaces = (a: ISpace, b: ISpace) => {
+    if (a.order > b.order) {
+      return 1;
+    } else {
+      return -1;
+    }
+  };
+
+  if (isLoading?.page || !currentSpaces) return null;
 
   return (
     <SpacesWrapper>
       <Title>{t('common:titles.taskSpaces')}</Title>
       <SpacesBody>
-        {!!currentSpases?.length ? (
+        {!!currentSpaces?.length ? (
           <>
             <SpacesList>
-              {currentSpases?.map((space) => (
-                <SpaceWrapper key={space._id}>
-                  <WorkSpace>
-                    <SpaceHeader>
-                      <Item
-                        id={space._id}
-                        title={space.name}
-                        descr={space.description}
-                        deleteItem={onDelete}
-                        dellId={dellId}
-                        item={ITEM_TYPES.SPACE}
-                        isOwner={space.user._id === user?._id}
-                        avatar={space.user.avatar}
-                        username={space.user.username}
-                      />
-                    </SpaceHeader>
-                    <Br />
-                    <HeadWrapper>
-                      <AvatarAntd.Group>
-                        {space.users.map((user) => (
-                          <Tooltip key={user._id} text={user.username}>
-                            <Avatar src={user.avatar} />
-                          </Tooltip>
-                        ))}
-                      </AvatarAntd.Group>
-                      <ActionsWrapper>
-                        <LinkButtonStyled variant="tertiary" to={route.createTask.get({id: space._id})}>
-                          {t('common:buttons.addTask')}
-                        </LinkButtonStyled>
-                        <MenuMore id={space._id} setFilter={setFilter} setTaskId={setTaskId} />
-                      </ActionsWrapper>
-                    </HeadWrapper>
-                    <TasksList>
-                      {space.tasks.map((task) => (
-                        <Item
-                          key={task._id}
-                          id={space._id}
-                          title={task.name}
-                          deleteItem={onDeleteTask}
-                          dellId={dellId}
-                          item={ITEM_TYPES.TASK}
-                          isOwner={task.user.id === user?._id}
-                          isAssignee={task.assignee?._id === user?._id}
-                          avatar={task.assignee?.avatar}
-                          username={task.assignee?.username}
-                          taskId={task._id}
-                          status={task.status}
-                          updateTaskStatus={updateTaskStatus}
-                          taskItems={task.items}
-                          updateItemTaskStatus={updateItemTaskStatus}
-                        />
+              {currentSpaces?.sort(sortSpaces).map((space) => (
+                <SpaceWrapper
+                  key={space._id}
+                  onDragStart={(e) => onDragStart(e, space)}
+                  onDragLeave={(e) => onDragLeave(e)}
+                  onDragEnd={(e) => onDragEnd(e)}
+                  onDragOver={(e) => onDragOver(e)}
+                  onDrop={(e) => onDrop(e, space)}
+                  draggable={true}>
+                  <SpaceHeader>
+                    <Item
+                      id={space._id}
+                      title={space.name}
+                      descr={space.description}
+                      deleteItem={onDelete}
+                      dellId={dellId}
+                      item={ITEM_TYPES.SPACE}
+                      isOwner={space.user._id === user?._id}
+                      avatar={space.user.avatar}
+                      username={space.user.username}
+                    />
+                  </SpaceHeader>
+                  <Br />
+                  <HeadWrapper>
+                    <AvatarAntd.Group>
+                      {space.users.map((user) => (
+                        <Tooltip key={user._id} text={user.username}>
+                          <Avatar src={user.avatar} />
+                        </Tooltip>
                       ))}
-                    </TasksList>
-                  </WorkSpace>
+                    </AvatarAntd.Group>
+                    <ActionsWrapper>
+                      <LinkButtonStyled variant="tertiary" to={route.createTask.get({id: space._id})}>
+                        {t('common:buttons.addTask')}
+                      </LinkButtonStyled>
+                      <MenuMore id={space._id} setFilter={setFilter} setTaskId={setTaskId} />
+                    </ActionsWrapper>
+                  </HeadWrapper>
+                  <TasksList>
+                    {space.tasks.map((task) => (
+                      <Item
+                        key={task._id}
+                        id={space._id}
+                        title={task.name}
+                        deleteItem={onDeleteTask}
+                        dellId={dellId}
+                        item={ITEM_TYPES.TASK}
+                        isOwner={task.user.id === user?._id}
+                        isAssignee={task.assignee?._id === user?._id}
+                        avatar={task.assignee?.avatar}
+                        username={task.assignee?.username}
+                        taskId={task._id}
+                        status={task.status}
+                        updateTaskStatus={updateTaskStatus}
+                        taskItems={task.items}
+                        updateItemTaskStatus={updateItemTaskStatus}
+                      />
+                    ))}
+                  </TasksList>
                 </SpaceWrapper>
               ))}
             </SpacesList>

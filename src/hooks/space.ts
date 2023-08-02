@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 
 import {useViewer} from '../hooks/user';
 import {info, loading, errorMessage} from '../helpers/common';
-import {SpaceValuesT, ISpace} from '../types/space';
+import {SpaceValuesT, ISpace, ISpacesOrder} from '../types/space';
 import {createSpaceQuery, getSpaceQuery, updateSpaceQuery, deleteSpaceQuery, getSpacesQuery} from '../queries/space';
 import {SizeCustomType} from '../types/picker';
 import {deleteTaskQuery, updateTaskStatusQuery, updateItemStatusQuery} from '../queries/task';
@@ -24,6 +24,10 @@ export const useSpace = (redirect?: () => void) => {
       if (!id) {
         const res = await createSpaceQuery(values);
         if (res) {
+          const spacesOrder: ISpacesOrder[] = JSON.parse(localStorage.getItem('spacesOrder') || '');
+          const updateSpacesOrder = [...spacesOrder, {id: res.body.data._id, order: spacesOrder.length}];
+          localStorage.setItem('spacesOrder', JSON.stringify(updateSpacesOrder));
+
           info('Success');
           redirect?.();
         }
@@ -64,6 +68,9 @@ export const useSpace = (redirect?: () => void) => {
       setIsLoading((prev) => ({...prev, delete: true}));
       const res = await deleteSpaceQuery(id);
       if (res) {
+        const spacesOrder: ISpacesOrder[] = JSON.parse(localStorage.getItem('spacesOrder') || '');
+        const updateSpacesOrder = spacesOrder.filter((item) => item.id !== id);
+        localStorage.setItem('spacesOrder', JSON.stringify(updateSpacesOrder));
         info('Success');
         redirect?.();
       }
@@ -107,7 +114,24 @@ export const useSpaceList = () => {
       setIsLoading((prev) => ({...prev, page: true}));
       const res = await getSpacesQuery();
       if (res) {
-        setSpaces(res.body.data);
+        if (!localStorage.getItem('spacesOrder')) {
+          const updateSpaces = res.body.data.map((item: ISpace, ind: number) => {
+            return {...item, order: ind};
+          });
+          const spacesOrder = updateSpaces.map((item: ISpace) => {
+            return {order: item.order, id: item._id};
+          });
+          localStorage.setItem('spacesOrder', JSON.stringify(spacesOrder));
+          setSpaces(updateSpaces);
+        }
+
+        if (localStorage.getItem('spacesOrder')) {
+          const spacesOrder: ISpacesOrder[] = JSON.parse(localStorage.getItem('spacesOrder') || '');
+          const updateSpaces = res.body.data.map((item: ISpace) => {
+            return {...item, order: spacesOrder.find((el) => el.id === item._id)?.order};
+          });
+          setSpaces(updateSpaces);
+        }
       }
     } catch (e) {
       console.log(e);
@@ -125,6 +149,9 @@ export const useSpaceList = () => {
       const res = await deleteSpaceQuery(id);
       if (res) {
         setSpaces((prev) => prev.filter((item) => item._id !== id));
+        const spacesOrder: ISpacesOrder[] = JSON.parse(localStorage.getItem('spacesOrder') || '');
+        const updateSpacesOrder = spacesOrder.filter((item) => item.id !== id);
+        localStorage.setItem('spacesOrder', JSON.stringify(updateSpacesOrder));
         info('Success');
       }
     } catch (e) {

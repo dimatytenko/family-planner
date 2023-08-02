@@ -19,7 +19,14 @@ export const SpaceFormWrapper = styled.div`
   max-width: 450px;
 `;
 
-export const SpaceWrapper = styled.div``;
+export const SpaceWrapper = styled.div`
+  cursor: grab;
+  width: 100%;
+  min-height: 100px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: ${({theme}) => theme.spacer._1};
+  padding: ${({theme}) => theme.spacer._3} ${({theme}) => theme.spacer._2};
+`;
 
 export const SpaceHeader = styled.div`
   max-width: 450px;
@@ -47,14 +54,6 @@ export const SpacesList = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({theme}) => theme.spacer._2};
-`;
-
-export const WorkSpace = styled.div`
-  width: 100%;
-  min-height: 100px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: ${({theme}) => theme.spacer._1};
-  padding: ${({theme}) => theme.spacer._3} ${({theme}) => theme.spacer._2};
 `;
 
 export const GhostWrapperStyled = styled(GhostWrapper)`
