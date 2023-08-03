@@ -4,6 +4,7 @@ import {Skeleton} from 'antd';
 import {Space} from '../../components/Space';
 import {useSpace} from '../../hooks/space';
 import {route} from '../../constants/routes';
+import {HelmetComponent} from '../../components/Helmet';
 
 export const SpaceEditContainer = () => {
   const navigate = useNavigate();
@@ -13,5 +14,10 @@ export const SpaceEditContainer = () => {
 
   if (isLoading?.page || !formActions.sizeForm || !initialValues) return <Skeleton active />;
 
-  return <Space isLoading={isLoading} formActions={formActions} initialValues={initialValues} goBack={goBack} />;
+  return (
+    <>
+      <HelmetComponent title={'spaceEdit'} />
+      <Space isLoading={isLoading} formActions={formActions} initialValues={initialValues} goBack={goBack} />;
+    </>
+  );
 };

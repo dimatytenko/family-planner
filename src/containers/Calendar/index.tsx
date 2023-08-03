@@ -5,6 +5,7 @@ import {CalendarComponent} from '../../components/Calendar';
 import {useCalendarData} from '../../hooks/calendar';
 import {route} from '../../constants/routes';
 import {getListData} from '../../helpers/event';
+import {HelmetComponent} from '../../components/Helmet';
 
 const Calendar: FC = () => {
   const navigate = useNavigate();
@@ -14,20 +15,24 @@ const Calendar: FC = () => {
     navigate(route.picker.path);
   };
   return (
-    <CalendarComponent
-      value={value}
-      onSelect={onSelect}
-      onPanelChange={onPanelChange}
-      getListData={getListData}
-      getMonthData={getMonthData}
-      isLoading={isLoading}
-      goToPicker={goToPicker}
-      selectedValue={selectedValue}
-      events={events}
-      error={error}
-      dellId={dellId}
-      deleteEvent={deleteEvent}
-    />
+    <>
+      <HelmetComponent title={'calendar'} />
+
+      <CalendarComponent
+        value={value}
+        onSelect={onSelect}
+        onPanelChange={onPanelChange}
+        getListData={getListData}
+        getMonthData={getMonthData}
+        isLoading={isLoading}
+        goToPicker={goToPicker}
+        selectedValue={selectedValue}
+        events={events}
+        error={error}
+        dellId={dellId}
+        deleteEvent={deleteEvent}
+      />
+    </>
   );
 };
 

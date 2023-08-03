@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {useLogin} from '../../hooks/auth';
 import {LogInComponent} from '../../components/Auth/LogIn';
 import {route} from '../../constants/routes';
+import {HelmetComponent} from '../../components/Helmet';
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -15,7 +16,12 @@ const LogIn = () => {
     navigate(route.forgotPassword.path);
   };
 
-  return <LogInComponent authData={authData} goToReverify={goToReverify} goToForgotPassword={goToForgotPassword} />;
+  return (
+    <>
+      <HelmetComponent title={'login'} />
+      <LogInComponent authData={authData} goToReverify={goToReverify} goToForgotPassword={goToForgotPassword} />
+    </>
+  );
 };
 
 export default LogIn;

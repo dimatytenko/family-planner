@@ -76,26 +76,19 @@ export const Spaces: FC<ISpacesProps> = ({
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>, space: ISpace) => {
     typeof e;
-
     setCurrentSpace(space);
   };
 
   const onDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-    // eslint-disable-next-line
-    // @ts-ignore
     e.currentTarget.style.boxShadow = 'none';
   };
 
   const onDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
-    // eslint-disable-next-line
-    // @ts-ignore
     e.currentTarget.style.boxShadow = 'none';
   };
 
   const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    // eslint-disable-next-line
-    // @ts-ignore
     e.currentTarget.style.boxShadow = 'red 0px 0px 0px 3px';
   };
 

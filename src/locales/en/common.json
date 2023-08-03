@@ -40,5 +40,25 @@
     "eventText": "Your events or reminders for today will be displayed here. You can add or view all of them on the calendar page!",
     "spaceTitle": "Spaces",
     "spaceText": "Your spaces will be displayed here. Create new ones, add users and exchange tasks!"
+  },
+  "meta": {
+    "lang": "en",
+    "titles": {
+      "main": "Family planner main page",
+      "login": "Family planner login page",
+      "register": "Family planner register page",
+      "forgotPassword": "Family planner forgot password page",
+      "reverify": "Family planner reverify page",
+      "verify": "Family planner verify page",
+      "calendar": "Family planner calendar page",
+      "picker": "Family planner picker page",
+      "pickerEdit": "Family planner picker edit page",
+      "changePassword": "Family planner change password page",
+      "space": "Family planner space page",
+      "spaceEdit": "Family planner space edit page",
+      "task": "Family planner task page",
+      "taskEdit": "Family planner task edit page"
+
+    }
   }
 }

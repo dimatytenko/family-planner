@@ -4,6 +4,7 @@ import {Skeleton} from 'antd';
 import {Space} from '../../components/Space';
 import {useSpace} from '../../hooks/space';
 import {route} from '../../constants/routes';
+import {HelmetComponent} from '../../components/Helmet';
 
 export const SpaceContainer = () => {
   const navigate = useNavigate();
@@ -13,5 +14,10 @@ export const SpaceContainer = () => {
 
   if (isLoading?.page || !formActions.sizeForm) return <Skeleton active />;
 
-  return <Space isLoading={isLoading} formActions={formActions} goBack={goBack} />;
+  return (
+    <>
+      <HelmetComponent title={'space'} />
+      <Space isLoading={isLoading} formActions={formActions} goBack={goBack} />;
+    </>
+  );
 };

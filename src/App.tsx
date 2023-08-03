@@ -1,5 +1,6 @@
 import React from 'react';
 import {ThemeProvider} from 'styled-components';
+import {HelmetProvider} from 'react-helmet-async';
 
 import RecoilProvider from './containers/RecoilProvider';
 import {defaultTheme} from './ui-kit/theme/theme';
@@ -19,9 +20,11 @@ function App() {
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyles />
         <CurrentUser>
-          <Layout>
-            <RoutesSwitch />
-          </Layout>
+          <HelmetProvider>
+            <Layout>
+              <RoutesSwitch />
+            </Layout>
+          </HelmetProvider>
         </CurrentUser>
       </ThemeProvider>
     </RecoilProvider>

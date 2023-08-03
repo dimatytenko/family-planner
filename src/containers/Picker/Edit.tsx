@@ -4,6 +4,7 @@ import {Skeleton} from 'antd';
 import {PickerComponent} from '../../components/Picker';
 import {usePick} from '../../hooks/picker';
 import {route} from '../../constants/routes';
+import {HelmetComponent} from '../../components/Helmet';
 
 export const PickerEdit = () => {
   const navigate = useNavigate();
@@ -14,6 +15,10 @@ export const PickerEdit = () => {
   if (isLoading?.page || !formActions.sizeForm || !initialValues) return <Skeleton active />;
 
   return (
-    <PickerComponent isLoading={isLoading} initialValues={initialValues} formActions={formActions} goBack={goBack} />
+    <>
+      <HelmetComponent title={'pickerEdit'} />
+
+      <PickerComponent isLoading={isLoading} initialValues={initialValues} formActions={formActions} goBack={goBack} />
+    </>
   );
 };

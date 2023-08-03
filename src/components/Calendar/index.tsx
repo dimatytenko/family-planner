@@ -40,12 +40,10 @@ export const CalendarComponent: FC<CalendarPropsI> = ({
     return (
       <ButtonWrapper className="events">
         {listData.map((item) => (
-          <>
-            <InfoWrapper>
-              <Badge status={item.type as BadgeProps['status']} />
-              <ItemTitle none>{item?.content}</ItemTitle>
-            </InfoWrapper>
-          </>
+          <InfoWrapper key={item.id}>
+            <Badge status={item.type as BadgeProps['status']} />
+            <ItemTitle none>{item?.content}</ItemTitle>
+          </InfoWrapper>
         ))}
       </ButtonWrapper>
     );
