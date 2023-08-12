@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components';
-import {Form, Input, Select, DatePicker, InputNumber} from 'antd';
+import {Form, Input, Select, DatePicker, InputNumber, Switch} from 'antd';
 
 import {mixins} from '../theme/mixins';
 import {InputTextStyles} from '../Typography/styles';
@@ -147,5 +147,21 @@ export const StyledInputNumber = styled(InputNumber)`
 
   svg {
     color: ${({theme}) => theme.palette.colors.primary};
+  }
+`;
+
+export const StyledSwitch = styled(Switch)`
+  background-color: ${({theme}) => theme.palette.colors.grayscale};
+
+  &.ant-switch-checked {
+    background-color: ${({theme}) => theme.palette.colors.tertiary};
+  }
+  &:hover:not(.ant-switch-disabled),
+  &:focus:not(.ant-switch-disabled) {
+    background: rgba(0, 0, 0, 0.45);
+  }
+  &.ant-switch-checked:hover:not(.ant-switch-disabled),
+  &.ant-switch-checked:focus:not(.ant-switch-disabled) {
+    background: rgba(0, 0, 0, 0.45);
   }
 `;

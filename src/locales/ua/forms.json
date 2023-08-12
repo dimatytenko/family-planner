@@ -11,7 +11,9 @@
     "daily": "щоденно",
     "weekly": "тижнево",
     "monthly": "місячно",
-    "yearly": "щорічно"
+    "yearly": "щорічно",
+    "withRemind": "з нагадуванням",
+    "withoutRemind": "без нагадування"
   },
   "form": {
     "task": "Завдання",

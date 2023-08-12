@@ -1,5 +1,5 @@
 import {FC, useState} from 'react';
-import {Form, Radio, Divider, Space, Segmented, Switch} from 'antd';
+import {Form, Radio, Divider, Space, Segmented} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import dayjs from 'dayjs';
 import {useTranslation} from 'react-i18next';
@@ -14,6 +14,7 @@ import {Button} from '../../ui-kit/Button';
 import {DatePicker} from '../../ui-kit/Form/DatePicker';
 import {Select} from '../../ui-kit/Form/Select';
 import {Label} from '../../ui-kit/Label';
+import {Switch} from '../../ui-kit/Form/Switch';
 
 export const PickerForm: FC<IPickerFormProps> = ({
   isLoading,
@@ -67,8 +68,8 @@ export const PickerForm: FC<IPickerFormProps> = ({
 
       <FormItem name="remind" initialValue={!initialValues?.withoutReminder || true}>
         <Switch
-          checkedChildren="З нагадуванням"
-          unCheckedChildren="Без нагадування"
+          checkedChildren={t('forms:buttons.withRemind')}
+          unCheckedChildren={t('forms:buttons.withoutRemind')}
           checked={remind}
           onChange={setRemind}
         />
