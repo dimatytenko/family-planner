@@ -74,25 +74,25 @@ export const Spaces: FC<ISpacesProps> = ({
     onFilterTasks(taskId, filter);
   }, [spaces, filter, taskId]);
 
-  const onDragStart = (e: React.DragEvent<HTMLDivElement>, space: ISpace) => {
+  const onDragStart = (e: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>, space: ISpace) => {
     typeof e;
     setCurrentSpace(space);
   };
 
-  const onDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+  const onDragLeave = (e: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     e.currentTarget.style.boxShadow = 'none';
   };
 
-  const onDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
+  const onDragEnd = (e: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     e.currentTarget.style.boxShadow = 'none';
   };
 
-  const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+  const onDragOver = (e: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.currentTarget.style.boxShadow = 'red 0px 0px 0px 3px';
   };
 
-  const onDrop = (e: React.DragEvent<HTMLDivElement>, space: ISpace) => {
+  const onDrop = (e: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>, space: ISpace) => {
     e.preventDefault();
 
     if (!currentSpace) return;
@@ -134,12 +134,16 @@ export const Spaces: FC<ISpacesProps> = ({
               {currentSpaces?.sort(sortSpaces).map((space) => (
                 <SpaceWrapper
                   key={space._id}
+                  draggable={true}
                   onDragStart={(e) => onDragStart(e, space)}
-                  onDragLeave={(e) => onDragLeave(e)}
                   onDragEnd={(e) => onDragEnd(e)}
+                  onDragLeave={(e) => onDragLeave(e)}
                   onDragOver={(e) => onDragOver(e)}
                   onDrop={(e) => onDrop(e, space)}
-                  draggable={true}>
+                  onTouchStart={(e) => onDragStart(e, space)}
+                  onTouchEnd={(e) => onDragEnd(e)}
+                  onTouchMove={(e) => onDragOver(e)}
+                  onTouchCancel={(e) => onDrop(e, space)}>
                   <SpaceHeader>
                     <Item
                       id={space._id}

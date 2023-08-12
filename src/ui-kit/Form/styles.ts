@@ -129,10 +129,7 @@ export const StyledSelect = styled(Select)`
 
 export const DatePickerStyled = styled(DatePicker)`
   ${inputStyle};
-  & .ant-picker-panel-layout {
-    width: 280px;
-    overflow: auto;
-  }
+
   &.ant-picker .ant-picker-input > input::placeholder {
     ${InputTextStyles};
     color: ${({theme}) => theme.palette.colors.grayscale};

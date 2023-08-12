@@ -1,5 +1,5 @@
-import {FC} from 'react';
-import {Form, Radio, Divider, Space, Segmented} from 'antd';
+import {FC, useState} from 'react';
+import {Form, Radio, Divider, Space, Segmented, Switch} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import dayjs from 'dayjs';
 import {useTranslation} from 'react-i18next';
@@ -33,6 +33,7 @@ export const PickerForm: FC<IPickerFormProps> = ({
     deleteEvent,
   },
 }) => {
+  const [remind, setRemind] = useState<boolean>(!initialValues?.withoutReminder);
   const {t} = useTranslation();
   const [form] = Form.useForm();
 
@@ -64,6 +65,15 @@ export const PickerForm: FC<IPickerFormProps> = ({
         </Radio.Group>
       </FormItem>
 
+      <FormItem name="remind" initialValue={!initialValues?.withoutReminder || true}>
+        <Switch
+          checkedChildren="З нагадуванням"
+          unCheckedChildren="Без нагадування"
+          checked={remind}
+          onChange={setRemind}
+        />
+      </FormItem>
+
       <FormItem
         label={t('forms:form.date')}
         name="date"
@@ -72,8 +82,8 @@ export const PickerForm: FC<IPickerFormProps> = ({
         <DatePicker
           disabledDate={disabledDate}
           disabledTime={disabledDateTime}
-          format="YYYY-MM-DD HH:mm"
-          showTime={{format: 'HH:mm'}}
+          format={remind ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD'}
+          showTime={remind && {format: 'HH:mm'}}
         />
       </FormItem>
 
@@ -124,18 +134,20 @@ export const PickerForm: FC<IPickerFormProps> = ({
         />
       </FormItem>
 
-      <FormItem label={t('forms:form.repitability')} name="repeatability" initialValue={initialValues?.repeat}>
-        <Segmented
-          size="small"
-          options={[
-            {label: t('forms:buttons.oneTime'), value: 'one time'},
-            {label: t('forms:buttons.daily'), value: 'daily'},
-            {label: t('forms:buttons.weekly'), value: 'weekly'},
-            {label: t('forms:buttons.monthly'), value: 'monthly'},
-            {label: t('forms:buttons.yearly'), value: 'yearly'},
-          ]}
-        />
-      </FormItem>
+      {remind && (
+        <FormItem label={t('forms:form.repitability')} name="repeatability" initialValue={initialValues?.repeat}>
+          <Segmented
+            size="small"
+            options={[
+              {label: t('forms:buttons.oneTime'), value: 'one time'},
+              {label: t('forms:buttons.daily'), value: 'daily'},
+              {label: t('forms:buttons.weekly'), value: 'weekly'},
+              {label: t('forms:buttons.monthly'), value: 'monthly'},
+              {label: t('forms:buttons.yearly'), value: 'yearly'},
+            ]}
+          />
+        </FormItem>
+      )}
 
       <ButtonsWrapper>
         <FormItem>

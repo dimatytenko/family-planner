@@ -10,4 +10,5 @@ export interface IEvent {
   updatedAt?: string;
   user?: IUser;
   _id?: string;
+  withoutReminder?: boolean;
 }

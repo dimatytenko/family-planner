@@ -17,7 +17,7 @@ export const SpaceContainer = () => {
   return (
     <>
       <HelmetComponent title={'space'} />
-      <Space isLoading={isLoading} formActions={formActions} goBack={goBack} />;
+      <Space isLoading={isLoading} formActions={formActions} goBack={goBack} />
     </>
   );
 };
