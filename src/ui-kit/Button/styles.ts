@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components';
 import {Link} from 'react-router-dom';
 import {Button} from 'antd';
-import {PlusCircleOutlined, LoadingOutlined, ArrowLeftOutlined} from '@ant-design/icons';
+import {LoadingOutlined, ArrowLeftOutlined} from '@ant-design/icons';
 
 import {CustomButtonProps} from './types';
 import {Text1Bold} from '../../ui-kit/Typography';
@@ -10,8 +10,6 @@ import {mixins} from '../../ui-kit/theme/mixins';
 export const StyledLink = styled(Link)``;
 
 // export const StyledLinkButton = styled(Button)``;
-
-export const StyledPlusCircleOutlined = styled(PlusCircleOutlined)``;
 
 const borderRadius = (props: CustomButtonProps) => {
   return props.round ? '50%' : props.theme.spacer._0;

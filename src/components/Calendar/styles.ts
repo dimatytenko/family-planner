@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {Calendar} from 'antd';
+import {PlusCircleOutlined} from '@ant-design/icons';
 
 import {scrollStyles} from '../../ui-kit/theme/scroll';
 import {Media} from '../../ui-kit/theme/breakpoints';
@@ -69,3 +70,5 @@ export const StyledCalendar = styled(Calendar)`
     color: ${({theme}) => theme.palette.colors.tertiary};
   }
 `;
+
+export const StyledPlusCircleOutlined = styled(PlusCircleOutlined)``;

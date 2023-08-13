@@ -10,9 +10,10 @@ import {Header} from './Header';
 import {AppLayout} from '../../components/AppLayout';
 import {excludePathsHeader, excludePathsFooter, excludePathsLogin, excludePathsSignup} from '../../constants/routes';
 import {useLogOut} from '../../hooks/auth';
-import {useDrawer, useLanguage} from '../../hooks/layout';
+import {useDrawer} from '../../hooks/drawer';
+import {useLanguage} from '../../hooks/language';
 import {useViewer} from '../../hooks/user';
-import {Language as LangType} from '../../states/layout';
+import {Language as LangType} from '../../states/language';
 
 export const Layout: FC<WithChildren> = ({children}) => {
   const user = useViewer();

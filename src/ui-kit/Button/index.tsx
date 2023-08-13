@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {Link} from 'react-router-dom';
 import {ButtonProps} from 'antd';
 import {useTranslation} from 'react-i18next';
@@ -6,7 +6,6 @@ import {useTranslation} from 'react-i18next';
 import {WithChildren} from '../../types/helpers';
 import {
   StyledLink,
-  StyledPlusCircleOutlined,
   StyledGhostWrapper,
   StyledLoadingOutlined,
   BackButtonWrapper,
@@ -50,10 +49,15 @@ export const BackButton: React.FC<{onClick?: () => void}> = ({onClick, ...props}
   );
 };
 
-export const FloatButton: React.FC<{onClick?: () => void; text?: string}> = ({onClick, text, ...props}) => {
+export const FloatButton: React.FC<{onClick?: () => void; text?: string; icon?: ReactNode}> = ({
+  onClick,
+  text,
+  icon,
+  ...props
+}) => {
   return (
     <StyledFloatButton onClick={onClick} {...props}>
-      <StyledPlusCircleOutlined />
+      {icon && icon}
       {text}
     </StyledFloatButton>
   );

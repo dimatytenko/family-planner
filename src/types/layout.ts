@@ -1,7 +1,7 @@
 import {IUser} from '../types/user';
 import {WithChildren} from '../types/helpers';
 import {TUserInfo} from '../types/user';
-import {Language} from '../states/layout';
+import {Language} from '../states/language';
 
 export interface IDrawerActions {
   showDrawer?: () => void;

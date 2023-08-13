@@ -11,7 +11,9 @@ export type InputPropsT = InputProps & {
 };
 export type FormItemPropsT = FormItemProps;
 
-export type TextAreaPropsT = TextAreaProps;
+export type TextAreaPropsT = TextAreaProps & {
+  back?: string;
+};
 
 export type SelectPropsT = SelectProps & InternalSelectProps;
 

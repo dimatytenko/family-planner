@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import {useSetRecoilState} from 'recoil';
 
-import {DrawerState} from '../../states/layout';
+import {DrawerState} from '../../states/drawer';
 import {Account} from '../../components/Account';
 import {useUser, useAvatar} from '../../hooks/user';
 import {route} from '../../constants/routes';

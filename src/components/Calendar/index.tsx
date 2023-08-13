@@ -4,7 +4,14 @@ import type {Dayjs} from 'dayjs';
 import {useTranslation} from 'react-i18next';
 
 import {CalendarPropsI} from '../../types/calendar';
-import {CallendarWrapper, ButtonWrapper, FloatButtonCallendar, EventListWrapper, StyledCalendar} from './styles';
+import {
+  CallendarWrapper,
+  ButtonWrapper,
+  FloatButtonCallendar,
+  EventListWrapper,
+  StyledCalendar,
+  StyledPlusCircleOutlined,
+} from './styles';
 import {disabledDate} from '../../helpers/callendar';
 import {EventList} from '../../components/EventList';
 import {ItemTitle, InfoWrapper} from '../Common/styles';
@@ -73,7 +80,11 @@ export const CalendarComponent: FC<CalendarPropsI> = ({
         disabledDate={disabledDate}
       />
 
-      <FloatButtonCallendar onClick={goToPicker} text={t('common:buttons.addEvent')} />
+      <FloatButtonCallendar
+        onClick={goToPicker}
+        text={t('common:buttons.addEvent')}
+        icon={<StyledPlusCircleOutlined />}
+      />
     </CallendarWrapper>
   );
 };

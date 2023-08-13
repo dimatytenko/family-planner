@@ -45,6 +45,12 @@ export const TaskQueryList = {
   updateItemStatus: (taskId: string) => `/api/tasks/${taskId}/status-item`,
 };
 
+export const NoteQueryList = {
+  createNote: () => `/api/note`,
+  getNote: () => `/api/note`,
+  updateNote: () => `/api/note`,
+};
+
 export enum TryQueryList {
   tryEmail = '/api/try/email',
 }

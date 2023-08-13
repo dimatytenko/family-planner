@@ -3,6 +3,7 @@ import {Form, Input, Select, DatePicker, InputNumber, Switch} from 'antd';
 
 import {mixins} from '../theme/mixins';
 import {InputTextStyles} from '../Typography/styles';
+import {scrollStyles} from '../theme/scroll';
 
 const {Item} = Form;
 const {TextArea, Password} = Input;
@@ -95,8 +96,11 @@ export const StyledInputPassword = styled(Password)`
   ${inputStyle}
 `;
 
-export const StyledInputTextArea = styled(TextArea)`
+export const StyledInputTextArea = styled(TextArea)<{$back?: string}>`
   ${inputStyle}
+  ${scrollStyles}
+
+  background-color: ${({$back, theme}) => ($back ? $back : theme.palette.colors.secondary)};
   padding: 0;
   border: none;
 

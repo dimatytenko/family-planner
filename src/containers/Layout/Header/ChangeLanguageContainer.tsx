@@ -1,5 +1,5 @@
 import {Language} from '../../../components/AppLayout/Language';
-import {useLanguage} from '../../../hooks/layout';
+import {useLanguage} from '../../../hooks/language';
 
 export const ChangeLanguageContainer = () => {
   const {language, onChangeLanguage, languageValues} = useLanguage();

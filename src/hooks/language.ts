@@ -2,28 +2,7 @@ import {useEffect} from 'react';
 import {useRecoilState} from 'recoil';
 import i18next from '../utils/i18next';
 
-import {DrawerState, LanguageState, Language} from '../states/layout';
-
-export const useDrawer = () => {
-  const [{drawer, childrenDrawer}, setDrawer] = useRecoilState(DrawerState);
-  const showDrawer = () => {
-    setDrawer((prev) => ({...prev, drawer: true}));
-  };
-
-  const onClose = () => {
-    setDrawer((prev) => ({...prev, drawer: false}));
-  };
-
-  const showChildrenDrawer = () => {
-    setDrawer((prev) => ({...prev, childrenDrawer: true}));
-  };
-
-  const onChildrenDrawerClose = () => {
-    setDrawer((prev) => ({...prev, childrenDrawer: false}));
-  };
-
-  return {open: drawer, showDrawer, onClose, childrenDrawer, showChildrenDrawer, onChildrenDrawerClose};
-};
+import {LanguageState, Language} from '../states/language';
 
 const languageValues = [
   {

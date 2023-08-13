@@ -5,6 +5,7 @@ import {isMobile} from 'react-device-detect';
 import {StyledLayout, Main, Container} from './styles';
 import {DrawerComponent} from './Drawer';
 import {IAppLayoutProps} from '../../types/layout';
+import {NoteModalContainer} from '../../containers/NoteModal';
 
 export const AppLayout: FC<IAppLayoutProps> = ({
   children,
@@ -38,6 +39,8 @@ export const AppLayout: FC<IAppLayoutProps> = ({
           user={user}
         />
       </Main>
+      <NoteModalContainer />
+
       {!hideFooter && footer}
     </StyledLayout>
   );

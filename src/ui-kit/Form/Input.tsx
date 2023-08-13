@@ -25,6 +25,6 @@ export const InputPassword: React.FC<InputPropsT> = ({...props}) => {
   return <StyledInputPassword {...props} />;
 };
 
-export const InputTextArea: React.FC<TextAreaPropsT> = ({...props}) => {
-  return <StyledInputTextArea {...props} />;
+export const InputTextArea: React.FC<TextAreaPropsT> = ({back, ...props}) => {
+  return <StyledInputTextArea $back={back} {...props} />;
 };

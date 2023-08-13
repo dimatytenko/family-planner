@@ -58,7 +58,11 @@
       "spaceEdit": "Family planner space edit page",
       "task": "Family planner task page",
       "taskEdit": "Family planner task edit page"
-
     }
+  },
+  "noteModal": {
+    "noteOpen": "Open note",
+    "noteClose": "Close note",
+    "placeholder": "Type a note..."
   }
 }
