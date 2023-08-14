@@ -79,11 +79,9 @@ export const SpaceForm: FC<ISpaceFormProps> = ({
                           tooltip={t('forms:messages.userWillBeAdded')}
                         />
                       </FormItem>
-                      {
-                        <GhostWrapperStyled>
-                          <MinusCircleOutlined onClick={() => remove(field.name)} />
-                        </GhostWrapperStyled>
-                      }
+                      <GhostWrapperStyled onClick={() => remove(field.name)}>
+                        <MinusCircleOutlined />
+                      </GhostWrapperStyled>
                     </InputWrapper>
                   </FormItem>
                 </UsernamesInputWrapper>

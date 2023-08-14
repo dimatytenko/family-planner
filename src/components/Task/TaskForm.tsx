@@ -103,11 +103,9 @@ export const TaskForm: FC<ITaskFormProps> = ({
                         placeholder={t('forms:form.enterItemText')}
                       />
                     </FormItem>
-                    {
-                      <GhostWrapperStyled>
-                        <MinusCircleOutlined onClick={() => remove(field.name)} />
-                      </GhostWrapperStyled>
-                    }
+                    <GhostWrapperStyled onClick={() => remove(field.name)}>
+                      <MinusCircleOutlined />
+                    </GhostWrapperStyled>
                   </InputWrapper>
                 </FormItem>
               </ItemsInputWrapper>
