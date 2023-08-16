@@ -1,6 +1,6 @@
 import {useState, useRef, useEffect} from 'react';
-import {useDebounce} from 'react-use';
 import {useRecoilState} from 'recoil';
+import {useDebouncedCallback} from 'use-debounce';
 
 import {NoteModalState} from '../states/noteModal';
 import {getNoteQuery, createNoteQuery, updateNoteQuery} from '../queries/note';
@@ -13,21 +13,16 @@ export const useNoteModal = () => {
   const [coord, setCoord] = useState<{x: number; y: number} | null>(null);
   const [startCoord, setStartCoord] = useState<{x: number; y: number} | null>(null);
   const [value, setValue] = useState('');
+  const debounced = useDebouncedCallback(() => {
+    updateNote();
+  }, 2000);
   const user = useViewer();
   const refNote = useRef<HTMLDivElement>(null);
 
   const onChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
-    cancel();
+    debounced();
   };
-
-  const [, cancel] = useDebounce(
-    () => {
-      updateNote();
-    },
-    2000,
-    [value],
-  );
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     setStartCoord({x: e.clientX, y: e.clientY});
