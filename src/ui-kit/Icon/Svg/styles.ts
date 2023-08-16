@@ -9,6 +9,11 @@ const getColor = ({theme, color, defaultColor}: {theme: any; color?: string; def
       return theme.palette.colors.secondary;
     case 'ghost':
       return theme.palette.colors.ghost;
+    case 'alert':
+      return theme.palette.colors.alert;
+    case 'blue':
+      return theme.palette.colors.blue;
+
     case 'none':
       return 'none';
     default:

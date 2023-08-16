@@ -1,3 +1,4 @@
+import {IEmojiObject} from './emoji';
 export interface INote {
   id: string;
   content: string;
@@ -17,4 +18,7 @@ export interface INoteModalProps {
   noteModalHandler: () => void;
   refNote: React.RefObject<HTMLDivElement>;
   placeholder: string;
+  onEmojiClick: (emojiObject: IEmojiObject) => void;
+  isVisibleEmojis: boolean;
+  isVisibleEmojisHandler: () => void;
 }

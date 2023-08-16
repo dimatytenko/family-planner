@@ -1,7 +1,7 @@
-export const colorOptions = <const>['primary', 'secondary', 'none'];
+export const colorOptions = <const>['primary', 'secondary', 'none', 'alert', 'blue'];
 export type color = (typeof colorOptions)[number];
 
-export const iconOptions = <const>['notFound', 'logo', 'todo', 'done'];
+export const iconOptions = <const>['notFound', 'logo', 'emojiAngry', 'emojiWink'];
 export type icon = (typeof iconOptions)[number];
 
 export interface StyledSvgIconProps {

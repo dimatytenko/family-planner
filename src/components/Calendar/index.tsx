@@ -49,7 +49,7 @@ export const CalendarComponent: FC<CalendarPropsI> = ({
         {listData.map((item) => (
           <InfoWrapper key={item.id}>
             <Badge status={item.type as BadgeProps['status']} />
-            <ItemTitle none>{item?.content}</ItemTitle>
+            <ItemTitle $isNone>{item?.content}</ItemTitle>
           </InfoWrapper>
         ))}
       </ButtonWrapper>

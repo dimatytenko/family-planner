@@ -83,7 +83,7 @@ export const useNoteModal = () => {
   useEffect(() => {
     if (value) return;
     initNote();
-  }, []);
+  }, [!!user]);
 
   const updateNote = async () => {
     try {
@@ -94,6 +94,8 @@ export const useNoteModal = () => {
       console.log(e);
     }
   };
+
+  console.log('value', value);
 
   return {
     noteModal,
@@ -109,5 +111,6 @@ export const useNoteModal = () => {
     onChangeValue,
     refNote,
     user,
+    setValue,
   };
 };

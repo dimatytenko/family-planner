@@ -16,6 +16,7 @@
     "@types/superagent": "^4.1.16",
     "antd": "^5.2.0",
     "dom-to-image": "^2.6.0",
+    "emoji-picker-react": "^4.4.11",
     "i18next": "^23.2.3",
     "i18next-browser-languagedetector": "^7.0.2",
     "i18next-http-backend": "^2.2.1",

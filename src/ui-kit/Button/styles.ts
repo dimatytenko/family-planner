@@ -34,6 +34,7 @@ const styles = css`
     background-color: ${({theme}) => theme.palette.colors.lightGray};
   }
   svg {
+    overflow: visible;
     transition: transform ${({theme}) => theme.transition.primary};
 
     &:hover {

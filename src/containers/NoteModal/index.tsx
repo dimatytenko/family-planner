@@ -4,8 +4,10 @@ import {useTranslation} from 'react-i18next';
 import {NoteModal} from '../../components/NoteModal';
 import {FloatButtonStyled} from '../../components/NoteModal/styles';
 import {useNoteModal} from '../../hooks/noteModal';
+import {useEmoji} from '../../hooks/emoji';
 
 export const NoteModalContainer = () => {
+  const {t} = useTranslation();
   const {
     noteModal,
     noteModalHandler,
@@ -20,8 +22,9 @@ export const NoteModalContainer = () => {
     onChangeValue,
     refNote,
     user,
+    setValue,
   } = useNoteModal();
-  const {t} = useTranslation();
+  const {onEmojiClick, isVisibleEmojis, isVisibleEmojisHandler} = useEmoji(setValue);
 
   return (
     <>
@@ -46,6 +49,9 @@ export const NoteModalContainer = () => {
             noteModalHandler={noteModalHandler}
             refNote={refNote}
             placeholder={t('common:noteModal.placeholder')}
+            onEmojiClick={onEmojiClick}
+            isVisibleEmojis={isVisibleEmojis}
+            isVisibleEmojisHandler={isVisibleEmojisHandler}
           />
         </>
       )}

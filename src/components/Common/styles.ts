@@ -8,12 +8,12 @@ import {Media} from '../../ui-kit/theme/breakpoints';
 import {TASK_STATUSES} from '../../queries/types/task';
 import {GhostWrapper} from '../../ui-kit/Button';
 
-export const ItemTitle = styled(Text1)<{none?: boolean}>`
+export const ItemTitle = styled(Text1)<{$isNone?: boolean}>`
   display: inline-block;
   max-width: 250px;
 
   ${Media.down.m} {
-    display: ${({none}) => (none ? 'none' : 'inline-block')};
+    display: ${({$isNone}) => ($isNone ? 'none' : 'inline-block')};
   }
 `;
 

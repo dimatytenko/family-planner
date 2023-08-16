@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import EmojiPicker from 'emoji-picker-react';
 
 import {Note, NoteBody, NoteHeader, NoteModalWrapper, NoteActions, NoteColorHeader, NoteColor} from './styles';
 import {CloseCircleOutlined, MoreOutlined} from '@ant-design/icons';
@@ -7,6 +8,7 @@ import {GhostWrapper} from '../../ui-kit/Button';
 import {colors} from '../../constants/common';
 import {InputTextArea} from '../../ui-kit/Form/Input';
 import {INoteModalProps} from '../../types/note';
+import {IconSvg} from '../../ui-kit/Icon/Svg';
 
 export const NoteModal: React.FC<INoteModalProps> = ({
   noteModal,
@@ -22,6 +24,9 @@ export const NoteModal: React.FC<INoteModalProps> = ({
   noteModalHandler,
   refNote,
   placeholder,
+  onEmojiClick,
+  isVisibleEmojis,
+  isVisibleEmojisHandler,
 }) => {
   if (!noteModal) return <></>;
 
@@ -60,6 +65,18 @@ export const NoteModal: React.FC<INoteModalProps> = ({
             value={value}
             onChange={onChangeValue}
           />
+
+          {!isVisibleEmojis ? (
+            <GhostWrapper onClick={isVisibleEmojisHandler}>
+              <IconSvg type="emojiWink" fill="blue" stroke="blue" width={'16'} height={'16'} viewBox="0 0 32 32" />
+            </GhostWrapper>
+          ) : (
+            <GhostWrapper onClick={isVisibleEmojisHandler}>
+              <IconSvg type="emojiAngry" fill="alert" stroke="alert" width={'16'} height={'16'} viewBox="0 0 32 32" />
+            </GhostWrapper>
+          )}
+
+          {isVisibleEmojis && <EmojiPicker onEmojiClick={(e) => onEmojiClick(e)} height={400} />}
         </NoteBody>
       </Note>
     </NoteModalWrapper>,
