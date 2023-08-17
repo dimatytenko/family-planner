@@ -5,6 +5,7 @@ import {useDebouncedCallback} from 'use-debounce';
 import {NoteModalState} from '../states/noteModal';
 import {getNoteQuery, createNoteQuery, updateNoteQuery} from '../queries/note';
 import {useViewer} from './user';
+import {storageLocal} from '../utils/storageLocal';
 
 export const useNoteModal = () => {
   const [noteModal, setNoteModal] = useRecoilState(NoteModalState);
@@ -39,21 +40,21 @@ export const useNoteModal = () => {
 
   const noteModalHandler = () => {
     setNoteModal((prev: boolean) => !prev);
-    localStorage.setItem('noteModal', JSON.stringify(!noteModal));
+    storageLocal.set('noteModal', !noteModal);
   };
 
   const onChengeColorState = (color: number) => {
     setColorState(color);
-    localStorage.setItem('colorState', JSON.stringify(color));
+    storageLocal.set('colorState', color);
     setIsHiddenColors(true);
   };
 
   useEffect(() => {
-    const noteModal = JSON.parse(localStorage.getItem('noteModal') as string);
+    const noteModal = storageLocal.get<boolean>('noteModal');
     if (noteModal) {
       setNoteModal(noteModal);
     }
-    const colorState = JSON.parse(localStorage.getItem('colorState') as string);
+    const colorState = storageLocal.get<number>('colorState');
     if (colorState) {
       setColorState(colorState);
     }
@@ -89,8 +90,6 @@ export const useNoteModal = () => {
       console.log(e);
     }
   };
-
-  console.log('value', value);
 
   return {
     noteModal,

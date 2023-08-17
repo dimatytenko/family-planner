@@ -28,6 +28,7 @@ import {ITEM_TYPES} from '../../types/common';
 import {StyledFilterIcon, MenuAction} from '../Common/styles';
 import {GhostWrapper} from '../../ui-kit/Button';
 import {TASK_STATUSES} from '../../queries/types/task';
+import {storageLocal} from '../../utils/storageLocal';
 
 export const Spaces: FC<ISpacesProps> = ({
   spaces,
@@ -110,7 +111,7 @@ export const Spaces: FC<ISpacesProps> = ({
       return {order: item.order, id: item._id};
     });
 
-    localStorage.setItem('spacesOrder', JSON.stringify(spacesOrder));
+    storageLocal.set('spacesOrder', spacesOrder);
     e.currentTarget.style.boxShadow = 'none';
   };
 
@@ -122,7 +123,7 @@ export const Spaces: FC<ISpacesProps> = ({
     }
   };
 
-  if (isLoading?.page || !currentSpaces) return null;
+  if (isLoading?.page || !currentSpaces?.length) return null;
 
   return (
     <SpacesWrapper>

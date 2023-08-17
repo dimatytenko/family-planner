@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {useRecoilState} from 'recoil';
-import i18next from '../utils/i18next';
 
+import i18next from '../utils/i18next';
 import {LanguageState, Language} from '../states/language';
 
 const languageValues = [
