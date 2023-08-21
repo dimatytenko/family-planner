@@ -2,6 +2,7 @@ import {FC, useState, useEffect} from 'react';
 import {Avatar as AvatarAntd, Dropdown} from 'antd';
 import type {MenuProps} from 'antd';
 import {useTranslation} from 'react-i18next';
+import {isMobile} from 'react-device-detect';
 
 import {Title} from '../../styles/common';
 import {Label} from '../../ui-kit/Label';
@@ -76,24 +77,34 @@ export const Spaces: FC<ISpacesProps> = ({
   }, [spaces, filter, taskId]);
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>, space: ISpace) => {
+    if (isMobile) return;
+
     typeof e;
     setCurrentSpace(space);
   };
 
   const onDragLeave = (e: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    if (isMobile) return;
+
     e.currentTarget.style.boxShadow = 'none';
   };
 
   const onDragEnd = (e: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    if (isMobile) return;
+
     e.currentTarget.style.boxShadow = 'none';
   };
 
   const onDragOver = (e: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    if (isMobile) return;
+
     e.preventDefault();
     e.currentTarget.style.boxShadow = 'red 0px 0px 0px 3px';
   };
 
   const onDrop = (e: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>, space: ISpace) => {
+    if (isMobile) return;
+
     e.preventDefault();
 
     if (!currentSpace) return;
@@ -116,6 +127,7 @@ export const Spaces: FC<ISpacesProps> = ({
   };
 
   const sortSpaces = (a: ISpace, b: ISpace) => {
+    console.log('a.order', b.order);
     if (a.order > b.order) {
       return 1;
     } else {
@@ -135,7 +147,7 @@ export const Spaces: FC<ISpacesProps> = ({
               {currentSpaces?.sort(sortSpaces).map((space) => (
                 <SpaceWrapper
                   key={space._id}
-                  draggable={true}
+                  draggable={!isMobile}
                   onDragStart={(e) => onDragStart(e, space)}
                   onDragEnd={(e) => onDragEnd(e)}
                   onDragLeave={(e) => onDragLeave(e)}

@@ -2,6 +2,7 @@ import React, {ReactNode} from 'react';
 import {Link} from 'react-router-dom';
 import {ButtonProps} from 'antd';
 import {useTranslation} from 'react-i18next';
+import {isMobile} from 'react-device-detect';
 
 import {WithChildren} from '../../types/helpers';
 import {
@@ -58,7 +59,7 @@ export const FloatButton: React.FC<{onClick?: () => void; text?: string; icon?: 
   return (
     <StyledFloatButton onClick={onClick} {...props}>
       {icon && icon}
-      {text}
+      {!isMobile && text}
     </StyledFloatButton>
   );
 };

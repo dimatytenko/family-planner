@@ -115,7 +115,9 @@ export const useSpaceList = () => {
       setIsLoading((prev) => ({...prev, page: true}));
       const res = await getSpacesQuery();
       if (res) {
-        if (!storageLocal.get<ISpacesOrder[]>('spacesOrder')) {
+        const spacesOrder = storageLocal.get<ISpacesOrder[]>('spacesOrder') || [];
+
+        if (!spacesOrder.length) {
           const updateSpaces = res.body.data.map((item: ISpace, ind: number) => {
             return {...item, order: ind};
           });
@@ -127,10 +129,19 @@ export const useSpaceList = () => {
           setIsLoading((prev) => ({...prev, page: false}));
         }
 
-        if (storageLocal.get<ISpacesOrder[]>('spacesOrder')) {
-          const spacesOrder = storageLocal.get<ISpacesOrder[]>('spacesOrder') || [];
+        if (spacesOrder.length) {
+          const updatedSpacesOrder = spacesOrder.map((item) => {
+            if (item.order !== undefined) {
+              return item;
+            } else {
+              return {...item, order: spacesOrder.length - 1};
+            }
+          });
+
+          storageLocal.set('spacesOrder', updatedSpacesOrder);
+
           const updateSpaces = res.body.data.map((item: ISpace) => {
-            return {...item, order: spacesOrder?.find((el) => el.id === item._id)?.order};
+            return {...item, order: updatedSpacesOrder?.find((el) => el.id === item._id)?.order};
           });
           setSpaces(updateSpaces);
           setIsLoading((prev) => ({...prev, page: false}));
