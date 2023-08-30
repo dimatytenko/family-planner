@@ -1,6 +1,13 @@
 import styled, {css} from 'styled-components';
-import {EditOutlined, DeleteOutlined, CheckCircleOutlined, StopOutlined, FilterOutlined} from '@ant-design/icons';
-
+import {
+  EditOutlined,
+  DeleteOutlined,
+  CheckCircleOutlined,
+  StopOutlined,
+  FilterOutlined,
+  CopyOutlined,
+  CopyFilled,
+} from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 
 import {Text2, Text1, Text3} from '../../ui-kit/Typography';
@@ -158,4 +165,12 @@ export const StyledIconButton = styled(GhostWrapper)``;
 export const StyledFilterIcon = styled(FilterOutlined)`
   font-size: 18px;
   color: ${({theme}) => theme.palette.colors.primary};
+`;
+
+export const StyledCopyIcon = styled(CopyOutlined)`
+  color: ${({theme}) => theme.palette.colors.denary};
+`;
+
+export const StyledCopyFilledIcon = styled(CopyFilled)`
+  color: ${({theme}) => theme.palette.colors.blue};
 `;

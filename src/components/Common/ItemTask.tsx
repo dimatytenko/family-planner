@@ -11,10 +11,13 @@ import {
   TaskItemWrapper,
   StyledIconButton,
   ItemTaskTitle,
+  StyledCopyIcon,
+  StyledCopyFilledIcon,
 } from './styles';
 import {ITasksItem, itemStatusReqBody} from '../../queries/types/task';
 import {StyledFilterIcon, MenuAction} from '../Common/styles';
 import {GhostWrapper} from '../../ui-kit/Button';
+import {useCopyToClipboard} from '../../hooks/copyToClipboard';
 
 interface IItemTask {
   items?: ITasksItem[];
@@ -26,6 +29,7 @@ interface IItemTask {
 export const ItemTask: FC<IItemTask> = ({items, taskId, updateItemTaskStatus, isAssignee}) => {
   const [currentItems, setCurrentItems] = useState(items);
   const [filter, setFilter] = useState<boolean | 'all'>('all');
+  const {copied, copy, text} = useCopyToClipboard(10000);
 
   const changeItemStatus = (name: string) => {
     if (!taskId) return;
@@ -55,6 +59,9 @@ export const ItemTask: FC<IItemTask> = ({items, taskId, updateItemTaskStatus, is
             {item.status ? <StyledDoneItemIcon /> : <StyledTodoItemIcon />}
           </StyledIconButton>
           <ItemTaskTitle>{item.name}</ItemTaskTitle>
+          <StyledIconButton onClick={() => copy(item.name)}>
+            {copied && text === item.name ? <StyledCopyFilledIcon /> : <StyledCopyIcon />}
+          </StyledIconButton>
         </TaskItemWrapper>
       ))}
     </TaskItemsWrapper>

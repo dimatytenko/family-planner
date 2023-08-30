@@ -17,7 +17,7 @@ export const TaskContainer = () => {
   return (
     <>
       <HelmetComponent title={'task'} />
-      <Task isLoading={isLoading} formActions={formActions} initialAssignee={initialAssignee} goBack={goBack} />;
+      <Task isLoading={isLoading} formActions={formActions} initialAssignee={initialAssignee} goBack={goBack} />
     </>
   );
 };
