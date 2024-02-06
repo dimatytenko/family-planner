@@ -15,7 +15,7 @@ const SignUp = () => {
   return (
     <>
       <HelmetComponent title={'register'} />
-      <SignUpComponent authData={authData} />;
+      <SignUpComponent authData={authData} />
     </>
   );
 };

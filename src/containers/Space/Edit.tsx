@@ -17,7 +17,7 @@ export const SpaceEditContainer = () => {
   return (
     <>
       <HelmetComponent title={'spaceEdit'} />
-      <Space isLoading={isLoading} formActions={formActions} initialValues={initialValues} goBack={goBack} />;
+      <Space isLoading={isLoading} formActions={formActions} initialValues={initialValues} goBack={goBack} />
     </>
   );
 };

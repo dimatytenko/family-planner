@@ -23,7 +23,7 @@ const VerifyContainer = () => {
   return (
     <>
       <HelmetComponent title={'verify'} />
-      <EmptyComponent description={t(`common:messages.${message}`)} />;
+      <EmptyComponent description={t(`common:messages.${message}`)} />
     </>
   );
 };

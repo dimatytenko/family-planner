@@ -195,7 +195,7 @@ export const Spaces: FC<ISpacesProps> = ({
                         deleteItem={onDeleteTask}
                         dellId={dellId}
                         item={ITEM_TYPES.TASK}
-                        isOwner={task.user.id === user?._id}
+                        isOwner={task.user._id === user?._id}
                         isAssignee={task.assignee?._id === user?._id}
                         avatar={task.assignee?.avatar}
                         username={task.assignee?.username}
