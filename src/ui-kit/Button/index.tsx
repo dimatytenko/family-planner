@@ -14,6 +14,7 @@ import {
   BackText,
   StyledFloatButton,
   StyledButton,
+  StyledTextLink,
 } from './styles';
 import {CustomButtonProps} from './types';
 
@@ -86,4 +87,8 @@ export const Button: React.FC<CustomButtonProps & ButtonProps & WithChildren> = 
       {children}
     </StyledButton>
   );
+};
+
+export const TextLink: React.FC<WithChildren & {to: string}> = ({to, children}) => {
+  return <StyledTextLink to={to}>{children}</StyledTextLink>;
 };

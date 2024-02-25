@@ -134,11 +134,18 @@ export const FooterComponentWrapper = styled.footer`
 
 export const FooterContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: ${({theme}) => theme.spacer._1};
 `;
 
 export const TextCopy = styled(TextSmall)`
   color: ${({theme}) => theme.palette.colors.secondary};
+  margin: 0 auto;
 `;
+
+export const TopBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
 // ======================

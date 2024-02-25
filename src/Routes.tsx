@@ -22,6 +22,7 @@ const LogIn = lazy(() => import('./containers/Auth/Login'));
 const SignUp = lazy(() => import('./containers/Auth/SignUp'));
 const Calendar = lazy(() => import('./containers/Calendar'));
 const NotFoundContainer = lazy(() => import('./containers/Layout/NotFound'));
+const PrivacyPolicyContainer = lazy(() => import('./containers/Static/PrivacyPolicy'));
 
 const PublicRoutes = [
   <Route
@@ -69,6 +70,7 @@ const PublicRoutes = [
       </PublicRoute>
     }
   />,
+  <Route key="privacyPolicy" path={route.privacyPolicy.path} element={<PrivacyPolicyContainer />} />,
 ];
 
 const PrivateRoutes = [

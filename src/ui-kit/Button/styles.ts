@@ -182,3 +182,12 @@ const stylesButton = css`
 export const StyledButton = styled(Button)`
   ${stylesButton}
 `;
+
+export const StyledTextLink = styled(Link)`
+  color: ${({theme}) => theme.palette.colors.secondary};
+  transition: color ${({theme}) => theme.transition.primary};
+
+  &:hover {
+    color: ${({theme}) => theme.palette.colors.grayscale};
+  }
+`;

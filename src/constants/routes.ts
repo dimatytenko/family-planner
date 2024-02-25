@@ -19,6 +19,7 @@ export const route = {
   spaceEdit: Route.of<{id: string}>({path: '/space/:id'}),
   createTask: Route.of<{id: string}>({path: '/task/:id'}),
   editTask: Route.of<{id: string; taskId: string}>({path: '/task/:id/:taskId'}),
+  privacyPolicy: Route.of({path: '/privacy-policy'}),
 };
 
 export const paths = {
