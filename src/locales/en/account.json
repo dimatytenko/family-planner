@@ -1,4 +1,4 @@
-{  
+{
   "buttons": {
     "generateAvatar": "Generate avatar",
     "deleteAvatar": "Delete avatar",
@@ -18,8 +18,8 @@
     "username": "Username",
     "email": "E-mail",
     "age": "Age",
-    "gender": "Gender"
-
+    "gender": "Gender",
+    "telegram": "Telegram"
   },
   "messages": {
     "passwordRequired": "Please input your Password!",
@@ -38,9 +38,11 @@
     "age": "age",
     "gender": "sex",
     "male": "male",
-    "female": "female"
+    "female": "female",
+    "telegram": "Telegram",
+    "telegramPlaceholder": "Go to Telegram-bot"
   },
-    "notes": {
+  "notes": {
     "callYou": "What do you want others to call you?"
   }
 }

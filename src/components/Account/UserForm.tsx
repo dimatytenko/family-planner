@@ -24,7 +24,7 @@ export const UserForm: FC<IUserFormProps> = ({
   const onFinish = (values: any) => {
     onSubmit(values, onChangeMode);
   };
-
+  console.log('userInfo', userInfo);
   return (
     <Form
       form={form}
@@ -79,6 +79,13 @@ export const UserForm: FC<IUserFormProps> = ({
           placeholder={t('account:messages.changeSex')}
           allowClear
           options={genderItems.map((item) => ({label: t(`account:fields.${item}`), value: item}))}></Select>
+      </FormItem>
+
+      <FormItem
+        name="telegram"
+        label={t('account:forms.telegram')}
+        initialValue={getUserInfoField(USER.telegram, userInfo)}>
+        <Input />
       </FormItem>
 
       <FormButtonsWrapper>

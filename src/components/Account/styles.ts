@@ -53,3 +53,13 @@ export const DrawerItemLabel = styled(Text2Bold)`
 export const FormWrapper = styled.div`
   max-width: 450px;
 `;
+
+export const TelegramLink = styled.a`
+  display: block;
+  margin: ${({theme}) => theme.spacer._2} 0;
+  color: ${({theme}) => theme.palette.colors.blue};
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;

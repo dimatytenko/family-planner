@@ -8,6 +8,7 @@ export const getUserInfo = (user?: IUser | null) => {
     {label: USER.email, field: user?.email || ''},
     {label: USER.age, field: user?.age || null},
     {label: USER.sex, field: user?.sex || ''},
+    {label: USER.telegram, field: user?.telegram || ''},
   ];
 };
 

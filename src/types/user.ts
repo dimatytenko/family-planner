@@ -16,6 +16,7 @@ export interface IUser {
   };
   _id?: string;
   isFirstLogin?: boolean;
+  telegram?: string;
 }
 
 export interface IUSerInfo {
@@ -57,6 +58,7 @@ export enum USER {
   email = 'email',
   age = 'age',
   sex = 'gender',
+  telegram = 'telegram',
 }
 
 export interface IAccountAvatarProps {

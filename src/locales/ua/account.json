@@ -1,4 +1,4 @@
-{  
+{
   "buttons": {
     "generateAvatar": "Згенерувати аватар",
     "deleteAvatar": "Видалити аватар",
@@ -18,7 +18,8 @@
     "username": "Юзернейм",
     "email": "Пошта",
     "age": "Вік",
-    "gender": "Стать"
+    "gender": "Стать",
+    "telegram": "Телеграм"
   },
   "messages": {
     "passwordRequired": "Будь-ласка введіть ваш Пароль!",
@@ -37,7 +38,9 @@
     "age": "вік",
     "gender": "стать",
     "male": "чоловік",
-    "female": "жінка"
+    "female": "жінка",
+    "telegram": "Телеграм",
+    "telegramPlaceholder": "Перейти в Telegram-бот"
   },
   "notes": {
     "callYou": "Як ви хочете, щоб вас називали інші?"
