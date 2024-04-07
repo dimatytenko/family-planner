@@ -146,6 +146,7 @@ export const TextCopy = styled(TextSmall)`
 export const TopBox = styled.div`
   display: flex;
   justify-content: space-around;
+  align-items: center;
 `;
 
 // ======================

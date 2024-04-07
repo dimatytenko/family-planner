@@ -24,7 +24,6 @@ export const StyledHeading1 = styled(Text)`
   line-height: 1.5;
   ${Media.down.m} {
     font-size: 38px;
-    line-height: 1.5px;
   }
 `;
 
